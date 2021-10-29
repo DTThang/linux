@@ -349,7 +349,7 @@ rm -rf [tên thư mục]	|  Xóa thư mục có dữ liệu
 
 - Ngoài ra, nếu target của một symbolic link bị xóa, di chuyển hoặc đổi tên, symbolic link không được cập nhật. Khi điều này xảy ra, liên kết tượng trưng được gọi là "broken" hoặc "orphaned" và sẽ không còn hoạt động như một liên kết.
 
-Lệnh tạo liên kết tượng trưng như sau: `ln -s [file nguồn] [file đích]`
+- Lệnh tạo liên kết tượng trưng như sau: `ln -s [file nguồn] [file đích]`
 
 ![image](https://user-images.githubusercontent.com/92305335/139401455-c551b762-7c3b-45ef-90ef-8a6fcffede54.png)
 
