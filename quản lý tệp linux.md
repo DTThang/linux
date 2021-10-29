@@ -1,19 +1,19 @@
 # Mục Lục 
-[1. Các thư mục trong linux](#1)
+- [1. Các thư mục trong linux](#1)
 
-[2. Mount](#2)
+- [2. Mount](#2)
 
-[3. Quản lý tệp](#3)
+- [3. Quản lý tệp](#3)
 
-[4. Sử dụng liên kết](#4)
+- [4. Sử dụng liên kết](#4)
 
-  [[1. Inode]](#Inode)
+  - [1. Inode](#Inode)
   
-  [2. Hard links](#hard)
+  - [2. Hard links](#hard)
   
-  [3. Symbolic links](#sys) 
+  - [3. Symbolic links](#sys) 
   
-  [4. Archives and compressed file](#arc)
+  - [4. Archives and compressed file](#arc)
   
 [Tham khảo](#tm)
 
