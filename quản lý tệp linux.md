@@ -335,8 +335,6 @@ rm -rf [tên thư mục]	|  Xóa thư mục có dữ liệu
 
 - 2 file viblo.txt và hardlink có cùng số inode là 136. Khi file gốc viblo.txt bị xóa thì nội dụng file hardlink.txt vẫn còn nguyên.
 
-- Nội dung trong hardlink.txt vẫn còn vì khi xóa file viblo.txt hệ thống chỉ xóa đi số link count trong inode của file đi 1.
-
 - Khi sử dụng lệnh rm để xóa file thì làm giảm đi một hard link. Khi số lượng hard link giảm còn 0 thì không thể truy cập tới nội dung của file được nữa
 
 <a name = 'sys'></a>
