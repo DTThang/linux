@@ -25,7 +25,7 @@
 
 ![image](https://user-images.githubusercontent.com/92305335/139211765-d59d17ed-6e36-4f50-bfc7-df970d18d89a.png)
 
-- / : 
+- /  
 
   - Thư mục gốc, chưa tất cả file và thư mục hệ thống
 
@@ -34,26 +34,26 @@
 ![image](https://user-images.githubusercontent.com/92305335/139211836-ee481bad-c4ec-4e2f-a0de-0f68949fe1bf.png)
 
 
-- /boot: 
+- /boot 
 
   - Chứa linux kernel, file ảnh hỗ trợ load hệ thống
  
  ![image](https://user-images.githubusercontent.com/92305335/139211889-cb55beb4-6cfe-4788-abbb-95da20f2bf99.png)
 
 
-- /bin:
+- /bin
 
   - Chứa các tin nhị phân hỗ trợ việc boot và thi hành lệnh  
   
   ![image](https://user-images.githubusercontent.com/92305335/139216333-83068987-2500-4b0b-acd0-ad73a366aa5c.png)
  
-- /dev: 
+- /dev 
 
   - Chứa các tập tin thiết bị phần cứng, bao gồm các thiết bị đầu cuối, thiết bị được gắn vào hệ thống. Vd: cdrom, cpu, core… 
  
  ![image](https://user-images.githubusercontent.com/92305335/139216392-aaab20b9-1c8e-4f2b-a087-f7fbbb24cb5d.png)
 
-- /etc: 
+- /etc 
 
   - Chứa các file cấu hình yêu cầu bởi tất cả các chương trình
 
@@ -61,11 +61,11 @@
  
 ![image](https://user-images.githubusercontent.com/92305335/139216442-b4498362-9dce-4f4f-b8f5-654727ae8270.png)
 
-- /home: 
+- /home 
   - Thư mục chính của người dùng, mỗi người dùng sẽ được tạo thư mục riêng và sử dụng
  ![image](https://user-images.githubusercontent.com/92305335/139216487-a2fa73e2-35da-4a3c-a957-cd3f55bdc84c.png)
 
-- /lib, /lib64: 
+- /lib, /lib64 
 
   - Thứa các file thư viện chia sẻ cho các tệp tin nhị phân nằm dưới /bin và /sbin
 
@@ -73,7 +73,7 @@
 ![image](https://user-images.githubusercontent.com/92305335/139216512-a3168e36-1038-411d-899b-82bb89d4b1db.png)
 
  
-- /media:
+- /media
 
   - Thư mục chứa các mount tạm thời cho các thiết bị tháo lắp
 
@@ -89,7 +89,7 @@
 
 Vd: viz, java 
 
-- /proc: 
+- /proc 
 
   - Chứa các thông tin về tiến trình hệ thống
 
@@ -98,7 +98,7 @@ Vd: viz, java
   - Đây là các tập tin hệ thống ảo với nội đung tài nguyên hệ thống
  ![image](https://user-images.githubusercontent.com/92305335/139216570-b073d928-fba8-4b96-a01c-6707bc7af998.png)
 
-- /root:
+- /root
 
   - Là thư mục của người dùng root
 
