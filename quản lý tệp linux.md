@@ -384,7 +384,7 @@ r| bổ xung file vào kho lưu trữ
 
 https://kb.hostvn.net/cau-truc-cay-thu-muc-trong-linux_61.html
 
-
 rapidtables.org/vi/code/linux/cp.html
 
 viblo.asia/p/hard-links-va-symbolic-links-tren-linux-07LKXJR2lV4
+
