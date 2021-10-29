@@ -7,7 +7,7 @@
 
 [4. Sử dụng liên kết](#4)
 
-  [1. Inode](#Inode)
+  [[1. Inode]](#Inode)
   
   [2. Hard links](#hard)
   
