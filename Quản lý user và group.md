@@ -40,7 +40,14 @@
 
 - Tạo user
   - Lệnh useradd tạo tài khoản người dùng mới
- `useradd [option] name-user`
+  - Các giá trị mặc định khi user được tạo được thêm vào nằm ở 2 tệp: /etc/login.defs và /etc/default/useradd
+  - Cấu trúc lệnh: `useradd [option] name-user`
+  - Tạo môi trường người sử dụng, một vài file sau đây có vai trò
+    - / etc / profile: Được sử dụng cho cài đặt mặc định cho tất cả người dùng khi khởi động trình bao đăng nhập
+    - / etc / bashrc: Được sử dụng để xác định giá trị mặc định cho tất cả người dùng khi bắt đầu subshell
+    - ~ / .profile: Cài đặt cụ thể cho một người dùng được áp dụng khi khởi động trình bao đăng nhập
+    - ~ / .bashrc: Cài đặt cụ thể cho một người dùng được áp dụng khikhởi động một subshell 
+
 
 lựa chọn| mô tả 
 ---|---
