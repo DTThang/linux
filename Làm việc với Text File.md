@@ -28,7 +28,7 @@
 - head
   - Hiển thị 10 dòng đầu của văn bản 
 
-  - Cú pháp `head [tuỳ chọn] file`
+  - Cấu trúc lệnh `head [tuỳ chọn] file`
 
 tùy chọn | mô tả 
 ----|----
@@ -49,7 +49,7 @@ tùy chọn | mô tả
 
   - Hiển thị 10 dòng cuối của văn bản 
 
-  - Cú pháp `tail [tuỳ chọn] file`
+  - Cấu trúc lệnh `tail [tuỳ chọn] file`
 
  tùy chọn | mô tả
 ---- | ----
@@ -103,7 +103,7 @@ Vd
 <a name = '2'></a>
 # 2.Sử dụng lệnh grep
 
-  - Cú pháp `grep [tuỳ chọn] <file>`
+  - Cấu trúc lệnh: `grep [tuỳ chọn] <file>`
   - Hiển thị dòng chứa chuỗi ký tự trong file, hay nhiều file,  có thể thay file bằng đường dẫn
 
 
