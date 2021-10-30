@@ -197,13 +197,13 @@ ls -t | hiển thị danh sách sắp xếp theo thời gian tạo
 
  ![image](https://user-images.githubusercontent.com/92305335/139299478-807d8626-23b0-4b7f-8c20-334d91b48f82.png)
 
-**ls -R **
+**ls -R**
 
 ![image](https://user-images.githubusercontent.com/92305335/139299645-ebaaf88e-f494-417d-8baa-748f2ae4ba67.png)
 
 - Lệnh copy  
 
-  - Cú pháp `cp [options] sourcefiles destdir`
+  - Cấu trúc lệnh `cp [options] sourcefiles destdir`
   - Được sử dụng để copy file
 
 lệnh | miêu tả
@@ -253,7 +253,7 @@ Vd:
 
 - Moving
 
-Cú pháp: 
+Cấu trúc lệnh: 
 
 `mv [options] sourcefiles destdir`
 
@@ -281,7 +281,7 @@ mv -u | cập nhật - di chuyển khi nguồn mới hơn đích
 
 - Delete
 
-  - Cú pháp 
+  - Cấu trúc lệnh: 
 
 `rm [options] files destdir`
 
@@ -362,7 +362,7 @@ rm -rf [tên thư mục]	|  Xóa thư mục có dữ liệu
 <a name = 'arc'></a>
 ## 4. Archives and compressed file
 
-- Cú pháp `tar -[option] sourcefiles destdir`
+- Cấu trúc lệnh: `tar -[option] sourcefiles destdir`
 
 option | mô tả
 ----|----
