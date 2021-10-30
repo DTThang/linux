@@ -409,8 +409,9 @@ exclude |loại bỏ file theo yêu cầu trong quá trình nén
 
 ![image](https://user-images.githubusercontent.com/92305335/139539890-cd13ef71-e08f-4b20-946a-1ecbd5441c7f.png)
 
-  - Giải nèn nen1.tar vào thư mục tm3 ta dùng option -C  `tar -xf nen1.tar -C tm3
+  - Giải nèn nen1.tar vào thư mục tm3 ta dùng option -C  `tar -xf nen1.tar -C tm3`
 
+![image](https://user-images.githubusercontent.com/92305335/139541629-44f31cc4-2fba-4aba-b791-0b3a8991bac8.png)
 
 
 <a name = 'tm'></a>
