@@ -130,3 +130,8 @@ groupmod -n | sửa tên nhóm
 - Lệnh groupdel: xóa nhóm 
   - Cấu trúc lệnh: `groupdel name-group`
 
+- lệnh vipw, vigr
+  -  Cấu trúc `vipw [option]
+
+  -  Lệnh vipw and vigr dùng để sửa file trong /etc/passwd và /etc/group
+  -  Với option -s, ta có thể sửa file trong /etc/shadow và /etc/gshadow
