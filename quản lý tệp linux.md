@@ -411,7 +411,8 @@ exclude |loại bỏ file theo yêu cầu trong quá trình nén
 
   - Giải nèn nen1.tar vào thư mục tm3 ta dùng option -C  `tar -xf nen1.tar -C tm3`
 
-![image](https://user-images.githubusercontent.com/92305335/139541629-44f31cc4-2fba-4aba-b791-0b3a8991bac8.png)
+![image](https://user-images.githubusercontent.com/92305335/139541648-b46a2894-f3be-415e-bbea-c5c2248aeac1.png)
+
 
 
 <a name = 'tm'></a>
