@@ -380,7 +380,7 @@ delete| Xóa file đã có trong file lưu trữ.
 totals| Hiện thỉ thông số file tar
 exclude |loại bỏ file theo yêu cầu trong quá trình nén
 
-- Vd:
+Vd:
   - Tạo file nen1.tar lưu trữ các tập tin file1 file và các thư mục tm1 tm2
 
 `tar -cvf nen1.tar tm1 file1 tm2 file2` 
