@@ -362,19 +362,55 @@ rm -rf [tên thư mục]	|  Xóa thư mục có dữ liệu
 <a name = 'arc'></a>
 ## 4. Archives and compressed file
 
-- Cấu trúc lệnh: `tar -[option] sourcefiles destdir`
+- Cấu trúc lệnh: `tar -[option] file_archive files/directories`
 
 option | mô tả
 ----|----
-c| tạo một kho lưu trữ
-v| hiển thị nhật ký đầu ra trong khi tar đang làm việc 
-t| hiển thị nội dung của kho lưu trữ 
-z| nén hoặc giải nén kho lưu trữ, sử dụng **grip**
-j|  nén hoặc giải nén kho lưu trữ, sử dụng **bzip2**
-x| xuất một kho lưu trữ
-u| cập nhập kho lưu trữ, chỉ có file mới được viết vào kho 
-C| thay đổi thư mục làm việc trước khi thực hiện lệnh
-r| bổ xung file vào kho lưu trữ
+c| Tạo file lưu trữ.
+x| Giải nén file lưu trữ.
+z| Nén với gzip - Luôn có khi làm việc với tập tin gzip (.gz).
+j| Nén với bunzip2 - Luôn có khi làm việc với tập tin bunzip2 (.bz2).
+lzma| Nén với lzma - Luôn có khi làm việc với tập tin LZMA (.lzma).
+f| Chỉ đến file lưu trữ sẽ tạo - Luôn có khi làm việc với file lưu trữ.
+v| Hiển thị những tập tin đang làm việc lên màn hình.
+r| Thêm tập tin vào file đã lưu trữ.
+u| Cập nhật file đã có trong file lưu trữ.
+t| Liệt kê những file đang có trong file lưu trữ.
+delete| Xóa file đã có trong file lưu trữ.
+totals| Hiện thỉ thông số file tar
+exclude |loại bỏ file theo yêu cầu trong quá trình nén
+
+- Vd:
+  - Tạo file nen1.tar lưu trữ các tập tin file1 file và các thư mục tm1 tm2
+
+`tar -cvf nen1.tar tm1 file1 tm2 file2` 
+
+![image](https://user-images.githubusercontent.com/92305335/139535613-f094b53e-303e-43ef-89e2-7ae0d9a11bbb.png)
+
+  - Hiển liệt kê các file trong nen1.tar và các thông tin chi tiết
+
+![image](https://user-images.githubusercontent.com/92305335/139535828-d4158ed0-4156-41d5-9bc0-1f5b9c1f2f15.png)
+
+  - Để giảm dung lượng file, tạo file nén gzip nen1.tar.gz(nen1.tgz) lưu trữ các tập tin file1 file và các thư mục tm1 tm2
+
+`tar -czvf nen1.tar tm1 file1 tm2 file2`
+
+![image](https://user-images.githubusercontent.com/92305335/139536952-6877f601-1c12-4987-938c-3ce308e6731c.png)
+
+![image](https://user-images.githubusercontent.com/92305335/139537340-3c3894ab-6489-468f-ab7b-1dab7c34f255.png)
+
+  - Xóa file1 và file2 trong nen1.tar 
+
+`tar -f nen1.tar --delete file1 file2`
+
+![image](https://user-images.githubusercontent.com/92305335/139539387-680ccbc2-318f-4330-9144-6d881accb623.png)
+
+  - Giải nén nen1.tar (thêm -z nếu là file gz, -j nếu là file bunzip): `tar -xf nen1.tar`
+
+![image](https://user-images.githubusercontent.com/92305335/139539890-cd13ef71-e08f-4b20-946a-1ecbd5441c7f.png)
+
+  - Giải nèn nen1.tar vào thư mục tm3 ta dùng option -C  `tar -xf nen1.tar -C tm3
+
 
 
 <a name = 'tm'></a>
@@ -386,3 +422,4 @@ https://www.rapidtables.org/vi/code/linux/cp.html
 
 https://viblo.asia/p/hard-links-va-symbolic-links-tren-linux-07LKXJR2lV4
 
+https://hocvps.com/nen-va-giai-nen-file-tar-gzip-va-zip/
