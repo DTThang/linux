@@ -1,3 +1,14 @@
+# Mục lục
+- [1. Các nguyên tắc cơ bản](#1)
+- [2. Quản lý giao diện và địa chỉ mạng](#2)
+- [3. Xác thực cấu hình mạng](#3)
+  - [1.Xác định cấu hình địa chỉ mạng](#31)
+  - [2.Xác thực định tuyến](#32)
+  - [3. Xác thực khả dụng của port và server](#33)
+- [4. Cấu hình mạng với lệnh nmtui và nmcli](#4)
+  - [1. Quyền yêu cầu thay đổi cấu hình mạng](#41)
+  - [2. Cấu hình mạng với nmcli](#42)
+<a name = '1'></a>
 # 1. Các nguyên tăc cơ bản
 - Có 2 loại địa chỉ IP (Internet Protocol) :
   - IPv4: là địa chỉ cơ sở có 32 bit gồm 4 nhóm hệ thập phân, được phân tách nhau bởi dấu chấm. Vd 192.168.47.133
@@ -57,6 +68,7 @@ Giá trị nhị phân| Giá trị thập phân
 - Vì vậy địa chỉ mạng đích và địa chỉ mạng nguồn liên quan đến giao tiếp mạng.
 - Bởi không phải tất cả các dịch vụ được đánh địa chỉ một cách giống nhau nên một Protocal (giao thức) riêng được sử dụng giữa địa chỉ IP và địa chỉ port. VD Transfer Control Protocol (TCP), User Datagram Protocol (UDP), or Internet Control Message Protocol (ICMP).
 
+<a name = '2'></a>
 # 2. Quản lý giao diện và địa chỉ mạng
 - Địa chỉ mạng có thể được chỉ định theo 2 cách:
   - Fixed IP addresses: hữu ích cho server, luôn luôn cần cho các địa chỉ IP giống nhau.
@@ -69,7 +81,11 @@ Giá trị nhị phân| Giá trị thập phân
   - Nếu không thể sửa tên thì tên truyền thống sẽ được sử dụng 
 
 - Card mạng có thể được đặt tên dựa vào tên thiết bị BIOS. Để là được điều này, biosdevname package phải được cài đặt.
+
+<a name = 3'></a>
 # 3. Xác thực cấu hình mạng
+
+<a name = '31'></a>
 ## 1.Xác định cấu hình địa chỉ mạng
 - Dùng lệnh ip để xác định cấu hình của địa chỉ mạng. 
   - ip addr để cấu hình và giám sát địa chỉ mạng.
@@ -90,6 +106,8 @@ Giá trị nhị phân| Giá trị thập phân
 
 ![image](https://user-images.githubusercontent.com/92305335/140007061-aac63b81-05ae-437e-97b6-bf9d3ae62ca8.png)
 
+
+<a name = '32'></a>
 ## 2.Xác thực định tuyến
 - Lệnh `ip route show` để xem bộ định tuyến nào được sử dụng, mỗi mạng đều có một bọ định tuyến mặc định được đặt.
 
@@ -97,6 +115,8 @@ Giá trị nhị phân| Giá trị thập phân
 
 - Dòng `default via 192.168.47.2 dev ens33 proto dhcp metric 100` là phần quan trọng , hiển thị đường định tuyến mặc định đu qua địa chỉ ip 192.168.47.2 và giao diện mạng ens33 cho địa chỉ IP. Nó hiển thị định tuyến mặc định được chỉ thi bởi server DHCP
 - Dòng `192.168.47.0/24 dev ens33 proto kernel scope link src 192.168.47.133 metric 100` nhận định nội bộ được kết nối. Ở đây ứng dụng cho mạng 192.168.47.0. Định tuyến này được làm tự động và không cần quản lý.
+
+<a name = '33'></a>
 ## 3. Xác thực khả dụng của port và server
 - Lệnh `netstat` hoặc `ss` để xác định tính khả dụng của port trong server 
 - Sử dụng `ss -lt` để hiển thị các TCP port đang sử dụng.
@@ -113,6 +133,7 @@ Giá trị nhị phân| Giá trị thập phân
 
 ![image](https://user-images.githubusercontent.com/92305335/140020504-a94b2219-63f9-4251-88d1-afd744fd2151.png)
 
+<a name = '4'></a>
 # 4. Cấu hình mạng với lệnh nmtui và nmcli
 - Sử dụng lệnh `systemctl status NetworkManager` để xác đinh trạng thái iệu tại, nó đọc các tập lệnh của cấu hình card mạng ở trong /et/sigconfig/network-scripts và có tên bắt đầu với ifcfg và nối tiếp bởi tên của card mạng 
 
@@ -120,7 +141,7 @@ Giá trị nhị phân| Giá trị thập phân
   - Một thiết bị là một card giao diện mạng.
   - Một kết nối là sự cấu hình được sự dụng cho một thiết bị.
 - Lệnh nmtui và mncli dùng để quản lý kết nối mạng mà ta muốn chỉ định đến thiết bị.
-
+<a name = '41'></a>
 ## 1. Quyền yêu cầu thay đổi cấu hình mạng
 - Người dùng root có thể sử đổi mạng hiện tại.
 - Nếu người dùng bình thường được đăng nhập vào bảng điều kiển nội bộ người dùng đó có thể thay đổi cả cấu hình mạng.
@@ -128,6 +149,8 @@ Giá trị nhị phân| Giá trị thập phân
 
 ![image](https://user-images.githubusercontent.com/92305335/140023660-a7218cc9-a9d2-4419-88cc-1498aeefbbb6.png)
 
+
+<a name = '42'></a>
 ## 2. Cấu hình mạng với nmcli
 
 - Hiển thị trạng thái kết nối:
