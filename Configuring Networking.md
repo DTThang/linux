@@ -8,6 +8,9 @@
 - [4. Cấu hình mạng với lệnh nmtui và nmcli](#4)
   - [1. Quyền yêu cầu thay đổi cấu hình mạng](#41)
   - [2. Cấu hình mạng với nmcli](#42)
+  - [3. Cấu hình mạng với mntui](#43)
+- [5. Cài Hostname và Name Resolution](#5)
+- [Tham khảo](#tm)
 <a name = '1'></a>
 # 1. Các nguyên tăc cơ bản
 - Có 2 loại địa chỉ IP (Internet Protocol) :
@@ -171,17 +174,85 @@ Giá trị nhị phân| Giá trị thập phân
 
 ![image](image/Screenshot_8.png)
 
-- VD 
+VD 
   - Tạo một kết nối mạng mới `nmcli con add con-name ens34 type ethernet ifname ens34 ipv4.method auto`
 
  ![image](image/Screenshot_10.png)
 
-  - Tạo một kết nối với tên *staic* để định nghĩa một địa chỉ IP tĩnh và gateway: `nmcli con add con-name static ifname ens33 autoconnect no type ethernet ip4 10.0.0.10/24 gw4 10.0.0.1 ipv4.method manual`
-
+  - Tạo một kết nối với tên *staic* để định nghĩa một địa chỉ IP tĩnh và gateway: `nmcli con add con-name static ifname ens33 autoconnect no type ethernet ip4 192.168.47.134/24 gw4 192.168.47.2 ipv4.method manual` 
+  
   ![image](image/Screenshot_11.png)
+  - Dùng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-static` để cấu hình cho mạng static
 
-  - Dùng `nmccli con show` để hiện thị kết nối
-  - Dùng `nmcli con up static` để hoạt động kết nối tĩnh 
+  ![image](image/Screenshot_13.png)
 
+- Lệnh `systemctl restart` để cấu hình có hiệu lực 
+- Dùng `nmccli con show` để hiện thị kết nối
+- Dùng `nmcli con up static` để hoạt động kết nối tĩnh 
+
+
+- Ngoài ra lệnh `nmcli` còn để dùng thay đổi tham số cấu hình mạng
+  -  `nmcli con mod static connection.autoconnect no`: đổi chết độ IP động thành ip tĩnh 
+  - `nmcli con mod static ipv4.dns 8.8.8.8` để cài DNS cho IP
+  - `nmcli con mod static +ipv4.dns 8.8.4.4` để thêm DNS thứ 2 cho IP
+  - `nmcli con mod static ipv4.address 192.168.47.135` để đổi địa chỉ IP thành 192.168.47.135
+  - `nmcli con mod static +ipv4.address 192.168.47.136` để thêm  địa chỉ IP thứ 2 là  192.168.47.136
+  `nmcli con up static` để dùng kết nối static
+
+<a name = '43'></a>
+## 3. Cấu hình mạng với mntui
+ - Lệnh `nmtui` dùng để cấu hình mạng qua giao diện
+
+![image](image/Screenshot_14.png)
+
+- Edit a Connection: tạo một kết nối mới và cấu hình các kết nối hiện có.
+
+![image](image/Screenshot_15.png)
+
+- Activate a Connection: sử dụng để kích hoạt hay vô hiệu kết nối.  
+
+![image](image/Screenshot_16.png)
+
+- Set System Hostname: sử dụng để thiết lập hostname của máy tính.
+
+![image](image/Screenshot_17.png)
+
+<a name = '5'></a>
+# 5. Cài Hostname và Name Resolution
+- Hostname
+  - Dùng lệnh `nmtui` và chọn `Set system hostname`
+  - Dùng lệnh `hostnamectl set-hostname`.
+  ![image](image/Screenshot_19.png)
+
+  - Sửa nội dung trong file cấu hình  /etc/hostname
+- Dùng lệnh `hostnameclt` hay `hostname status` để hiển thị thông tin về  hostname, Linux kernel, virtualization type,...
+
+![image](image/Screenshot_18.png)
+
+- */etc/hosts*  chứa tất cả định nghĩa địa chỉ hostname IP và được áp dụng trước khi hostname trong DNS được sử dụng. Nó được cấu hình như một mặc định trong dòng host trong file *etc/nsswitch.conf*
+
+![image](image/Screenshot_20.png)
+
+- Cấu hình file *etc/hosts* cần đủ 2 cột:
+  - Cột 1 chứa thông tin địa chỉ IP của máy chủ riêng
+  - Cột 2 chứa hostname riêng
+  - Nếu máy chủ có nhiều tên thì cột thứ hai chứa FQDN và cột thứ ba chứa bí danh
+- Name Resolution
+  - Để máy chủ có thể giao tiếp với các máy chủ khác trên internet, nên sử dụng DNS.
+  - Dùng `nmcli` và `nmtui` để thiết lập DNS.
+  - Dùng lệnh `nmcli con mod <connection-id> [+]ipv4.dns <ip-of-dns>`
+  ![image](image/Screenshot_21.png)
+  - Cấu hình DNS trong tệp /etc/sysconfig/network-scripts/ifcfg-nameconnect
+![image](image/Screenshot_22.png)
+  - Nên thiết lập 2 host DNS để kết nối.
+- Nếu sử dụng DHCP thì DNS sẽ được đặt theo DHCP, để thay đổi ta dùng:
+  - Sửa file cấu hình của ifcfg với tùy chọn `PEERDNS=no`.
+  - DÙng lệnh `nmcli con mod <con-name> ipv4.ignore-auto-dns yes`.
+- Lệnh `getent hosts <servername>` để xác định hostname resolution
+
+<a name ='tm'></a>
+# Tham khảo
+
+https://phoenixnap.com/kb/configure-centos-network-settings
 
 
