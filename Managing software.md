@@ -52,15 +52,15 @@
   - Khi sử dụng một Repository có khóa GPG, lệnh `rpm` sẽ đề xuất tải cả khóa GPG để sử dụng ký gói. Các khóa GPG được sử dụng để ký gói được cài đặt đến thư mục /etc/pki/rpm-gpg theo mặc định
   - Kết nối với một kho lưu trữn khóa GPG được tải xuống.
   ![image](image/Screenshot_24.png)
-- Tạo Repository riêng
+- Tạo Local Repository
   - Thiết lập Repository riêng cho phép ta đặt các gói RPM của riêng mình vào thư mục và xuất bản thư mục đó như một kho lưu trữ
   - VD: tạo một Repository riêng 
     - Cần có quyền truy cập vào đĩa hoặc file ISO
     - 1. Chèn đĩa cài đặt vào trong máy  và chắc chắn nó đã được đính kèm và có sẵn
     - 2. Tạo thư mục /repo là nơi gắn kết tệp, nơi có thể gắn tệp
     - 3. Thêm vào dòng cuôi cùng file cấu hình /etc/fstab: `/dev/sr /repo iso9660 defaults 0 0`
-    - 4. Gõ `muont -a` , `mount | grep sr0`  thiết bị quang sẽ gắn trên thư mục /repo, thu mục /repo được sử dụng như một kho lưu trữ
-    - 5. Hai Repository có sẵn sẽ thông qua tư mục /repo. Repository BaseOS cung cấp truy cập đến base package và kho lưu  trữ Application Stream (AppStream) cung cấp truy cập đến ứng dụng streams. Để cho chúng có thể truy cập cần thêm 2 file và0 thư mục /etc/yum.repos.d
+    - 4. Gõ `mount -a` , `mount | grep sr0`  thiết bị quang sẽ gắn trên thư mục /repo, thư mục /repo được sử dụng như một repository
+    - 5. Hai Repository có sẵn sẽ thông qua tư mục /repo. Repository BaseOS cung cấp truy cập đến base package và repo Application Stream (AppStream) cung cấp truy cập đến ứng dụng streams. Để cho chúng có thể truy cập cần thêm 2 file và0 thư mục /etc/yum.repos.d
       - BaseOS.repo: 
 
         name=BaseOS 
@@ -80,7 +80,9 @@
 <a name = '2'></a>
 # 2. Lệnh yum
 - Để sử dụng Repository cần sử dụng lệnh `yum`
- 
+- Hiển thị danh sách repo `yum repolist` 
+- Để cài đặt các package từ các repo disable dùng lệnh `yum --enablerepo=epel install`
+- Để enable repo vĩnh viễn chỉnh sửa dòng `enabled=1` để enable cho repo 
 
 task | Mô tả 
 ---|---
@@ -97,7 +99,7 @@ update | cập nhập
 clean all| xóa tất cả dữ liệu lưu trữ
 
 
-- Làm việc với paclage 
+- Làm việc với package 
   - Dùng yum để tìm kiếm phần mềm  `yum search`
     ![image](image/Screenshot_26.png)
   - Tìm kiếm nhiều thông tin hơn với `yum info`
@@ -128,7 +130,7 @@ clean all| xóa tất cả dữ liệu lưu trữ
 # 3.Quản lý Package Module Streams
 - Modules
   - Trong Application Stream repository, nội dung các vòng đười được cung cấp
-  - Nội dung được cung cấp dưới dạng gói RPM, 
+  - Nội dung được cung cấp dưới dạng gói RPM
   - Một modules mô tả một tập hợp của các gói RPM và chúng thuộc về nhau. 
   - Một module có thể có một hoặc nhiều application streams
   - Một streams bao gồm một phiên bản cụ thể và bản cập nhập được cung cấp cho một stream cụ thể. Khi module làm việc với nhiều stream khác thì chỉ có một stream có khả năng bật cùng lúc
@@ -142,6 +144,78 @@ iteam | mô tả
  profile | tập hợp các gọi được cài đặt cùng nhau cho một trường hợp sử dụng cụ thể
 
 - Quản lý module 
-  - `yum module list`
+  - `yum module list`để hiển thị danh sách module
+  - `yum module info`Hiển thị thông tin module và thông tin phiên bản 
+
+    `yum module info ghc:8.2`
+    ![image](image/Screenshot_37.png)
+  - `yum module install` để cài đặt module
+  - `yum module enanble` để cho phép module hoạt động
+
+
+# 4. Quản lý software package với rpm
+- Filenames RPM
+  - Tên của một file rpm là `autofs-5.0.7-40.el7.x86_64.rpm`
+
+  Thành phần | Mô tả
+  --- |--- 
+  aotufs | tên của package
+  5.0.7 | version của package
+  -40| subversion của package
+  el7| phiên bản Red Had mà package được tạo
+  x86-64| nền tảng (32-64 bit) package được tạo
+
+- Truy vấn RPM packge
+
+  - Cấu trúc lệnh truy vấn
+  `rpm -q [select-options] [query-option]`
+
+
+  - Hiển thị thông tin chung về các gói đã cài đặt
+
+ -  `rpm -qa`  danh sách package đã cài đặt
+    ![image](image/Screenshot_39.png)
+
+-   `rpm -q`  cho biết phien bản của package
+    ![image](image/Screenshot_40.png)
+
+-   `rpm -qf`  tìm hiểu gói nào cung cấp FILENAME
+    ![image](image/Screenshot_41.png)
+
+-   `rpm -ql ` danh sách file được cài đặt bởi gói  
+    ![image](image/Screenshot_46.png)
+
+-   `rpm -qi ` thông tin chi tiết về gói  
+  ![image](image/Screenshot_42.png)
+-   `rpm -qd`  danh sách file tài liệu được cài đặt bởi package
+  ![image](image/Screenshot_43.png)
+-   `rpm -qc ` danh sách file cấu hình được cài đặt bởi package
+  ![image](image/Screenshot_44.png)
+-   `rpm -q --scripts ` danh sách tập lệnh chạy trước hoặc sau khi package được cài đặt hoặc xóa 
+  ![image](image/Screenshot_45.png)
+-   `rpm -qp <<pkg>pkg>` option -p được sử dụng với tất cả các option được liệt kê trước đó để truy vấn các tệp gói RPM riêng lẻ thay vì cơ sở dữ liệu gói RPM. Sử dụng tùy chọn này trước khi cài đặt giúp bạn tìm ra thực sự trong gói trước khi nó được cài đặt
+
+-   `rpm -qR ` hiển thị các phụ thuộc cho package cụ thể
+
+-   `rpm -V` hiện thì phần package nào đã bị thay đổi từ khi  cài đăt
+
+-   `rpm -Va` xác minh các gói cài đặt và hiển thị phần bị thay đổi của package từ khi cài đặt 
+
+- Cài đặt một RPM package
+  - Cần có file RPM trước khi cài đặt thông qua lệnh rpm
+  - Cấu trúc `rpm -ivh packname`
+
+
+- Sử dụng repoquery
+  - Dùng để truy vấn package từ repositories trước khi cài đặt.
+
+
+
+
+
+
+
+
+
 
 
