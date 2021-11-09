@@ -2,7 +2,7 @@
 - [1. Quản lý  các gói phần mềm với yum](#1)
 - [2. Lệnh yum](#2)
 - [3. Quản lý Package Module Streams](#3)
-
+- [4. Quản lý software package với rpm](#4)
 
 
 #1. Quản lý  các gói phần mềm với yum
@@ -152,7 +152,7 @@ iteam | mô tả
   - `yum module install` để cài đặt module
   - `yum module enanble` để cho phép module hoạt động
 
-
+<a name ='4'></a>
 # 4. Quản lý software package với rpm
 - Filenames RPM
   - Tên của một file rpm là `autofs-5.0.7-40.el7.x86_64.rpm`
