@@ -184,9 +184,23 @@ VD
   ![image](image/Screenshot_11.png)
   - Dùng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-static` để cấu hình cho mạng static
 
-  ![image](image/Screenshot_13.png)
+  ![image](image/Screenshot_25.png)
 
-- Lệnh `systemctl restart` để cấu hình có hiệu lực 
+  Trong đó
+  DEVICE=eth0	|Tên card mạng
+  ---|---
+HWADDR=00:19:5C:FF:08:BE|	Địa chỉ MAC
+TYPE=Ethernet|	Kiểu kết nối
+UUID=e396ede0-a8f3-4d5c-8caf-1666561ff109	|Mã định danh thiết bị (duy nhất)
+ONBOOT=yes|	Kích hoạt card mạng khi khởi động
+PREFIX=24| sub được máy sử dụng  
+NM_CONTROLLED=no|	Nếu không sử dụng Network Manager chọn no
+BOOTPROTO=none|	Không sử dụng DHCP
+IPADDR=192.168.47.134|Địa chỉ IP
+GATEWAY=192.168.47.2	|Địa chỉ Getway
+DNS1=8.8.8.8	|Địa chỉ DNS
+
+- Lệnh `systemctl restart <service>` để cấu hình có hiệu lực 
 - Dùng `nmccli con show` để hiện thị kết nối
 - Dùng `nmcli con up static` để hoạt động kết nối tĩnh 
 
