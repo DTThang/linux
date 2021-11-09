@@ -174,25 +174,37 @@ iteam | mô tả
   - Hiển thị thông tin chung về các gói đã cài đặt
 
  -  `rpm -qa`  danh sách package đã cài đặt
+
     ![image](image/Screenshot_39.png)
 
 -   `rpm -q`  cho biết phien bản của package
+
     ![image](image/Screenshot_40.png)
 
 -   `rpm -qf`  tìm hiểu gói nào cung cấp FILENAME
+
     ![image](image/Screenshot_41.png)
 
 -   `rpm -ql ` danh sách file được cài đặt bởi gói  
+
     ![image](image/Screenshot_46.png)
 
 -   `rpm -qi ` thông tin chi tiết về gói  
+
   ![image](image/Screenshot_42.png)
+
 -   `rpm -qd`  danh sách file tài liệu được cài đặt bởi package
+
   ![image](image/Screenshot_43.png)
+
 -   `rpm -qc ` danh sách file cấu hình được cài đặt bởi package
+
   ![image](image/Screenshot_44.png)
+
 -   `rpm -q --scripts ` danh sách tập lệnh chạy trước hoặc sau khi package được cài đặt hoặc xóa 
+
   ![image](image/Screenshot_45.png)
+  
 -   `rpm -qp <<pkg>pkg>` option -p được sử dụng với tất cả các option được liệt kê trước đó để truy vấn các tệp gói RPM riêng lẻ thay vì cơ sở dữ liệu gói RPM. Sử dụng tùy chọn này trước khi cài đặt giúp bạn tìm ra thực sự trong gói trước khi nó được cài đặt
 
 -   `rpm -qR ` hiển thị các phụ thuộc cho package cụ thể
