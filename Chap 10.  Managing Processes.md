@@ -192,7 +192,7 @@ option | ý nghĩa
 - Cấu trúc `killall [process name]` 
 - `killall` thường được sử dụng trong multiprocessing environments hơn multithreading environments 
 
-**Lệnh `pkill`
+**Lệnh `pkill`**
 
 - Lệnh `pkill` dùng để quản lý process theo tên. Chủ yếu dùng để dừng process 
 
