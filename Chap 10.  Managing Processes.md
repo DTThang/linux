@@ -39,11 +39,10 @@
 - Trong process managerment, quan hệ Parent - Child giữa các propcesses rất quan trọng. Cần Parent để quản lý Child.
 - Tất cả process trong một shell sẽ bị dừng nếu shell đó dừng
 - Process bắt đầu trong backgroup sẽ khong bị dừng khi parent shell bị dừng. Lệnh `kill` để tắt một processses hoạt động trong background
-
-
-
-
 - Trong các phiên bản trước của bash shell cần sử dụng lênh nohup để các process trong background không bị chấm dứng khi parent chắm dứt.
+- Trong các phiên bản cũ của linux khi parent bị kill thì các tất cả các child process cũng sẽ bị kill. 
+- Trong RHEL 8, nếu kill parent process thì tất cả các child process sẽ trở thành con của systemd process
+
 # 3. Dùng Command-Line Tools cho Process Management
 ## 1. Processes and thread
 - Các tác vụ trên linux thường bắt đầu dưới dạng process. Một process có thể bắt đầu với nhiều threads. Nếu các process rât bận, các threads có thể được cử lý bởi các CPU hoặc CPU core có sẵn trong máy.
@@ -133,19 +132,102 @@ s|	Session leader
 
  ![image](image/Screenshot_52.png)
 
-## 4. Gửi tín hiệu đến process với kll, killall và  pkill
-- Lệnh `kill` được dùng để gửi tín hiệu để dừng một tiến trình thông qua số PID hoặc ID.
 
+
+
+## 4. Gửi tín hiệu đến process với kll, killall và  pkill
+
+
+**Lệnh `kill`**
+
+
+- Lệnh `kill` được dùng để gửi tín hiệu để dừng một tiến trình thông qua số PID hoặc ID.
+- 
 - Cấu trúc `kill [option] [process-id]`
 
 option | ý nghĩa
 ---|---
+-1| Kết thúc process
 -2 |Chấm dứt chương trình bằng tín hiệu SIGINT
--9 |Báo cho hệ điều hành chấm dứt ngay một tiến trình
+-9 | gửi tín hiệu SIGKILL để buộc chấm dứt ngay một tiến trình
+-15 | gửi  tín hiệu SIGTERM yêu cầu chấm dứt một process, đóng tất cả file đang mở 
 -17 | Báo hiệu hệ điều hành để tạm dừng chương trình cho đến khi nhận được tín hiệu SIGCONT ("tiếp tục")
 
-# tham khảo
+![image](image/Screenshot_54.png)
+
+`kill -l` để xem danh sách signals sử dụng để dùng với `kill`
+
+![image](image/Screenshot_53.png)
+
+**Lệnh `killall`**
+
+- Sử dụng `killall` để kill nhiều process sử dụng tên giống nhau cần kill đồng thời 
+- Cấu trúc `killall [process name]` 
+- `killall` thường được sử dụng trong multiprocessing environments hơn multithreading environments 
+
+**Lệnh `pkill`
+
+- Lệnh `pkill` dùng để quản lý process theo tên. Chủ yếu dùng để dừng process 
+
+# 4. Sử dụng `top` để quản lý process  
+
+- `top` là  công cụ thuận tiện để  quản lý các process, dễ dàng tìm kiếm process, hiển thị trạng  thái của các process, điều chỉnh đội ưu tiên hay kill process 
+
+![image](image/Screenshot_55.png)
+
+- Các option  của `top`
+
+option | mô tả  
+---|---
+h| hiển thị phiên bản hiện tại
+d| chỉ định thời gian trễ việc là mới màn hình  
+o| sắp xếp theo trường đăt tên 
+p| chỉ hiển thị các tiến trình với ID tiến trình được đặt
+u| chỉ hiển thị các tiết trình của user được chỉ đinh
+i| không hiển thị các tiến trình nhàn rỗi 
+
+Dòng | ý nghĩa
+---|---
+Dòng 1 | liên quan tới thời gian của sever
+Dòng 2 | liên quan tới thông tin tiến trình 
+Dòng 3 | liên quan tới thông tin CPU
+Dòng 4 | Liên quan tới thông tin ram 
+Dòng 5 | liên quan tới thông tin Swap
+Dòng 6 | các tham số của các tiến trình hoạt động
+
+
+- Ý nghĩa của dòng 2 trong `top`
+
+task | ý nghĩa  
+--- | ---
+Running (R) | process đang hoạt đông và thời gian sử dụng CPU 
+Sleeping (S) | process đang chờ một sự kiện hoàn thành 
+Uninterruptable sleep (D) | process đang trong chế độ ngủ và không thể dừng lại, nó thường xuyên xảy ra khi process đang ch ở  I/O
+Stopped (T) | process đã bị dừng, các process trong shell khi sử dụng `crtl-Z`
+Zombie (Z) | process bị dừng nhưng không thể xóa vì nó là parent, nó ở trạng thái không thể quản lý 
+
+- Trong `top`, nhập k để kill một process, nhập r để thay đổi độ ưu tiên của process
+
+![image](image/Screenshot_56.png)
+
+![image](image/Screenshot_57.png)
+
+- Dùng `up time`  để biết thông tin về Load Average
+- Load  Average không nên cao hơn số lượng core CPU. Lệnh `lscpu` để xem số lượng Core CPU trong hệ thống.
+
+# 5. Điều chình để tối ưu hóa hiệu suất 
+
+- Sử dụng `tuned` để điều chỉnh tối ưu hóa hệ thống. `tuned` cung cấp một hồ sơ để admin điều chỉnh các thuộc tính một cách tốt nhất  
+
+Profile | Use 
+---|---
+balanced | sự hài hòa tốt nhất giữa năng lượng và hiệu suất
+desktop | dựa vào balanced profile 
+
+# Tham khảo
 
 https://news.cloud365.vn/ps-command-tim-hieu-va-huong-dan-su-dung/#5.-Tr%E1%BA%A1ng-th%C3%A1i-c%E1%BB%A7a-m%E1%BB%99t-ti%E1%BA%BFn-tr%C3%ACnh
 
 https://blogd.net/linux/quan-ly-tien-trinh-tren-linux/#15-1-l%E1%BB%87nh-nice
+
+https://blogd.net/linux/vi-du-ve-su-dung-lenh-top/
