@@ -235,7 +235,7 @@ Uninterruptable sleep (D) | process đang trong chế độ ngủ và không th�
 Stopped (T) | process đã bị dừng, các process trong shell khi sử dụng `crtl-Z`
 Zombie (Z) | process bị dừng nhưng không thể xóa vì nó là parent, nó ở trạng thái không thể quản lý 
 
-- Trong `top`, nhập k để kill một process, nhập r để thay đổi độ ưu tiên của process
+- Trong `top`, nhập `k` để kill một process, nhập `r` để thay đổi độ ưu tiên của process
 
 ![image](image/Screenshot_56.png)
 
