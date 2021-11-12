@@ -162,7 +162,7 @@ s|	Session leader
 
 
 <a name = '34'></a>
-## 4. Gửi tín hiệu đến process với kll, killall và  pkill
+## 4. Gửi tín hiệu đến process với kill, killall và  pkill
 
 
 **Lệnh `kill`**
