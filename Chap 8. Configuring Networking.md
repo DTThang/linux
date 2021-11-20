@@ -175,43 +175,43 @@ Giá trị nhị phân| Giá trị thập phân
 ![image](image/Screenshot_8.png)
 
 VD 
-  - Tạo một kết nối mạng mới `nmcli con add con-name ens34 type ethernet ifname ens34 ipv4.method auto`
+  - Tạo một kết nối mạng mới `nmcli con add con-name eth1 type ethernet ifname ens34 ipv4.method auto`
 
- ![image](image/Screenshot_10.png)
+ ![image](image/Screenshot_58.png)
 
-  - Tạo một kết nối với tên *staic* để định nghĩa một địa chỉ IP tĩnh và gateway: `nmcli con add con-name static ifname ens33 autoconnect no type ethernet ip4 192.168.47.134/24 gw4 192.168.47.2 ipv4.method manual` 
+  - Tạo một kết nối với tên *eth2* để định nghĩa một địa chỉ IP tĩnh và gateway: `nmcli con add con-name eth2 ifname ens33 autoconnect no type ethernet ip4 192.168.247.130/24 gw4 192.168.247.2 ipv4.method manual` 
   
-  ![image](image/Screenshot_11.png)
-  - Dùng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-static` để cấu hình cho mạng static
+  ![image](image/Screenshot_59.png)
+  - Dùng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-eth2` để cấu hình cho mạng static
 
-  ![image](image/Screenshot_25.png)
+  ![image](image/Screenshot_60.png)
 
   Trong đó
   DEVICE=eth0	|Tên card mạng
   ---|---
-HWADDR=00:19:5C:FF:08:BE|	Địa chỉ MAC
-TYPE=Ethernet|	Kiểu kết nối
-UUID=e396ede0-a8f3-4d5c-8caf-1666561ff109	|Mã định danh thiết bị (duy nhất)
-ONBOOT=yes|	Kích hoạt card mạng khi khởi động
-PREFIX=24| sub được máy sử dụng  
-NM_CONTROLLED=no|	Nếu không sử dụng Network Manager chọn no
-BOOTPROTO=none|	Không sử dụng DHCP
-IPADDR=192.168.47.134|Địa chỉ IP
-GATEWAY=192.168.47.2	|Địa chỉ Getway
-DNS1=8.8.8.8	|Địa chỉ DNS
+HWADDR=|	Địa chỉ MAC
+TYPE=|	Kiểu kết nối
+UUID=	|Mã định danh thiết bị (duy nhất)
+ONBOOT=|	Kích hoạt card mạng khi khởi động
+PREFIX=| sub được máy sử dụng  
+NM_CONTROLLED=|	Nếu không sử dụng Network Manager chọn no
+BOOTPROTO=|	Sử dụng kết nội động hoặc tĩnh
+IPADDR=|Địa chỉ IP
+GATEWAY=	|Địa chỉ Getway
+DNS1=	|Địa chỉ DNS
 
 - Lệnh `systemctl restart <service>` để cấu hình có hiệu lực 
 - Dùng `nmccli con show` để hiện thị kết nối
-- Dùng `nmcli con up static` để hoạt động kết nối tĩnh 
+- Dùng `nmcli con up eth2` để hoạt động kết nối tĩnh 
 
 
 - Ngoài ra lệnh `nmcli` còn để dùng thay đổi tham số cấu hình mạng
-  -  `nmcli con mod static connection.autoconnect no`: đổi chết độ IP động thành ip tĩnh 
-  - `nmcli con mod static ipv4.dns 8.8.8.8` để cài DNS cho IP
-  - `nmcli con mod static +ipv4.dns 8.8.4.4` để thêm DNS thứ 2 cho IP
-  - `nmcli con mod static ipv4.address 192.168.47.135` để đổi địa chỉ IP thành 192.168.47.135
-  - `nmcli con mod static +ipv4.address 192.168.47.136` để thêm  địa chỉ IP thứ 2 là  192.168.47.136
-  `nmcli con up static` để dùng kết nối static
+  -  `nmcli con mod eth2 connection.autoconnect no`: đổi chết độ IP động thành ip tĩnh 
+  - `nmcli con mod eth2 ipv4.dns 8.8.8.8` để cài DNS cho IP
+  - `nmcli con mod eth2 +ipv4.dns 8.8.4.4` để thêm DNS thứ 2 cho IP
+  - `nmcli con mod eth2 ipv4.address 192.168.47.135` để đổi địa chỉ IP thành 192.168.47.135
+  - `nmcli con mod eth2 +ipv4.address 192.168.47.136` để thêm  địa chỉ IP thứ 2 là  192.168.47.136
+  `nmcli con up eth2` để dùng kết nối static
 
 <a name = '43'></a>
 ## 3. Cấu hình mạng với mntui
