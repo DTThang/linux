@@ -4,7 +4,7 @@
 - [3. Quản lý Package Module Streams](#3)
 - [4. Quản lý software package với rpm](#4)
 
-
+<a name = '1'></a>
 #1. Quản lý  các gói phần mềm với yum
 - Hiểu về Repository
   - Phần mền trong Red Hat Enterprise Linux được cung cấp trong định dạng RPM(Red Hat Package Manager). Một định dạng cụ thể được sử dụng để lưu trữ và cung cấp các package.
