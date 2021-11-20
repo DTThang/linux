@@ -182,7 +182,7 @@ VD
   - Tạo một kết nối với tên *eth2* để định nghĩa một địa chỉ IP tĩnh và gateway: `nmcli con add con-name eth2 ifname ens33 autoconnect no type ethernet ip4 192.168.247.130/24 gw4 192.168.247.2 ipv4.method manual` 
   
   ![image](image/Screenshot_59.png)
-  - Dùng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-eth2` để cấu hình cho mạng static
+  - Dùng lệnh `vi /etc/sysconfig/network-scripts/ifcfg-eth2` để cấu hình cho mạng eth2
 
   ![image](image/Screenshot_60.png)
 
