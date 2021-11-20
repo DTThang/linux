@@ -209,9 +209,9 @@ DNS1=	|Địa chỉ DNS
   -  `nmcli con mod eth2 connection.autoconnect no`: đổi chết độ IP động thành ip tĩnh 
   - `nmcli con mod eth2 ipv4.dns 8.8.8.8` để cài DNS cho IP
   - `nmcli con mod eth2 +ipv4.dns 8.8.4.4` để thêm DNS thứ 2 cho IP
-  - `nmcli con mod eth2 ipv4.address 192.168.47.135` để đổi địa chỉ IP thành 192.168.47.135
-  - `nmcli con mod eth2 +ipv4.address 192.168.47.136` để thêm  địa chỉ IP thứ 2 là  192.168.47.136
-  `nmcli con up eth2` để dùng kết nối static
+  - `nmcli con mod eth2 ipv4.address 192.168.247.135` để đổi địa chỉ IP thành 192.168.47.135
+  - `nmcli con mod eth2 +ipv4.address 192.168.247.136` để thêm  địa chỉ IP thứ 2 là  192.168.47.136
+  `nmcli con up eth2` để dùng kết nối eth2
 
 <a name = '43'></a>
 ## 3. Cấu hình mạng với mntui
