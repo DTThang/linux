@@ -84,6 +84,7 @@
 - Để cài đặt các package từ các repo disable dùng lệnh `yum --enablerepo=epel install`
 - Để enable repo vĩnh viễn chỉnh sửa dòng `enabled=1` để enable cho repo 
 - Hiện tại trên centos 8 đã có phiên bản mới của yum là lệnh dnf 
+
 task | Mô tả 
 ---|---
 search | tìm các package theo tên  
