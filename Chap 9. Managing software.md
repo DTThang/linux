@@ -5,7 +5,7 @@
 - [4. Quản lý software package với rpm](#4)
 
 <a name = '1'></a>
-#1. Quản lý  các gói phần mềm với yum
+# 1. Quản lý  các gói phần mềm với yum
 - Hiểu về Repository
   - Phần mền trong Red Hat Enterprise Linux được cung cấp trong định dạng RPM(Red Hat Package Manager). Một định dạng cụ thể được sử dụng để lưu trữ và cung cấp các package.
 
@@ -32,7 +32,7 @@
   - /etc/pki/consumer Lưu trữ chứng chỉ nhận định các tài khoản Red Hat được đăng ký trong hệ thống
   - /etc/pki/entitlement chứa nội dung thông tin về các subscriptions được theo dõi trong hệ thống
 - Chỉ định Repository để sử dụng 
-  - Để máy chủ biết repository nào để sử dụng, tạo một file với tên kết thúc bằn .repo trong thư mục /etc/yum.repds.d
+  - Để máy chủ biết repository nào để sử dụng, tạo một file với tên kết thúc bằn .repo trong thư mục /etc/yum.repos.d
   Trong file .repo cần có: 
     - **[label]** file .repo cần có nội dung khác với kho lưu trữ, mỗi phần bắt đầu với  label để xác định các kho chỉ định 
     - **name=** sử dụng tên riêng cho kho lưu trữ
