@@ -23,7 +23,7 @@
  
 **Sơ đồ thư mục hệ thống linux**
 
-![image](https://user-images.githubusercontent.com/92305335/139211765-d59d17ed-6e36-4f50-bfc7-df970d18d89a.png)
+![image](image/Screenshot_61.png)
 
 - /  
 
