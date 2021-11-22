@@ -120,7 +120,7 @@ Command | Mô tả
 
  Status | Description
  ---|--- 
- load | unit file được xử lý và unit hoạt động
+ loaded | unit file được xử lý và unit hoạt động
  Active(running) | unit đang chạy với một hay nhiều process hoạt động
  Active(exited) | unit đã hoàn thành một lần chạy 
  Active(waiting) | unit đang chạy và đợi một sự kiện
@@ -128,6 +128,12 @@ Command | Mô tả
  Enable | unit sẽ bắt đầu tại thời điểm khởi động
  Disable | unit sẽ không bất đầu tại thời điểm khởi động
  Static | unit không thể enable nhưng có thể tự động bắt đầu bằng một unit khác
+ Main PID | PID của dịch vụ hệ thống tương ứng theo sau là tên của nó
+ Process | thông tin bổ sung về các quy trình liên quan.
+ Status | thông tin bổ sung về dịch vụ hệ thống tương ứng.
+ CGroup | thông tin bổ sung về các nhóm kiểm soát liên quan (Cgroups)
+
+
 
 - Lệnh tổng quát unit 
 
