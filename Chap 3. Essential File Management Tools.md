@@ -85,7 +85,7 @@
 
 - /opt
 
-  - Chứa các ứng dụng thêm không thuộc hệ điều hành, các thư mục ứng dụng sẽ được lưu tại /otp.
+  - Chứa các ứng dụng thêm không đi kèm theo hệ điều hành, các thư mục ứng dụng sẽ được lưu tại /otp.
 
 Vd: viz, java 
 
