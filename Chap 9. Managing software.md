@@ -78,7 +78,7 @@
     - 6. Lệnh `yum repolist` để xác minh tính khả dụng của Repository mới được tạo. 
 
 <a name = '2'></a>
-# 2. Lệnh yum
+# 2. Lệnh yum (Yellowdog Updater, Modified)
 - Để sử dụng Repository cần sử dụng lệnh `yum`
 - Hiển thị danh sách repo `yum repolist` 
 - Để cài đặt các package từ các repo disable dùng lệnh `yum --enablerepo=epel install`
@@ -102,24 +102,24 @@ clean all| xóa tất cả dữ liệu lưu trữ
 
 - Làm việc với package 
   - Dùng yum để tìm kiếm phần mềm  `yum search`
-    ![image](image/Screenshot_26.png)
+  ![image](image/Screenshot_26.png)
   - Tìm kiếm nhiều thông tin hơn với `yum info`
-![image](image/Screenshot_27.png)
+  ![image](image/Screenshot_27.png)
   - Cài đặt package `yum install`
-![image](image/Screenshot_28.png)
+  ![image](image/Screenshot_28.png)
   - Xóa package `yum remove`
-![image](image/Screenshot_29.png)
+  ![image](image/Screenshot_29.png)
   - Hiển thị danh sách package `yum list`
-![image](image/Screenshot_30.png)
+  ![image](image/Screenshot_30.png)
   - Cập nhập package `yum update`
-![image](image/Screenshot_31.png)
+  ![image](image/Screenshot_31.png)
   - Danh sách package đã cài đặt `yum list installled`
   ![image](image/Screenshot_32.png)
 
 - Làm việc với Group package  `yum group`
 
   - Hiển thị danh sách group `yum group list 
-  ![image](image/Screenshot_33.png)
+    ![image](image/Screenshot_33.png)
   - Hiển thị thông tin group package `yum group info`
     ![image](image/Screenshot_35.png)
   - Cài đặt group package `yum groupinstall`
