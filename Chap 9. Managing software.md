@@ -155,6 +155,7 @@ iteam | mô tả
 
 <a name ='4'></a>
 # 4. Quản lý software package với rpm
+- RPM (Red Hat Package Manager)
 - Filenames RPM
   - Tên của một file rpm là `autofs-5.0.7-40.el7.x86_64.rpm`
 

@@ -61,7 +61,7 @@ Ví dụ | Mô tả
   - Các tập lệnh dành riêng cho người dùng bằng `crontab -e`
 
 - Khi dùng `crontab -e`, trình soạn thảo `vi` sẽ tạo một file tạm thời để chỉnh sửa cấu hình, khi hoàn tất file tạm thời sẽ chuyển đến vị trí /var/spool/cron. Trong thư mục này mỗi file sẽ tạo cho mỗi người dùng.
-- Không nên chỉnh sửa các file này trực tiếp. khi file được lưu cbởi `crontab -e` nó sẽ được kích hoạt tự động
+- Không nên chỉnh sửa các file này trực tiếp. khi file được lưu bởi `crontab -e` nó sẽ được kích hoạt tự động
 
 <a name = '14'></a>
 ## 1.4 Understanding the Purpose of anacron

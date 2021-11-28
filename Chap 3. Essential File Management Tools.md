@@ -413,7 +413,7 @@ Vd:
 
 ![image](https://user-images.githubusercontent.com/92305335/139541648-b46a2894-f3be-415e-bbea-c5c2248aeac1.png)
 
-
+Ngoài `tar` còn có lênh `zip`, `gzip` để nén dữ liệu 
 
 <a name = 'tm'></a>
 # Tham khảo 
