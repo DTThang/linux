@@ -27,6 +27,7 @@
 
 <a name = '11'></a>
 ## 1.1 Understanding the Role of rsyslogd and journald
+- Syslog là một giao thức để chuyển tiếp và thu thập log
 - Rsyslog (The rocket-fast system for log processing) dùng để chuyển tiếp các log message đến một địa chỉ trên mạng (log receiver, log server) 
 - Trên RHEL 8, journald (được triển khai bởi systemd-journald daemon) cũng cấp hệ thống quản lý log nâng cao. 
 - journald thu thập tin tức từ kernel, quy trình khởi đông hệ thống và dịch vụ và ghi các tin tức này vào event journal. Event journal được lưu trữ ở dạng nhị phân.
@@ -91,6 +92,7 @@ Log File | Explanation
   ![image](image/Screenshot_80.png)
 
   ![image](image/Screenshot_81.png)
+- `logger -p mail.debug "Test"` để nhập vào log message với facilities là mail và priorities là debug với nội dung Test
 
 <a name ='2'></a>
 # 2. Configuring rsyslogd
@@ -139,6 +141,18 @@ Log File | Explanation
 
 - Trên hình cho thấy sự facilities và priorities khác nhau để xác định vị trí nơi thông tin được ghi. facilities and priorities có sẵn không được phép sửa và thêm vào  
 - Khi chỉ định điểm đến, một file thường được sử dụng. Nếu tên file bắt đầu bằng một dấu gạch nối (như trong -/var/log/maillog), các log message sẽ không ngay lập tức ghi vào file mà sẽ được đệm để ghi hiệu quả hơn. 
+
+Value | Severity | keyword
+---|---|---
+0| emergency| `emerg` thông báo tình trạng khẩn cấp
+1| alerts| `alert` hệ thống cần can thiệp ngay
+2| critical| `crit` thình trạng nguy kịch
+3| errors| `err` thông báo lỗi với hệ thống
+4| warning | `warning` mức cảnh cáo với hệ thống
+5| notice|`notice` chú ý đối với hệ thống
+6| info | `info` thông tin của hệ thống
+7| debug| `debug` quá trình kiểm tra hệ thống
+
 - File thiết bị có thể được sử dụng như /dev/console. Nếu file device được sử dụng thì message sẽ được viết trong thời gian thực vào console
 
 
@@ -174,20 +188,32 @@ emerg/panic |Message được tạo ra khi tính sẵ có của dịch vụ vị
 - Khi một mức độ ưu tiên cụ thể được sử dụng, tất cả các message có mức độ ưu tiên đó và cao hơn sẽ được ghi lại theo các thông số kỹ thuật được sử dụng trong rule cụ thể đó
 
 
+Lap: Tạo file cấu hình rsyslog server để ghi message-notice
 
-
+  - Tạo file cấu hình /etc/rsyslog.d/notice.conf và nhập nội dung `*.notice /var/log/messages-notice` 
+  - Tạo file lưu trữ log message /var/log/messages-notice
+  - Chỉnh sửa file  /etc/rsyslog.d/notice.conf với nội dung **.notice /var/log/messages-notice*
+  - Nhập `systemctl restart rsyslog` để khởi chạy lại rsyslog  service
+  - Dùng `lênh tail -n /var/log/messages-notice` để quan sát  
+  - `logger -p user.notice "Notice Message Test"` để ghi message vào /var/log/messages-notice
+![image](image/Screenshot_98.png)
 
 
 
 <a name = '3'></a>
 # 3. Rotating Log Files
 - Để ngăn rsyslog message lấp đầy toàn hệ thống. các log message có thể được xoay vòng. Khi đạt đến một ngưỡng nhất định file message cũ sẽ đóng lại và một message mới sẽ được mở. Tiện ích logrotate thông qua cron service để theo dõi  rotating log files
-- Khi một file được xoay vòng , file cũ được copy đến một file khác có ngày xoay vòng của /./ Vd  /var/log/message được xoay vòng vào ngày 26/11/2021 thì tên của file rotate /var/log/messages-20211126, 4 file gần nhất sẽ được giữ lại trong hệ thống.
+- Khi một file được xoay vòng , file cũ được copy đến một file khác có ngày xoay vòng của thời điểm đó. Vd  /var/log/message được xoay vòng vào ngày 26/11/2021 thì tên của file rotate /var/log/messages-20211126, 4 file gần nhất sẽ được giữ lại trong hệ thống.
 ![image](image/Screenshot_96.png)
 
 
 - Cài đặt mặc định cho log rotation được giữ trong file /etc/logrotate.conf
 ![image](image/Screenshot_88.png)
+
+  - Khi logrotate chạy, nó sẽ kiểm tra bất kỳ tệp nào ở /var/log/cron, /var/log/maillog, /var/log/messages, /var/log/secure, /var/log/spooler và rotate chúng, nếu chúng không trống.
+  - Nếu nó kiểm tra thư mục cron, maillog, messages, secure, spooler và không tìm thấy bất kỳ tệp nhật ký nào, nó sẽ không phát sinh lỗi
+- File /etc/logrotate.d/syslog ghi lại cáu hình gói syslog
+![image](image/Screenshot_97.png)
 
 - Lệnh `man logrotate` để xem thông tin về các tham số trong tệp tin  
  - File /etc/logrotate.d lưu trữ các file cấu hình, có thể tạo thêm file cấu hình trong thư mục này  
@@ -215,16 +241,6 @@ emerg/panic |Message được tạo ra khi tính sẵ có của dịch vụ vị
 ![image](image/Screenshot_95.png) 
 
 
-Value | Severity | keyword
----|---|---
-0| emergency| `emerg` thông báo tình trạng khẩn cấp
-1| alerts| `alert` hệ thống cần can thiệp ngay
-2| critical| `crit` thình trạng nguy kịch
-3| errors| `err` thông báo lỗi với hệ thống
-4| warning | `warning` mức cảnh cáo với hệ thống
-5| notice|`notice` chú ý đối với hệ thống
-6| info | `info` thông tin của hệ thống
-7| debug| `debug` quá trình kiểm tra hệ thống
 
 - `journalctl --since` hoặc `journalctl --until` để hiển thị một thời gian nhất định. Tham số thời gian có dạng yyyy-mm-dd hh:mm:ss. Có thể sử dụng yesterday, today và tomorrow như một tham số  
 
