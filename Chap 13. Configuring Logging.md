@@ -65,7 +65,6 @@ Log File | Explanation
 <a name = '13'></a>
 ## 1.3 Understanding Log File Contents
  - Ví dụ nội dung file log /var/log/message
-
   ![image](image/Screenshot_74.png)
 
 - Nội dung trong mỗi dòng trong log file 
@@ -113,7 +112,6 @@ Log File | Explanation
 - File /etc/sysconfig/rsyslog. 
   - Nếu các tùy chọn cụ thể cần được chuyển sang rsyslogd khi khởi động, có thể làm điều này qua file
   - *SYSLOGD_OPTIONS=""* là dòng mặc định trong file,, có thể chỉ định tham số khởi động rsyslogd
-
   ![image](image/Screenshot_82.png)
 
 
@@ -123,15 +121,12 @@ Log File | Explanation
 - File rsyslog.conf được sử dụng để chỉ định những gì nên đăng nhập và nơi nó sẽ được đăng nhập. Để thực hiện việc này, bạn sẽ tìm thấy các phần khác nhau trong tệp rsyslog.conf:
 
   - \#### MODULES ####: rsyslogd là module. Các module được bao gồm để nâng cao các tính năng được hỗ trợ trong rsyslogd
-
   ![image](image/Screenshot_83.png)
 
   - \#### GLOBAL DIRECTIVES ####: Chỉ định các tham số chung như vị trí nơi mà file phụ được ghi hoặc định dạng timestamp mặc định
-
   ![image](image/Screenshot_84.png)
 
   - \#### RULES ####: Là phần quan trọng nhất của file, chứa các quy tắc chỉ định thông tin nào được ghi vào đích 
-      
    ![image](image/Screenshot_85.png)
 
   <a name = '22'></a>
@@ -140,8 +135,8 @@ Log File | Explanation
   - Facilities chỉ định một danh mục thông tin được ghi lại. rsyslogd sử dụng một danh sách cố định không mở thể mở rộng.
   - Priorities được sủ dụng để định nghĩa mức độ nghiêm trọng của message cần để ghi lại. Chỉ định một priority, the mặc định tất cả message với độ ưu tiên và tất cả độ ưu tiên cao hơn được ghi lại 
   - Destination định nghĩa nơi mà message được ghi, điểm đến chính là file.  rsyslog modules cũng có thể  được sử dụng làm đích 
-
    ![image](image/Screenshot_87.png)
+
 - Trên hình cho thấy sự facilities và priorities khác nhau để xác định vị trí nơi thông tin được ghi. facilities and priorities có sẵn không được phép sửa và thêm vào  
 - Khi chỉ định điểm đến, một file thường được sử dụng. Nếu tên file bắt đầu bằng một dấu gạch nối (như trong -/var/log/maillog), các log message sẽ không ngay lập tức ghi vào file mà sẽ được đệm để ghi hiệu quả hơn. 
 - File thiết bị có thể được sử dụng như /dev/console. Nếu file device được sử dụng thì message sẽ được viết trong thời gian thực vào console
@@ -186,10 +181,12 @@ emerg/panic |Message được tạo ra khi tính sẵ có của dịch vụ vị
 
 <a name = '3'></a>
 # 3. Rotating Log Files
-- Để ngăn rsyslog message lấp đầy toàn hệ thống. các log message có thể được xoay vòng. Khi đạt đến một ngưỡng nhất định file message cũ sẽ đóng lại và một message mới sẽ được mở. Tiện ích logrotate thông qua cron service để ý đến rotating log files
-- Khi một file được xoay vòng , file cũ được copy đến một file khác có ngày xoay vòng của /./ Vd  /var/log/message đưuọc xoay vòng vào ngày 26/11/2021 thì tên của file rotate /var/log/messages-20211126, 4 file gần nhất sẽ được giữ lại trong hệ thống.
-- Cài đặt mặc định ch log rotation được giữ trong file /etc/logrotate.conf
+- Để ngăn rsyslog message lấp đầy toàn hệ thống. các log message có thể được xoay vòng. Khi đạt đến một ngưỡng nhất định file message cũ sẽ đóng lại và một message mới sẽ được mở. Tiện ích logrotate thông qua cron service để theo dõi  rotating log files
+- Khi một file được xoay vòng , file cũ được copy đến một file khác có ngày xoay vòng của /./ Vd  /var/log/message được xoay vòng vào ngày 26/11/2021 thì tên của file rotate /var/log/messages-20211126, 4 file gần nhất sẽ được giữ lại trong hệ thống.
+![image](image/Screenshot_96.png)
 
+
+- Cài đặt mặc định cho log rotation được giữ trong file /etc/logrotate.conf
 ![image](image/Screenshot_88.png)
 
 - Lệnh `man logrotate` để xem thông tin về các tham số trong tệp tin  
@@ -204,26 +201,52 @@ emerg/panic |Message được tạo ra khi tính sẵ có của dịch vụ vị
 
 <a name = '4'></a>
 ## 4.1 Using journalctl to Find Events
-- Nhập lệnh`journalctl` mặc định hiển thị  các sự kiện xảy ra từ khi hệ thống khởi động lần cuối, chúng sẽ in ra phàn đầu của journal.Nhập `G`để xem các sự kiện cuối được ghi lại.
+- Nhập lệnh`journalctl` mặc định hiển thị  các sự kiện xảy ra từ khi hệ thống khởi động lần cuối, chúng sẽ in ra phàn đầu của journal.Nhập `G` để xem các sự kiện cuối được ghi lại.
 - Nhập `journalctl -f` để xem các dòng cuối của message và chúng được tự động được thêm vào khi có các sự kiện mới  
+- `journalctl -u` để xem journal về service. `systemctl list-units --type=service` để xem danh sách service
+![image](image/Screenshot_94.png) 
 
 - `journalctl --no-pager` hiển thị nội dung của journal không sử dụng paper
 - `journalctl _PID=1009` để hiển thị các message có PID= 1009, 
-
 ![image](image/Screenshot_90.png) 
 
 - ` journalctl -n 20` hiển thị 20 dòng cuối của journal
-- `journalctl -p err` chỉ hiển thị errors 
+- `journalctl -p number` chỉ hiển thị  theo mức độ ưu tiên. Vd `journalctl -p err` hoặc `journalctl -p 3` chỉ hiện thị  errors
+![image](image/Screenshot_95.png) 
+
+
+Value | Severity | keyword
+---|---|---
+0| emergency| `emerg` thông báo tình trạng khẩn cấp
+1| alerts| `alert` hệ thống cần can thiệp ngay
+2| critical| `crit` thình trạng nguy kịch
+3| errors| `err` thông báo lỗi với hệ thống
+4| warning | `warning` mức cảnh cáo với hệ thống
+5| notice|`notice` chú ý đối với hệ thống
+6| info | `info` thông tin của hệ thống
+7| debug| `debug` quá trình kiểm tra hệ thống
+
 - `journalctl --since` hoặc `journalctl --until` để hiển thị một thời gian nhất định. Tham số thời gian có dạng yyyy-mm-dd hh:mm:ss. Có thể sử dụng yesterday, today và tomorrow như một tham số  
 
+- ` journalctl -o verbose` để hiển thị chi tiết về trong journal
+![image](image/Screenshot_91.png) 
+![image](image/Screenshot_92.png) 
 
+- `journalctl --dmesg` chỉ hiển thị kernel-related messages
 
+<a name = '1'></a>
+## 4.2 Preserving the Systemd Journal
+- journal được lưu trữ tại file /run/log/journal. Toàn bộ thư mục /run được sủ dụng cho thông tin trạng thái process hiện tại, nó sẽ bị xóa khi reboot. Để tạo một jouranl persistent giữa các lần bắt đầu hệ thống, file /var/log/journal nên tồn tại
+- Lưu trữ journal thường xuyên yêu cầu cài đặt tham số *Storage=auto* trong /etc/systemd/journald.conf.Ngoài ra còn có các giá trị khác: 
+  - **Storage=auto** journal sẽ được viết trên disk nếu thư mục /var/log/journal
+  - **Storage=volatile** The journal được lưu trữ chỉ trong thư mục /run/log/journal
+  - **Storage=persistent** The journal sẽ được lưu trữ trên disk trong thư mục /var/log/journal, thư mục sẽ được tạo nếu không tồn tại. 
+  - **Storage=none** No data will be stored, but forwarding to other targets such as the kernel log buffer or syslog will still work.
+  ![image](image/Screenshot_93.png) 
 
-
-
-
-
-
+- journal được ghi cố định trong /var/log/journal không tồn tại mãi, sẽ có định kì xoay vòng mỗi tháng  
+  - Journal bị giới hạn kích thước tối đa bằng 10% kích thước file hệ thống mà nó đang sử dụng, nó sẽ bị dừng nếu kích thước phát triển tới file hệ thống còn trống ít hơn 15%.
+  - Nếu điều đó xảy ra, những message cũ nhất từ ​​journal là tự động giảm để nhường chỗ cho message mới hơn
 
 
 
