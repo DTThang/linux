@@ -266,7 +266,7 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
   - Nếu điều đó xảy ra, những message cũ nhất từ ​​journal là tự động giảm để nhường chỗ cho message mới hơn
 
 <a name ='tm'></a>
-# Tham khảo 
+#  Tham khảo 
 https://www.youtube.com/watch?v=ikfTEpT9b5M
 
 https://cloudzone.vn/su-dung-journalctl-de-doc-va-phan-tich-systemd-logs/
