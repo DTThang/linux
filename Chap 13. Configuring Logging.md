@@ -260,7 +260,7 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
   ![image](image/Screenshot_93.png) 
 
 - journal được ghi cố định trong /var/log/journal không tồn tại mãi, sẽ có định kì xoay vòng mỗi tháng  
-  ![image](image/Screenshot_9.png) 
+  ![image](image/Screenshot_99.png) 
   - Journal bị giới hạn kích thước tối đa bằng 10% kích thước file hệ thống mà nó đang sử dụng, nó sẽ bị dừng nếu kích thước phát triển tới file hệ thống còn trống ít hơn 15%.
   - Nếu điều đó xảy ra, những message cũ nhất từ ​​journal là tự động giảm để nhường chỗ cho message mới hơn
 
