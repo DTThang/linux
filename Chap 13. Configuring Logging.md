@@ -13,7 +13,7 @@
   - [4.1 Using journalctl to Find Events](#41)
   - [4.2 Preserving the Systemd Journal](#42)
 
-
+- [Tham khảo](#tm)
   ---
 <a name = '1'></a>
 # 1. Understanding System Logging 
@@ -253,7 +253,7 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
 <a name = '1'></a>
 ## 4.2 Preserving the Systemd Journal
 - journal được lưu trữ tại file /run/log/journal. Toàn bộ thư mục /run được sủ dụng cho thông tin trạng thái process hiện tại, nó sẽ bị xóa khi reboot. Để tạo một jouranl persistent giữa các lần bắt đầu hệ thống, file /var/log/journal nên tồn tại
-- Lưu trữ journal thường xuyên yêu cầu cài đặt tham số *Storage=auto* trong /etc/systemd/journald.conf.Ngoài ra còn có các giá trị khác: 
+- Lưu trữ journal thường xuyên yêu cầu cài đặt tham số *Storage=auto* trong /etc/systemd/journald.conf. Ngoài ra còn có các giá trị khác: 
   - **Storage=auto** journal sẽ được viết trên disk nếu thư mục /var/log/journal
   - **Storage=volatile** The journal được lưu trữ chỉ trong thư mục /run/log/journal
   - **Storage=persistent** The journal sẽ được lưu trữ trên disk trong thư mục /var/log/journal, thư mục sẽ được tạo nếu không tồn tại. 
@@ -261,9 +261,12 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
   ![image](image/Screenshot_93.png) 
 
 - journal được ghi cố định trong /var/log/journal không tồn tại mãi, sẽ có định kì xoay vòng mỗi tháng  
+  ![image](image/Screenshot_9.png) 
   - Journal bị giới hạn kích thước tối đa bằng 10% kích thước file hệ thống mà nó đang sử dụng, nó sẽ bị dừng nếu kích thước phát triển tới file hệ thống còn trống ít hơn 15%.
   - Nếu điều đó xảy ra, những message cũ nhất từ ​​journal là tự động giảm để nhường chỗ cho message mới hơn
 
+<a name ='tm'></a>
+# Tham khảo 
+https://www.youtube.com/watch?v=ikfTEpT9b5M
 
-
-
+https://cloudzone.vn/su-dung-journalctl-de-doc-va-phan-tich-systemd-logs/
