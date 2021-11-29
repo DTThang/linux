@@ -103,4 +103,6 @@ Device  name | Description
 8. Chỉ định last sector  mà phân vùng sẽ kết thúc, theo mặc định last sertor có sẵn sẽ được gợi ý, nó sẽ sửa dụng hết không gian có sẵn. có các lựa chọn khác nhau: 
 - Nhập số last sector muốn sử dụng 
 - Nhập `+ number` để tạo một phân vùng với kích thước cho một sector cụ thể 
-- Nhập ` +number(K,M,G) ` để 
+- Nhập ` +number(K,M,G) ` để chỉ định kích thước muốn gán cho phan vùng trong KiB, MiB hoặc GiB
+- Nhập + 10G để tạo một phân vùng 10Gib
+  ![image](image/Screenshot_106.png)
