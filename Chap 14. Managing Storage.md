@@ -110,8 +110,8 @@ Device  name | Description
   - 82: Linux swap
   - 83: Linux
   - 8e: Linux LVM
-    ![image](image/Screenshot_108.png)
-    ![image](image/Screenshot_109.png)
+  ![image](image/Screenshot_108.png)
+  ![image](image/Screenshot_109.png)
 10. Nhập `w` để viết chúng vào disk và thoát fdisk
     ![image](image/Screenshot_110.png)
 11. Nếu có thông báo này xuất hiện tức ta đã tạo một phân vùng đã được sử dụng  
