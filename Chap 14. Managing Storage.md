@@ -90,7 +90,7 @@ Device  name | Description
 3. Sử dụng lệnh `fdisk` để phân vùng ổ cứng cần phân vùng.
 
     Vd `fdisk /dev/sda`
-    
+
   ![image](image/Screenshot_102.png)
 
 4. Nhập `p` để xem tổng quan về phân bố ổ đĩa hiện tại
@@ -114,8 +114,9 @@ Device  name | Description
 
   ![image](image/Screenshot_108.png)
   ![image](image/Screenshot_109.png)
+
 10. Nhập `w` để viết chúng vào disk và thoát fdisk
-    ![image](image/Screenshot_110.png)
+![image](image/Screenshot_110.png)
 11. Nếu có thông báo này xuất hiện tức ta đã tạo một phân vùng đã được sử dụng  
     ![image](image/Screenshot_111.png) 
  - Thông báo này chỉ ra rằng phân vùng đã được thêm thành công vào
