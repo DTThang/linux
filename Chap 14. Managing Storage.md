@@ -78,8 +78,8 @@ Device  name | Description
 /dev/sda| Một disk trong máy chủ ảo KVM sử dụng trình điều khiển virtio
 /dev/xvda| disk trong máy chủ ảo Xen sử dụng trình điều khiển đĩa ảo Xen
 
-<a name ='21'>
-2.1 Creating MBR Partitions with fdisk
+<a name ='21'></a>
+## 2.1 Creating MBR Partitions with fdisk
 - Các bước thự hiện tạo phân vùng bằng MBR với fdisk
 
 
@@ -106,3 +106,20 @@ Device  name | Description
 - Nhập ` +number(K,M,G) ` để chỉ định kích thước muốn gán cho phan vùng trong KiB, MiB hoặc GiB
 - Nhập + 10G để tạo một phân vùng 10Gib
   ![image](image/Screenshot_106.png)
+9. Nhâp `t` để xác định loại phân vùng. Có  3 loại phân vùng phổ biến: 
+  - 82: Linux swap
+  - 83: Linux
+  - 8e: Linux LVM
+    ![image](image/Screenshot_108.png)
+    ![image](image/Screenshot_109.png)
+10. Nhập `w` để viết chúng vào disk và thoát fdisk
+    ![image](image/Screenshot_110.png)
+11. Nếu có thông báo này xuất hiện tức ta đã tạo một phân vùng đã được sử dụng  
+    ![image](image/Screenshot_111.png) 
+ - Thông báo này chỉ ra rằng phân vùng đã được thêm thành công vào
+bảng phân vùng, nhưng không thể cập nhật bảng phân vùng kernel trong bộ nhớ.
+ - Có thể so sánh 2 đầu ra của  `fdisk -l /dev/sda` và  `cat /proc/partitions`, cái mà hiển thị bảng phân vùng kernel.
+12. Nhập `partprobe /dev/sda` để  viết thay đổi đến bảng phân vùng kernel
+
+<a name ='22'></a>
+## 2.2 Using Extended and Logical Partitions on MBR
