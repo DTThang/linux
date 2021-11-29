@@ -60,7 +60,7 @@ Log File | Explanation
 /var/log/samba | cung cấp log file cho Samba service. Mặc định Samba không được quản lý bởi rsyslog mà ghi trực tiếp vào thư mục /var/log
 /var/log/sssd | chứa nội dung được ghi bởi sssd service, nó quan trong trong việc xác thực process
 /var/log/cups | nội dung log message được tạo bởi print service CUPS
-/var/log/httpd/ |  thư mục chứa nội dung log file được ghi bởi Apache web service. Apache writes messages được viết trực tiếp và ko thông qua rsyslog
+/var/log/httpd/ |  thư mục chứa nội dung log file được ghi bởi Apache web service. Apache writes messages được viết trực tiếp và không thông qua rsyslog
 
 <a name = '13'></a>
 ## 1.3 Understanding Log File Contents
