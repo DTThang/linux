@@ -90,6 +90,7 @@ Device  name | Description
 3. Sử dụng lệnh `fdisk` để phân vùng ổ cứng cần phân vùng.
 
     Vd `fdisk /dev/sda`
+    
   ![image](image/Screenshot_102.png)
 
 4. Nhập `p` để xem tổng quan về phân bố ổ đĩa hiện tại
@@ -110,7 +111,7 @@ Device  name | Description
   - 82: Linux swap
   - 83: Linux
   - 8e: Linux LVM
-  
+
   ![image](image/Screenshot_108.png)
   ![image](image/Screenshot_109.png)
 10. Nhập `w` để viết chúng vào disk và thoát fdisk
