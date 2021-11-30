@@ -10,10 +10,10 @@
   - [2.4 Creating GPT Partitions with parted](#24)
   - [2.5 Creating File Systems](#25)
   - [2.6 Changing File System Properties](#26)
-  - [2.7 Managing Ext4 File System Propertie](#27)
-  - [2.8 Managing XFS File System Properties](#28)
-  - [2.9 Adding Swap Partitions](#29)
-  - [2.10 Adding Swap Files](#210)
+  - [2.6.1 Managing Ext4 File System Propertie](#261)
+  - [2.6.2 Managing XFS File System Properties](#262)
+  - [2.7 Adding Swap Partitions](#27)
+  - [2.8 Adding Swap Files](#28)
 - [3. Mounting File Systems](#3)
   - [3.1 Manually Mounting File Systems](#31)
   - [3.2 Using Device Names, UUIDs, or Disk Labels](#32)
@@ -126,3 +126,137 @@ bảng phân vùng, nhưng không thể cập nhật bảng phân vùng kernel t
 
 <a name ='22'></a>
 ## 2.2 Using Extended and Logical Partitions on MBR
+
+- Nếu muốn sử dụng thêm phân vùng ngoài 4 phân vùng chính bằng MBR disk, ta phải tạp thêm phân vùng mở rộng. Có thể tạo các phân vùng logic trong phân vùng mở rộng,
+- Tất cả các phân vùng logic đều nằm trong phân vùng mở rộng. Nếu có sự có ảnh hưởng tới phân vùng mở rộng thì tất cả phân vùng logic trong nó sẽ bị ảnh hưởng.
+
+- Tạo một phân vùng logic
+  - 1. Nhập `fdisk /dev/sda` để mở giao diện fdisk
+  - 2. Nhập `n` để tạo một phân vùng mới, nhập `e` để tạo phân vùng logic. Nếu đã dùng hết cả 4 phân vùng chính, muốn sử dụng phân vùng mở rộng phải thay thế một phân vùng chính thành phân vùng mở rộng. 
+    ![image](image/Screenshot_112.png) 
+
+  - 3. Nhập first sector và last sector cho phân vùng mới. Lúc này phân vùng mới được tạo.
+    ![image](image/Screenshot_113.png) 
+  - 4. Sau khi phân vùng ở rộng được tạo, nhập n để thêm phân vùng logic.
+      ![image](image/Screenshot_115.png) 
+  - 5. Nhập `w` để ghi vào disk và thoát.
+  - 6. Nhập `partprobe` để cập nhập bảng phân vùng kernel.
+    - Nếu sử dụng lệnh `partprobe` bị lỗi không thêm phân vùng vào bảng phân vùng kernel được, chỉ cần reboot hệ thống.
+
+<a name ='23'></a>
+## 2.3 Creating GPT Partitions with gdisk
+- **Lưu ý**: không thể sử dụng gdisk trên đĩa đã sử dụng fdisk. gdisk sẽ phát hiện MBR và chuyển đổi chúng thành GPT, điều này có thể gây ra lỗi khiến hệ thống không thể khởi động lại. 
+- Tạo một phân vùng với gdisk
+  - 1. Nhập `gdisk /dev/sdb` để phân vùng cho đĩa sdb
+ ![image](image/Screenshot_116.png) 
+
+  - 2. Nhập `n` để thêm phân vùng mới 
+  - 3. Nhập first secter và last sector cho phân vùng 
+   ![image](image/Screenshot_117.png) 
+  - 4. Chọn type cho phân vùng, nhập `l` để hiển thị danh sách type cho phân vùng. Ở đây mặc định là 8300: Linux file system
+   ![image](image/Screenshot_118.png) 
+  - 5. Nhập `w` để ghi vào thay đổi vào disk và thoát
+   ![image](image/Screenshot_119.png) 
+  - 6. Nhập `partprobe` để cập nhập bảng phân vùng kernel.
+
+<a name ='24'></a>
+## 2.4 Creating GPT Partitions with parted
+
+- Tạo phân vùng với parted
+  - 1. Nhập  `parted /dev/sdc` để mở giao điện của parted 
+  - 2. Nhập `help` để xem các lệnh có sẵn trong parted
+   ![image](image/Screenshot_120.png) 
+  - 3. Nhập `mklabel` để chọn một nhãn dán của phân vùng, ở đây ta chọn gpt
+  ![image](image/Screenshot_121.png) 
+  - 4. NHập mkpart để nhập tên phân vùng 
+  - 5. Tiếp theo sẽ chọn file system type. Theo mặc định được gợi ý là ext2, nhưng nên sử dụng type mà ta hay sử dụng. Ở đây ta nhấp xfs.
+  ![image](image/Screenshot_122.png) 
+  - 6. Chỉ định vị trí bắt đầu và vị trí kết thúc
+    ![image](image/Screenshot_123.png) 
+  - 7. Nhập `print` để in vào bảng  phân vùng hiện tại và nhập quit đẻ thoát khỏi tiện ích và lưu thay đổi
+    ![image](image/Screenshot_124.png) 
+
+<a name ='25'></a>
+## 2.5 Creating File Systems
+
+- Các file system được sử dụng trong RHEL 8 
+
+FIle system | Description
+--- | --- 
+XFS| File system mặc định trong RHEL 8.
+Ext4|File system mặc định trong các phiên bản trước của RHEL, vẫn được sử dụng. 
+Ext3|Phiên bản trước của ext4. Trong RHEL 8 không sử dụng nữa.
+Ext2| File system cơ bản được phát triển trong những năm  1990, hiện tại không được sử dụng.
+BtrFS|Một hệ thống tệp tương đối mới không được hỗ trợ trong RHEL 8.
+NTFS| File system tương tích với windows, không được hỗ trợ trong RHEL 8.
+VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Windows và Mac có chức năng tương tự như FAT32. Hữu ích trên USB thumb drives trao đổi dữ liệu với các máy tính khác nhưng không phải trên các đĩa cứng của máy chủ.
+
+- Lệnh `mkfs -t` để chỉ định  một file hệ thống cụ thể được sử dụng. Ngoài ra còn có thể sử dụng `mkfs.type` để chỉ định loại file hệ thống.
+    ![image](image/Screenshot_125.png) 
+
+
+<a name ='26'></a>
+## 2.6 Changing File System Properties
+- Khi làm việc với các file hệ thống, một số thuộc tính cũng có thể được quản lý. Thuộc tính file hệ thống  là cụ thể cho file hệ thống bạn đang sử dụng, vì vậy ta  làm việc với các thuộc tính khác nhau và các công cụ khác nhau cho các file hệ thống  khác nhau.
+
+<a name = '261'></a>
+### 2.6.1 Managing Ext4 File System Properties
+- `tune2fs` là công cụ để quản lý thuộc tính cho các fill hệ thống Ext2, Ext3,và Ext4.
+- `tune2fs -l` thường được sử dụng để bắt đầu 
+  ![image](image/Screenshot_126.png) 
+- File system label là một thuộc tính  được hiển thị dưới dạng  Filesystem volume name. Label được sử dụng để đặt tên duy nhất cho file hệ thống, cho phép file hệ thống được gắn theo cách nhất quán, ngay cả khi tên thiết bị cơ bản được thay đổi 
+
+
+  - tune2fs -o
+    - Đặt tùy chọn tệp gắn kết mặc định.
+    - tune2fs -o acl,user_xattr để bật quyền truy cập danh sách điều khiển và thuộc tính người dùng mở rộng. Sử dụn ^ sau option để bật trở lại ví dụ như tune2fs -o ^acl,user_xattr
+  - tune2fs -O
+    - Để bật tính năg file hệ thống 
+    - Thêm ^ trước tên đặc tính để  tắt
+  - tune2fs -L
+    - Thiết lập label trên file hệ thống
+
+<a name = '262'></a>
+### 2.6.2 Managing XFS File System Properties
+- Hệ thống tệp XFS là một hệ thống tệp hoàn toàn khác và vì lý do đó cũng có một tập hợp các công cụ hoàn toàn khác nhau để quản lý các thuộc tính của nó. 
+- Nó không cho phép bạn đặt thuộc tính hệ thống tệp trong siêu dữ liệu hệ thống tệp.
+- Tuy nhiên, ta có thể thay đổi một số thuộc tính XFS như sử dụng lệnh `xfs_admin`. Ví dụ sử dụng `xfs_admin -L mylabel` để đặt nhãn hệ thống tệp cho mylabel.
+
+<a name ='27'></a>
+## 2.7 Adding Swap Partitions
+- Swap trên Linux là một cách thuận tiện để cải thiện việc sử dụng bộ nhớ kernel Linux
+- Nếu ram vật lý bị thiếu, các trang bộ nhớ không sử dụng gần đây có thể được di chuyển để chuyển đổi, nó sẽ cung cấp nhiều ram hơn cho chương trìn cần truy cập vào trang bộ nhớ.
+- Nếu swap bắt đầu được sử dụng nhiều, ta có thể gặp rắc rối và sử dụng swap cần được giám sát chặt chẽ
+- Tạo một phân  vùng được định dạng để swap 
+
+  - 1.  Nhập `fdisk  /dev/sda` để vào tiện ích fdisk
+  - 2. Nhập `n` để thêm phân vùng mới(xem lại 2.2)
+  - 3. Nhập `t` để chọn loại phân vùng, sử dụng phân vùng type 82 
+    ![image](image/Screenshot_128.png) 
+
+  - 4. Nhập `mkswap dev/sda3` để định dạng không gian swap
+  ![image](image/Screenshot_127.png) 
+  - 5. Nhập `free -m` để xem không gian được trao đổi 
+    ![image](image/Screenshot_129.png) 
+  - 6. Nhập `swapon /dev/sda6` để bật không gian swap mới được tạo 
+  - 7. Nhập free -m để xem không gian swap mới
+
+
+<a name ='28'></a>
+## 2.8 Adding Swap Files
+- Trong một số trường hợp cần thiết, khi dung lượng của ổ đĩa không còn để tạo thêm phân vùng, ta cũng có thể sử dụng file swap.
+- Tạo tệp trước khi thêm tệp hoán đổi. 
+- Lệnh `dd if=/dev/zero of=/ swapfile bs=1M count=100` sẽ thêm 100 blocks với khích thước mỗi block là 1MiB từ thiết bị /dev/zerođến file /swapfile. 100 MiB cí thể được cấu hình như swap
+- Dùng `mkswap /swapfile` để đánh dấu file dưới dạng swap file, sau đó dùng `swapon /swapfile` để kích hoạt nó. 
+
+
+
+<a name ='3'></a>
+# 3. Mounting File Systems
+
+
+
+
+
+
+
