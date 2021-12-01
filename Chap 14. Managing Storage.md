@@ -320,8 +320,8 @@ _netdev| Sử dụng để mount file network system. Điều này yêu cầu fs
 
   - Nhập mount -a để gắn mọi thứ được chỉ định trong /etc/fstab
   - Nhập df -h để xác định phân vùng được mount
+    ![image](image/Screenshot_134.png)
 
 
 
 
-  
