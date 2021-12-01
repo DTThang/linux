@@ -85,7 +85,7 @@
   ![image](image/Screenshot_142.png)
 - Nhập `lsblk  ` để xem tổng quát về cấu hình lưu trữ hiện tại của sever.
   ![image](image/Screenshot_143.png)
-
+   
 
 
 
