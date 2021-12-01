@@ -158,8 +158,17 @@ lvremove|loại bỏ logical volume
 <a name = '3'></a>
 ## 3.1 Resizing Volume Groups
 
-- Lệnh`vgextend` được sử dụng để thêm dung lượng đến volume group
+- Lệnh `vgextend` được sử dụng để thêm dung lượng đến volume group
+   ![image](image/Screenshot_148.png)
+
 - Lệnh `vgreduce` để lấy dung lượng  plysical volume ra khỏi volume group
+   ![image](image/Screenshot_149.png)
+
+<a name ='32'></a>
+## 3.2 Resizing Logical Volumes and File Systems
+
+
+
 
 
 
