@@ -214,6 +214,8 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
     - Thêm ^ trước tên đặc tính để  tắt
   - tune2fs -L
     - Thiết lập label trên file hệ thống
+      ![image](image/Screenshot_135.png) 
+
 
 <a name = '262'></a>
 ### 2.6.2 Managing XFS File System Properties
