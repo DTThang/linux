@@ -312,5 +312,16 @@ _netdev| Sử dụng để mount file network system. Điều này yêu cầu fs
 - Cột thứu 5 của /etc/fstab chỉ định hỗ trợ cho tiện ích dump, được sử dụng để tạp file backup. Nên bật tính năng này bằng cách chỉ định giá trị 1 cho tất cả các file  hệ thống thực và tắt nó bằng cách chỉ định 0 cho tất cả các mount hệ thống.
 
 - Cột cuối cùng cho biết có cần kiểm tra tính toàn vẹn của file hệ thống khi khởi động hay không. Đặt 0 nếu không muốn kiểm tra file hệ thống nào cả, số 1 nếu đây là file hệ thống gốc cần được kiểm tra trước bất kỳ thứ gì khác và số 2 nếu đây là file  hệ thống nonroot cần được kiểm tra trong khi khởi động
+- Vd: 
+  - Nhập  `blkid` lấy UUID của /dev/sda5
+  - Nhập  `mkdir -p /mounts/data` để tạo mount point cho phân vùng 
+  - Sửa nội dung trong /etc/fstab là `UUID="nnnn" /mounts/data xfs defaults 1 2`
+    ![image](image/Screenshot_133.png)
+
+  - Nhập mount -a để gắn mọi thứ được chỉ định trong /etc/fstab
+  - Nhập df -h để xác định phân vùng được mount
 
 
+
+
+  
