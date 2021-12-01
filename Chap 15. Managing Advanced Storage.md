@@ -77,12 +77,16 @@
 
 - Tạo một phân vùng với type là LVM. 
   ![image](image/Screenshot_139.png)
+
 - Tạo physical volume 
   ![image](image/Screenshot_140.png)
+
 - Nhập `pvs` để xác định pv đã được tạo
   ![image](image/Screenshot_141.png)
+
 - Nhập `pvdisplay` để hiển thị thêm nhiều thông tin
   ![image](image/Screenshot_142.png)
+  
 - Nhập `lsblk  ` để xem tổng quát về cấu hình lưu trữ hiện tại của sever.
   ![image](image/Screenshot_143.png)
    
