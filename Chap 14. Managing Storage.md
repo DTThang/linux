@@ -16,8 +16,7 @@
   - [2.8 Adding Swap Files](#28)
 - [3. Mounting File Systems](#3)
   - [3.1 Manually Mounting File Systems](#31)
-  - [3.2 Using Device Names, UUIDs, or Disk Labels](#32)
-  - [3.3 Automating File System Mounts Through /etc/fstab](#33)
+  - [3.2 Automating File System Mounts Through /etc/fstab](#32)
 - [Tham khảo](tm)
 ---
 
@@ -246,17 +245,72 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
 ## 2.8 Adding Swap Files
 - Trong một số trường hợp cần thiết, khi dung lượng của ổ đĩa không còn để tạo thêm phân vùng, ta cũng có thể sử dụng file swap.
 - Tạo tệp trước khi thêm tệp hoán đổi. 
-- Lệnh `dd if=/dev/zero of=/ swapfile bs=1M count=100` sẽ thêm 100 blocks với khích thước mỗi block là 1MiB từ thiết bị /dev/zerođến file /swapfile. 100 MiB cí thể được cấu hình như swap
+- Lệnh `dd if=/dev/zero of=/swapfile bs=1M count=100` sẽ thêm 100 blocks với khích thước mỗi block là 1MiB từ thiết bị /dev/zero đến file /swapfile. 100 MiB có thể được cấu hình như swap
 - Dùng `mkswap /swapfile` để đánh dấu file dưới dạng swap file, sau đó dùng `swapon /swapfile` để kích hoạt nó. 
+    ![image](image/Screenshot_130.png) 
 
 
 
 <a name ='3'></a>
 # 3. Mounting File Systems
 
+- Để sử dụng phân vùng hiệu quả, cần phải mount nphân vùng đó.
+- Bằng cách mount một phân vùng, ta có thể truy cập nội dung trên một thư mục cụ thể 
+- Để mount file hệ thống, một vài thông tin cần thiết: 
+  - **What to mount**: là thông tin tên bắt buộc và chỉ định của thiết bị cần được mount. 
+  - **Where to mount it**: thông tin bắt buộc về thư mục chỉ định  nươi device đưuọc mount tới.
+  - **What file system to mount**:  có thể chỉ định loại file hệ thống. Trong hầu hết các trường hợp điều này là không cần thiết. Lệnh `mount` sẽ phát hiện file hệ thống được sử dụng trên thiế bị và đảm bảo trình diều khiển chính xác được sử dụng
+  - **Mount options**: Nhiều option có thể được sử dụng để gắn kết device. Điều này không bắt buộc.
 
+<a name = '31'></a>
+## 3.1 Manually Mounting File Systems
 
+- Lệnh `mount` được sử dụng để mount  file hệ thống. Vd mount file hệ thống trên /dev/sda5 vào thư mục /mnt nhập `mount /dev/sda5 /mnt` 
+- Lệnh `unmount` được sử dụng để ngắn kết nối file hệ thống được mount. Vd để bỏ kết nối  file hệ thống trên /dev/sda5 và  thư mục /mnt nhập `unmount /dev/sda5` hoặc `unmount /mnt`
 
+**Using Device Names, UUIDs, or Disk Labels**
 
+- Trong cài đặt mặc định RHEL 8, sử dụng UUIDs(mã định danh duy nhất) được sử dụng thay  name device
+- Mọi file hệ thống theo mặc định sẽ có UUID liên kết với nó 
+- Lệnh `blkid` để xem tổng quát về các file hệ thống hiện tại trong hệ thống  và UUID được sử dụng bởi các file hệ thống đó  
+    ![image](image/Screenshot_131.png) 
+
+- Mount /dev/sda5 có UUID="34ada62e-ec8a-4844-be27-a1952b3bb6c1" vào /mnt nhập `muont UUID="34ada62e-ec8a-4844-be27-a1952b3bb6c1" /mnt`
+- Để ,mount thiết bị bằng lable, sử dụng `mount LABEL=labelname dir`
+
+<a name ='32'></a>
+## 3.2 Automating File System Mounts Through /etc/fstab
+
+- Thực hiện mount tự động thông qua file /etc/fstab 
+
+    ![image](image/Screenshot_132.png) 
+- Trong file /etc/fstab, mọi thứ được chỉ định để mount file hệ thống tự động
+
+Field | Description 
+---|--- 
+Device | Device được gắn. có thể là name, UUID hoặc label
+Mount Point| Thư mục hoặc kernel interface  nơi device được mount đến 
+File System| Loại file hệ thống
+Mount Options| Mount options
+Dump Support|Sử dụng 1 để cho phép hỗ trợ sao lưu ử dụng tiện ích dump
+Automatic Check| Chỉ định file hệ thống có được kiểm tra tự động khi khởi động hay không. Dùng 0 để tắt tự động kiểm tra, 1 nếu là file hệ thống root và nó phải được kiểm tra tự động, 2 để cho phép tất cả các hệ thống tệp khác cần kiểm tra tự động khi khởi động. Network file systém nên để thiếp lập là 0.
+
+- Một số mount point không sử dụng tên thư mục, device system như swap không được gắn lên thư mục mà trên kernel interface. Dễ dàng nhận ra  kernel interface được sử dụng, tên của nó không được bắt đầu bằng a/ (Không tồn trại trong file hệ thống trên máy chủ)
+
+- Các option của mount
+
+Option| Use
+---|---
+auto/ noauto | file hệ thống sẽ hoặc không được gán tự động 
+acl | Thêm support cho file hệ thống truy cập danh sách điều khiển 
+user_xattr | thêm support cho thuộc tính user-extended
+ro| Mount file hệ thống chỉ ở chế độ đọc 
+atime / noatime| Không cho phép hoặc cho phép truy cập thời gian sửa đổi
+noexec / exec| Phủ nhận hoặc cho phép thực thi các file chương trình từ file hệ thống
+_netdev| Sử dụng để mount file network system. Điều này yêu cầu fstab đợi cho đến khi mạng khả dụng trước khi gắn file hệ thống này
+
+- Cột thứu 5 của /etc/fstab chỉ định hỗ trợ cho tiện ích dump, được sử dụng để tạp file backup. Nên bật tính năng này bằng cách chỉ định giá trị 1 cho tất cả các file  hệ thống thực và tắt nó bằng cách chỉ định 0 cho tất cả các mount hệ thống.
+
+- Cột cuối cùng cho biết có cần kiểm tra tính toàn vẹn của file hệ thống khi khởi động hay không. Đặt 0 nếu không muốn kiểm tra file hệ thống nào cả, số 1 nếu đây là file hệ thống gốc cần được kiểm tra trước bất kỳ thứ gì khác và số 2 nếu đây là file  hệ thống nonroot cần được kiểm tra trong khi khởi động
 
 
