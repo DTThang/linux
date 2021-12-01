@@ -155,7 +155,7 @@ lvremove|loại bỏ logical volume
 - Nếu file hệ thống XFS được sử dụng, volume  chỉ có thể tăng dung lượng  mà không thể giảm dung lượng 
 - File hệ thống khác như EXT4 hỗ trợ giảm khích thước nhưng chỉ thực hiện được khi ở chế độ ngoại tuyến.
 
-<a name = '31'></a>
+<a name ='31'></a>
 ## 3.1 Resizing Volume Groups
 
 - Lệnh `vgextend` được sử dụng để thêm dung lượng đến volume group
