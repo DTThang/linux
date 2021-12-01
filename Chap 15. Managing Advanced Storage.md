@@ -91,13 +91,75 @@
 - Nhập `lsblk  ` để xem tổng quát về cấu hình lưu trữ hiện tại của sever.
   ![image](image/Screenshot_143.png)
    
+<a name = '22'></a>
+## 2.2 Creating the Volume Groups
+
+- Nhập `vgcreate name physical-volume` để tạo một volume group mới. 
+  ![image](image/Screenshot_144.png)
+- Khi tạo các volume group,  physical extent size được sử dụng.
+- Physical extent size (kích thước phạm vi vật lý)xác định kích thước của build block được sử dụng khi tạo logical volume.
+- Một logical volume luôn có kích thước là bội số của kích thước phạm vi vật lý.
+- Nếu tạo logical volume khổng lồ, sẽ hiệu quả nếu sử dụng  kích thước phạm vi vật lý lớn. Nếu không chỉ định kích thước phạm vi mặc định là 4 MiB. Kích thước phạm vi vật lý luân luôn là bội số của 2 MiB với kích thước tối đa là 128 MiB.
+- Nhập `vgcreate -s` để tạo kích thước phạm vi vật lý.
+- Nhập `vgs` để xem tóm tắm và vgdisplay để xem thông tin chi tiết 
+ ![image](image/Screenshot_145.png)
+
+<a name = '23'></a>
+## 2.3 Creating the Logical Volumes and File Systems
+- Sử dụng lệnh `lvcreate option` tạo logical, có nhiều option đi với lệnh này
+
+option | description
+---|---
+-L | gán kích thước, vd `-L 5G`
+-l | Gán kích thước tương đối, vd `-l 50%free`
+-n | chỉ định tên của logical volume
+
+- VD `lvcreate -n lvvol1 -L 100M vgdata` 
+  - Để tạo một logical volume tên lvvol1 với kích thước 100 MiB và thêm vào volume group vgdata
+  - Dùng tiên ích mkfs để tạo file hệ thống 
+ ![image](image/Screenshot_147png)
+
+<a name = '24'></a>
+## 2.4  Understanding LVM Device Naming
+
+- LVM volume device names có thể được giải quyết bằng nhiều cách. Phương pháp đơn giản là đến địa chỉ thiết bị như là /dev/vgname/lvname, thực tế nó là một symbolic ink đến device mapper name
+- Để đặt tên LVM volume, một hệ thống khác đóng vai trò là device mapper.
+  -  Device mapper là giao diện chung được kernel linux sử dụng để chỉ định thiết bị lưu trữ
+  - Device mapper được sử dụng bởi nhiều loại thiết bị như LVM volumes, nhưng cũng bởi phần mềm RAID và thiết bị mạng nâng cao như nhiều thiết bị 
+- Device mapper được tạo khi phát hiện các tên vô nghĩa như /dev/dm-0 và /dev/dm-1. 
+  - Để làm cho các thiết bị này dễ dàng truy cập, device mapper tạo các symbolic trong thư mục /dev/mapper chỉ vào các tên vô nghĩa này. 
+  - Các symbolic link đặt theo cấu trúc tên  dev/mapper/vgname-lvname.
+  - Do đó /dev/vgdata/lvdata cũng được biết đến như /dev/mapper/vgdata-lvvol1
+   ![image](image/Screenshot_146.png)
+
+- LVM Management Essential Commands
+
+Command  | Exphanation
+----|  ----
+pvcreate |tạo  physical volumes
+pvs| hiển thị tóm lược  physical volumes có sẵn 
+pvdisplay |hiển thị danh sách  physical volumes và tính chất
+pvremove| loại bỏ physical volume signature từ  block device
+vgcreate |tạo volume groups
+vgs| hiển thị tóm lược volume groups có sẵn
+vgdisplay| hiển thị danh sách volume groups avà tính chất
+vgremove| loại bỏ volume group
+lvcreate| tạo  logical volumes
+lvs| hiển thị tóm lược logical volumes có sẵn
+lvdisplay| hiển thị danh sách logical volumes tính chất
+lvremove|loại bỏ logical volume
 
 
+<a name = '3'></a>
+# 3. Resizing LVM Logical Volumes
+- Nếu file hệ thống XFS được sử dụng, volume  chỉ có thể tăng dung lượng  mà không thể giảm dung lượng 
+- File hệ thống khác như EXT4 hỗ trợ giảm khích thước nhưng chỉ thực hiện được khi ở chế độ ngoại tuyến.
 
+<a name = '3'></a>
+## 3.1 Resizing Volume Groups
 
-
-
-
+- Lệnh`vgextend` được sử dụng để thêm dung lượng đến volume group
+- Lệnh `vgreduce` để lấy dung lượng  plysical volume ra khỏi volume group
 
 
 
