@@ -297,7 +297,7 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
 - VDO đặc biệt hữu ích trong môi trường cụ thể. Cụ thể là các nền tảng máy chủ (host platform) cho container và máy ảo, nơi công cụ chống trùng lặp đảm bảo việc sử dụng lưu trữ đĩa hiệu quả hơn.
 - Một môi trường khác VDO làm việc hiệu quả là  cloud block storage. Ví dụ VDO được sử dụng làm lớp lưu trữ bên dưới để lưu trữ Ceph, kích thước logic có thể sử dụng tối đa ba lần kích thước vật lý.
 
-
+<a name = '52'></a>
 ## 5.2 Setting Up VDO
 
 - Để cấu hình VDO
