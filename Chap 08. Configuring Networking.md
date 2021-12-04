@@ -85,7 +85,7 @@ Giá trị nhị phân| Giá trị thập phân
 
 - Card mạng có thể được đặt tên dựa vào tên thiết bị BIOS. Để là được điều này, biosdevname package phải được cài đặt.
 
-<a name = 3'></a>
+<a name = '3'></a>
 # 3. Xác thực cấu hình mạng
 
 <a name = '31'></a>
