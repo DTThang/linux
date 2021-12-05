@@ -17,8 +17,8 @@
   - IPv4: là địa chỉ cơ sở có 32 bit gồm 4 nhóm hệ thập phân, được phân tách nhau bởi dấu chấm. Vd 192.168.47.133
   - IPv6: là địa chỉ cơ sở có 128 bit biểu diễn bởi 8 nhóm hệ hecxa được phân tách nhau bởi dấu ":". Vd: fe80:badb:abe01:45bc:34ad:1313:6723:8798
 
-- Địa chỉ IP cần để các thiết bị kết nối với mạng internet
-- Để truy cập internet, mọi máy tính cần có 1 địa chỉ IP duy nhất.
+- Địa chỉ IP cần để các thiết bị kết nối với mạng bên ngoài.
+- Để truy cập ra bên ngoài, mọi máy tính cần có 1 địa chỉ IP duy nhất.
 - **Địa chỉ mạng riêng**
   - Là địa chỉ sử dụng cho mạng nội bộ
   - Một vài địa chỉ IP được chia ra theo mục địch:  
@@ -197,7 +197,7 @@ PREFIX=| sub được máy sử dụng
 NM_CONTROLLED=|	Nếu không sử dụng Network Manager chọn no
 BOOTPROTO=|	Sử dụng kết nội động hoặc tĩnh
 IPADDR=|Địa chỉ IP
-GATEWAY=	|Địa chỉ Getway
+GATEWAY=	|Địa chỉ Gateway
 DNS1=	|Địa chỉ DNS
 
 - Lệnh `systemctl restart <service>` để cấu hình có hiệu lực 
