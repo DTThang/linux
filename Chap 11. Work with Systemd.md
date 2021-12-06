@@ -16,6 +16,14 @@
 # 1.  Understanding Systemd
 
 - Systemd quản lý hệ thống và service cho hệ thống vận hành linux
+- Chữ d trong systemd có ý nghĩa là daemon, có ý chỉ một cái gì đó âm thầm lặng lẽ hoạt động mà bình thường ta không biết được, và ở trong hệ thống Linux thì nó chính là các tiến trình chạy dưới nền (background process)
+- Systemd cung cấp các tiện ích: 
+  - `systemctl` dùng để quản lý trạng thái của các dịch vụ hệ thống (bắt đầu, kết thúc, khởi động lại hoặc kiểm tra trạng thái hiện tại)
+  - `journald` dùng để quản lý nhật ký hoạt động của hệ thống (hay còn gọi là ghi log)
+  - `logind` dùng để quản lý và theo dõi việc đăng nhập/đăng xuất của người dùng
+  - `networkd` dùng để quản lý các kết nối mạng thông qua các cấu hình mạng
+  - `timedated` dùng để quản lý thời gian hệ thống hoặc thời gian mạng
+  - `udev` dùng để quản lý các thiết bị và firmware
 - Systemd quản lý các units
   - Có 12 loại units và loại sử dụng phổ biến nhất là service
   - Lệnh `systemctl -t help`để xem các units có sẵn 
@@ -112,7 +120,9 @@ Command | Mô tả
  systemctl start | bắt đầu một unit
  systemctl stop | dừng một unit
  systemctl status | xem trạng thái của dịch vụ 
- systemctl enable | chop phép unit tự động hoạt động khi khởi động
+ systemctl enable | service sẽ được khởi động cùng hệ thống
+ systemctl disable | service sẽ không được khởi động cùng hệ thống
+ systemctl restart | khởi động lại dịch vụ
 
  Hiển thị trạng thái hoặt động của vsftpd.service 
 
@@ -177,7 +187,7 @@ After |  unit sẽ bắt đầu sau khi unit được xác đinh
 - `systemctl edit --full` sửa trực tiếp toàn bộ nội dung file
 - `systemctl daemon-reload` reload systemd sau khi sửa 
 
-- Khi unit file áp dụng optiion, những thay đỏi này sẽ được viết vào /etc/systemd/system
+- Khi unit file áp dụng optiion, những thay đổi này sẽ được viết vào /etc/systemd/system
 
 - Cách thay thế để thay đổi tệp đơn vị là sao chép unit file mặc định từ /usr/lib/systemd/system đến /etc/systemd/system, và tạo cài đặt của bạn trong unit file ở vị trí này. Cách tiếp cận này đảm bảo rằng các sửa đổi sẽ không bị mất sau khi unit file  mặc định được cập nhật.
 
@@ -186,7 +196,7 @@ After |  unit sẽ bắt đầu sau khi unit được xác đinh
 
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-managing_services_with_systemd#sect-Managing_Services_with_systemd-Services-List
 
-
+https://viblo.asia/p/tim-hieu-va-van-dung-systemd-de-quan-ly-he-thong-linux-phan-co-ban-WAyK8kN65xX
 
 
 
