@@ -13,6 +13,7 @@
   - [4.1 Using journalctl to Find Events](#41)
   - [4.2 Preserving the Systemd Journal](#42)
 - [Tham khảo](#tm)
+
   ---
 <a name = '1'></a>
 # 1. Understanding System Logging 
