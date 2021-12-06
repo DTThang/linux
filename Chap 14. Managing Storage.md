@@ -74,7 +74,7 @@ Device  name | Description
 /dev/sda| ổ đĩa sử dụng trình điều khiển  SCSI. Được sử dụng cho các thiết bị đĩa  SCSI và SATA. Chúng phổ biến trong các máy chủ vật lý và các máy ảo vmware
 /dev/nvme0n1| Đĩa cứng đầu tiên trong giao diện NVM Express (NVMe). NVme là phương pháp cấp máy chủ để giải quyết các thiết bị SSD nâng cao. Ở cuối tên thiết bị ở đây là *n1* thay vì *a*
 /dev/hda| Loại thiết bị đĩa  IDE (legacy). 
-/dev/sda| Một disk trong máy chủ ảo KVM sử dụng trình điều khiển virtio
+/dev/vda| Một disk trong máy chủ ảo KVM sử dụng trình điều khiển virtio
 /dev/xvda| disk trong máy chủ ảo Xen sử dụng trình điều khiển đĩa ảo Xen
 
 <a name ='21'></a>

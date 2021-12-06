@@ -18,9 +18,9 @@
 <a name = '1'></a>
 # 1. Understanding System Logging 
 
-- Mọi server được sử dụng trong linux server được viết thông tin đến log file. Thông tin có thể được viết đến các điểm đến khác nhau và có nhiều giải pháp để tìm các thông tin liên quan trong system logs. 
-- 3 cách tiếp cần được sử dụng vởi service để viết thông tin log
-  - **Direct write**: Một số dịch vụ viết trực tiếp thông tin vào log files, ngay các một số dịch vụ quan trọng như Apache web server và Samba file server.
+- Mọi service được sử dụng trong linux server được ghi thông tin đến log file. Thông tin có thể được ghi đến các điểm đến khác nhau và có nhiều giải pháp để tìm các thông tin liên quan trong system logs. 
+- 3 cách tiếp cần được sử dụng vởi service để ghi thông tin log
+  - **Direct write**: Một số dịch vụ ghi trực tiếp thông tin vào log files, ngay các một số dịch vụ quan trọng như Apache web server và Samba file server.
   - **rsyslogd**: rsyslogd là bản nâng cao của syslogd, một dịch vụ quản lý tập trung log files
   - **journald**: cùng với systemd, journald log service systemd-journald cũng được giới thiệu. Dịch vụ này tích hợp chặt chẽ với systemd, cho phép quản trị viên đọc thông tin chi tiết từ journald trong khi giám sát trạng thái dịch vụ bằng cách sử dụng lệnh `systemctl status`
 
@@ -36,7 +36,7 @@
 - Journal được viết bởi journald không chỉ liên tục giữa các lần reboot , message cũng được chuyển tiếp đến rsyslogd service, nó viết messgae đến các file khau nhau trong thư mục /var/log. rsyslogd cung cấp các chức năng không tồn tại trong journald ví du như ghi và lọc message bởi module
 - journald chỉ là công cụ ghi thông tin log chứ không thay thế cho rsyslog. journald được gắn kết chặt chẽ với systemd, ghi lại mọi thứ máy chủ đang làm.  
 - rsyslogd sẽ thêm một vài dịch vụ để lại mọi thứ server đang làm, nó sẽ viết log information vào file cụ thể và cho phép cấu hình từ xa logging và log servers 
-- Ngoài ra còn có auditd server, dịch vụ cung cấp kiểm tra, đi sâu vào các service, process, hoặc user cụ thể đang hoạt động 
+- Ngoài ra còn có auditd service, dịch vụ cung cấp kiểm tra, đi sâu vào các service, process, hoặc user cụ thể đang hoạt động 
 
 - 3 cách tiếp cận thông tin về những thứ xảy ra trong server
   - Giám sát qua file trong /var/log được ghi bởi rsyslogd
@@ -107,7 +107,7 @@ Log File | Explanation
 
 - Cấu hình cho rsyslogd không được mặc định trong một file cấu hình.  
 - File /etc/rsyslog.conf 
-  - Là file trọng tâm nơi mà rsyslogd được cấu hình,
+  - Là file trọng tâm nơi mà rsyslogd được cấu hình
   - Nội dung của file /etc/rsyslog.d được bao gồm trong file /etc/rsyslog.conf
   - Thư mục có thể được thêm bằng cách cài đặt các gói RPM trên service
 
@@ -141,6 +141,8 @@ Log File | Explanation
 
 - Trên hình cho thấy sự facilities và priorities khác nhau để xác định vị trí nơi thông tin được ghi. facilities and priorities có sẵn không được phép sửa và thêm vào  
 - Khi chỉ định điểm đến, một file thường được sử dụng. Nếu tên file bắt đầu bằng một dấu gạch nối (như trong -/var/log/maillog), các log message sẽ không ngay lập tức ghi vào file mà sẽ được đệm để ghi hiệu quả hơn. 
+
+- Bảng mức độ cảnh cáo
 
 Value | Severity | keyword
 ---|---|---
@@ -212,11 +214,11 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
 
   - Khi logrotate chạy, nó sẽ kiểm tra bất kỳ tệp nào ở /var/log/cron, /var/log/maillog, /var/log/messages, /var/log/secure, /var/log/spooler và rotate chúng, nếu chúng không trống.
   - Nếu nó kiểm tra thư mục cron, maillog, messages, secure, spooler và không tìm thấy bất kỳ tệp nhật ký nào, nó sẽ không phát sinh lỗi
-- File /etc/logrotate.d/syslog ghi lại cáu hình gói syslog
+- File /etc/logrotate.d/syslog ghi lại cấu hình gói syslog
 ![image](image/Screenshot_97.png)
 
 - Lệnh `man logrotate` để xem thông tin về các tham số trong tệp tin  
- - File /etc/logrotate.d lưu trữ các file cấu hình, có thể tạo thêm file cấu hình trong thư mục này  
+ - Thư mục /etc/logrotate.d lưu trữ các file cấu hình, có thể tạo thêm file cấu hình trong thư mục này  
 
 ![image](image/Screenshot_89.png)
 
