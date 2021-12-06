@@ -87,16 +87,27 @@ Ví dụ | Mô tả
     ![image](image/Screenshot_162.png)
   - 2. Cron job được chỉ định trong /etc/cron.d/0hourly chạy chương trình run-parts mỗi giờ một lần
   - 3. Chương trình run-parts sẽ chạy tất cả script có trong thư mục /etc/cron.hourly
-  - 4. Thư mục /etc/cron.hourly chứa script 0anacron, script này sẽ chạy chương trình anacron bằng config file /etdc/anacrontab  ở dưới đây:
-
-         \# /etc/anacrontab: configuration file for anacron
-
-         \# See anacron(8) and anacrontab(5) for details.
-    ![image](image/Screenshot_163.png)
+  - 4. Thư mục /etc/cron.hourly chứa script 0anacron, script này sẽ chạy chương trình anacron bằng config file /etc/anacrontab
 
   - 5. Cuối cùng, chương tình anacron chạy các chương trình có trong /etc/cron.daily hàng ngày; chạy job trong /etc/cron.weekly hàng tuần, và job trong cron.monthly mỗi tháng. Lưu ý rằng thời gian delat trong mỗi dòng giúp ngăn các job này bị trùng nhau.
 - Anacron không được thiết kế để chạy các chương trình theo các thời gian cụ thể. Mà nó sẽ chạy các chương trình tại những khoảng thời gian nhất định, với thời gian bắt đầu xác định.
 
+- Shortcut trong crontab Linux
+    ![image](image/Screenshot_163.png)
+  - File /etc/anacrontab ở trên cho ta thấy cách các shortcut (phím tắt) có thể được sử dụng, chỉ định một số thời gian phổ biến.
+  - Các shortcut thời gian này có thể thay thế đến 5 trường thường dùng để chỉ định thời gian. 
+  - Kí tự @ dùng để xác định shortcut cho cron.
+  - Một số shortcut và ý nghĩa của chúng 
+
+    Shortcut | ý nghĩa
+    ---|---
+    @reboot | Chạy sau khi reboot.
+    @yearly | Chạy hàng năm, ví dụ: 0 0 1 1 *
+    @annually | Chạy hàng năm, ví dụ: 0 0 1 1 *
+    @monthly | Chạy hàng tháng, ví dụ: 0 0 1 * *
+    @weekly | Chạy hàng tuần, ví dụ: 0 0 * * 0
+    @daily | Chạy hàng ngày, ví dụ: 0 0 * * *
+    @hourly | Chạy mỗi giờ, ví dụ: 0 * * * *
 
 <a name = '15'></a>
 ## 1.5 Managing Cron Security
