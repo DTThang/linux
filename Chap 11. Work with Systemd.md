@@ -78,7 +78,7 @@ Vd File unit  vsftpd.service
 
 - Một thiết bị gắn kết chỉ định cách gắn hệ thống tệp trên một thư mục cụ thể
 
- ![image](image/Screenshot_64.png)
+ ![image](image/Screenshot_65.png)
   
   - [unit] Tuyên bố xung đột được sử dụng để liệt kê các unit không thể sử dụng
 cùng với unit này. Sử dụng điều này cho các đơn vị loại trừ lẫn nhau
