@@ -99,6 +99,7 @@ Ví dụ | Mô tả
 - Anacron không được thiết kế để chạy các chương trình theo các thời gian cụ thể. Mà nó sẽ chạy các chương trình tại những khoảng thời gian nhất định, với thời gian bắt đầu xác định.
 
 - Shortcut trong crontab Linux
+
     ![image](image/Screenshot_163.png)
   - File /etc/anacrontab ở trên cho ta thấy cách các shortcut (phím tắt) có thể được sử dụng, chỉ định một số thời gian phổ biến.
   - Các shortcut thời gian này có thể thay thế đến 5 trường thường dùng để chỉ định thời gian. 
