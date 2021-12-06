@@ -59,13 +59,20 @@ Ví dụ | Mô tả
   - File Cron ở /etc/cron.d
   - Các tập lệnh tại  /etc/cron.hourly, cron.daily, cron.weekly, và cron.monthly
   - Các tập lệnh dành riêng cho người dùng bằng `crontab -e`
-
+- Các lệnh crontab thường dùng
+  - crontab -e: tạo hoặc chỉnh sửa file crontab 
+  - crontab -l: hiển thị file crontab 
+  - crontab -r: xóa file crontab
 - Khi dùng `crontab -e`, trình soạn thảo `vi` sẽ tạo một file tạm thời để chỉnh sửa cấu hình, khi hoàn tất file tạm thời sẽ chuyển đến vị trí /var/spool/cron. Trong thư mục này mỗi file sẽ tạo cho mỗi người dùng.
 - Không nên chỉnh sửa các file này trực tiếp. khi file được lưu bởi `crontab -e` nó sẽ được kích hoạt tự động
+
+
 
 <a name = '14'></a>
 ## 1.4 Understanding the Purpose of anacron
 - Anacron service được sử dụng để đảm bảo công việc thực hiện thường xuyên
+- Ngay sau khi máy tính được khởi động, anacron sẽ kiểm tra xem các job đã được cấu hình có bỏ lỡ lịch chạy nào không. Nếu có, các job này sẽ được chạy ngay lập tức. Nhưng các job sẽ chỉ chạy một lần, bất kể bao nhiều lần nó đã lỡ lịch,
+
 - Dịch vụ này quan tâm các cron job bắt đầu từ hourly, daily, weekly, và  monthly, không có vấn đề vào thời điểm chính xác
 - File /etc/anacrontab sử dụng để xác định mức độ làm việc
 
@@ -75,6 +82,20 @@ Ví dụ | Mô tả
   - Trường thứ 2 chỉ định thời gian anacron chờ đợi trước đó  
   - Trường thứ 3 chứa định danh công việc
   - trường thứ 4 chỉ định lệnh được thực thi
+- Cách vận hành của anacron
+  - 1. Dịch vụ crond chạy các cron job được chỉ định trong /etc/cron.d/0hourly.
+    ![image](image/Screenshot_162.png)
+  - 2. Cron job được chỉ định trong /etc/cron.d/0hourly chạy chương trình run-parts mỗi giờ một lần
+  - 3. Chương trình run-parts sẽ chạy tất cả script có trong thư mục /etc/cron.hourly
+  - 4. Thư mục /etc/cron.hourly chứa script 0anacron, script này sẽ chạy chương trình anacron bằng config file /etdc/anacrontab  ở dưới đây:
+
+         \# /etc/anacrontab: configuration file for anacron
+
+         \# See anacron(8) and anacrontab(5) for details.
+    ![image](image/Screenshot_163.png)
+
+  - 5. Cuối cùng, chương tình anacron chạy các chương trình có trong /etc/cron.daily hàng ngày; chạy job trong /etc/cron.weekly hàng tuần, và job trong cron.monthly mỗi tháng. Lưu ý rằng thời gian delat trong mỗi dòng giúp ngăn các job này bị trùng nhau.
+- Anacron không được thiết kế để chạy các chương trình theo các thời gian cụ thể. Mà nó sẽ chạy các chương trình tại những khoảng thời gian nhất định, với thời gian bắt đầu xác định.
 
 
 <a name = '15'></a>
@@ -97,3 +118,11 @@ Ví dụ | Mô tả
 - Ngoài ra lệnh `batch` có chức năng tương tự như `at` nhưng phức tạp hơn
  
    ![image](image/Screenshot_73.png)
+
+
+
+# Tham Khảo
+
+https://vietnix.vn/crontab/
+
+https://www.dummies.com/computers/operating-systems/linux/how-to-schedule-jobs-in-linux-at-and-crontab-commands/
