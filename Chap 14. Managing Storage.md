@@ -200,7 +200,7 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
 
 <a name = '261'></a>
 ### 2.6.1 Managing Ext4 File System Properties
-- `tune2fs` là công cụ để quản lý thuộc tính cho các fill hệ thống Ext2, Ext3,và Ext4.
+- `tune2fs` là công cụ để quản lý thuộc tính cho các file hệ thống Ext2, Ext3,và Ext4.
 - `tune2fs -l` thường được sử dụng để bắt đầu 
   ![image](image/Screenshot_126.png) 
 - File system label là một thuộc tính  được hiển thị dưới dạng  Filesystem volume name. Label được sử dụng để đặt tên duy nhất cho file hệ thống, cho phép file hệ thống được gắn theo cách nhất quán, ngay cả khi tên thiết bị cơ bản được thay đổi 
@@ -256,7 +256,7 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
 <a name ='3'></a>
 # 3. Mounting File Systems
 
-- Để sử dụng phân vùng hiệu quả, cần phải mount nphân vùng đó.
+- Để sử dụng phân vùng hiệu quả, cần phải mount phân vùng đó.
 - Bằng cách mount một phân vùng, ta có thể truy cập nội dung trên một thư mục cụ thể 
 - Để mount file hệ thống, một vài thông tin cần thiết: 
   - **What to mount**: là thông tin tên bắt buộc và chỉ định của thiết bị cần được mount. 
