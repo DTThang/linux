@@ -214,7 +214,7 @@ lvremove|loại bỏ logical volume
 
 - Trong RHEL 8, Red Hat đã bổ xung 2 loại lưu trữ nâng cao: Stratis và VDO
 - Stratis được gọi là volume-managing file system  và nó bổ sung các tính năng không có sẵn trong các phiên bản trước của Red Hat
-  - **Thin provisioning** tính năng này cho phép một file Stratis tự hiển thị tới người dùng lớn hơn so với so với thực tế.Ví dụ trong một máy tính để bàn ảo, mỗi người dùng có thể thấy 20GiB  dung dượng có sẵn trong tổng số mặc dùng số lượng này trong thực tế là thấp hơn
+  - **Thin provisioning** tính năng này cho phép một file Stratis tự hiển thị tới người dùng dung lượng lớn hơn với so với thực tế.Ví dụ trong một máy tính để bàn ảo, mỗi người dùng có thể thấy 20GiB  dung dượng có sẵn trong tổng số mặc dùng số lượng này trong thực tế là thấp hơn
   - **Snapshots** Stratis  snapshot cho hép người dùng chụp lại một *picture*  của trạng thái hiện tại của file hệ thống. Snapshot cho phép dễ dàng trở lại trạng thái trước của một file hệ thống, giúp quay lại bất kì thay đổi nào đã được thực hiện.
   - **Cache tier** là một tính năng lưu trữ  đảm bảo dữ liệu có thể được lưu trữ vật lý gần máu khác Ceph hơn, giúp truy cập dữ liệu nhanh hơn.
   - **Programmatic API** đảm bảo lưu trữ có thể dễ dàng được cấu hình và giám sát thông qua API access. 
@@ -235,7 +235,7 @@ lvremove|loại bỏ logical volume
 - 1. Cài `stratis-cli` bằng `yum`
 - 2. Bắt đầu và cho phép Stratis daemon `systemctl enable --now stratisd`.
 - 3. Khi daemon đang chạy, sử dụng lệnh `stratis pool create` để tạo pool. VD: `stratis pool create mypool /dev/sdd`. Có thể thêm các block device sau đó, sử dụng `stratis pool add-data poolname blockdevname` 
-- 4. khi đã tạo pool, thêm file hệ thống sử dụng `stratis fs create poolname fsname` 
+- 4. Khi đã tạo pool, thêm file hệ thống sử dụng `stratis fs create poolname fsname` 
 - 5. Để xác định tất cả đã được tạo thành công, sử dụng `stratis fs list`
 - 6. Sau khi tạo file hệ thống, ta có thể mount nó. Để mount file hệ thống Stratis thông qua /etc/fstab, phải sử dụng UUID để mount, name device không được hỗ trợ. 
 
@@ -322,7 +322,7 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
     `what = /dev/mapper/vdo1`
   
     `where = /vdo1`
-    
+
      ![image](image/Screenshot_160.png)
    
   - 8. Nhập ` systemctl enable --now vdo1.mount ` để mount đến block device mới
