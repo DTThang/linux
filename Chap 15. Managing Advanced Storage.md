@@ -322,7 +322,8 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
     `what = /dev/mapper/vdo1`
   
     `where = /vdo1`
-![image](image/Screenshot_160.png)
+    
+     ![image](image/Screenshot_160.png)
    
   - 8. Nhập ` systemctl enable --now vdo1.mount ` để mount đến block device mới
   - 9. Nhập  `vdostats --human-readable` để giám sát trạng thái hện tại của VDO device
