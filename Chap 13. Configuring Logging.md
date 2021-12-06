@@ -238,6 +238,11 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
     - size 100G
 - Rotate theo số lượng Log file
   - rotate [number]
+- Xử lý Log file trống
+  - Tham số `missingok`: nếu file log vì lý do gì đấy bị mất hoặc không tồn tại *.log thì logrotate sẽ tự động di chuyển tới phần cấu hình log của file log khác mà không cần phải xuất ra thông báo lỗi. Ngược lại sẽ là cấu hình nomissingok
+
+  - Tham số `Notifempty`: không rotate log nếu file log này trống.
+
 - Tự động nén Log file
   - Tùy chọn `Compress`: Logrotate sẽ nén tất cả các file log lại sau khi đã được rotate, mặc định bằng gzip.
   - Nếu muốn sử dụng chương trình nén khác như bzip2, xz hoặc zip thì hãy đặt tên chương trình đó thành biến sau giá trị cấu hình ví dụ: `Compresscmd xz`
@@ -247,7 +252,7 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
   - Tham số create sẽ quy định việc file log mới tạo ra. có thể phân quyền cho file log mới được tạo ra tại đây. 
   - Ví dụ: `create 660 appuser www-data`. File log mới sẽ có owner là appuser và thuộc group www-data. Quyền hạn 660 cho phép cả owner và user trong cùng 1 nhóm được phép viết, sửa nội dung lên file. Điều này cho phép các ứng dụng PHP viết vào log file.
   - Tham số `Dateext` sẽ giúp cài đặt hậu tố của tên log file là thời gian theo cấu trúc yyyymmdd
-  
+
 
 
 
