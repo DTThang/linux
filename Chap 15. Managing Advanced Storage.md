@@ -310,18 +310,26 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
   - 1. Nhập `lsblk` để xác định ổ đĩa có sẵn 
   - 2. Nhập `yum -y install vdo kmod-kvdo` để cài các gói liên quan. 
   - 3. Nhập  `vdo create --name=vdo1 --device=/dev/sde --vdoLogicalSize=1T` để tạo VDO device với kích thước logic 1TiB
+  ![image](image/Screenshot_158.png)
+
   - 4. Nhập ` mkfs.xfs -K /dev/mapper/vdo1` để đặt file hệ thống xfs cho thiết bị 
+    ![image](image/Screenshot_159.png)
+
   - 5. Nhập `mkdir /vod1` để tạo mount point cho VDO device
-  - 6. Nhập `cp /usr/share/doc/vdo/examples/systemd/VDOmount.example /etc/systemd/system/vdo1.mount` để copy  Systemd mount file từ VDO đế /etc/systemd/system
+  - 6. Nhập `cp /usr/share/doc/vdo/examples/systemd/VDO.mount.example /etc/systemd/system/vdo1.mount` để copy  Systemd mount file từ VDO đến /etc/systemd/system
   - 7. Sửa file gồm các dòng 
 
     `what = /dev/mapper/vdo1`
   
     `where = /vdo1`
+ ![image](image/Screenshot_160.png)
+   
   - 8. Nhập ` systemctl enable --now vdo1.mount ` để mount đến block device mới
   - 9. Nhập  `vdostats --human-readable` để giám sát trạng thái hện tại của VDO device
   - 10. Nhập `df -h` để xác định  kích thước logic là 1GiB
-  - 11. Reboot server đẻ chắcn chắn sau khi reboot VDO device được mount chính xác.
+      ![image](image/Screenshot_161.png)
+
+  - 11. Reboot server để chắc chắn sau khi reboot VDO device được mount chính xác.
 
 
 
