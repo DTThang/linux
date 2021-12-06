@@ -42,6 +42,10 @@ month | 1-12(name)
 day of week | 0-7
 
 - Sử dụng `*` để chỉ bất kì giá trị nào
+  - Dùng dấu phẩy , để thiết lập nhiều số cho nhiều thời điểm. Ví dụ tôi muốn cứ vào phút thứ 20 và 40 lệnh sẽ được chạy:  `20,40 * * * * <run command here>`
+  - Dùng dấu xuộc / để chia đều khoảng cách thời gian được chạy. Ví dụ cứ 5 phút quét hệ thống 1 lần để kiểm tra xem có sự bất thường nào không: `*/5 * * * * <scan system now>`
+  - Dùng dấu gạch ngang - để chỉ khoảng thời gian.Ví dụ cứ vào 10h30 11h30 12h30 sáng sẽ chạy lệnh: `30 10-12 * * * <command>`
+
 
 Ví dụ | Mô tả
 ---|---
