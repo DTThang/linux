@@ -46,7 +46,7 @@
 
 <a name = '12'></a>
 ## 1.2 Reading log files
-- Ngoài message được ghi bởi journald có thể sử dụng lệnh `joirnalctl` 
+- Ngoài message được ghi bởi journald có thể sử dụng lệnh `journalctl` 
 - Các file log khác nhau được lưu tại /var/log. Một số file được tạo trực tiếp bởi các dịch vụ cụ thể mà không thông qua rsyslogd.
 - Số lượng file trong /var/log sẽ thay đổi tùy theo cấu hình máy và các dịch vụ đang chạy trên server. 
 
