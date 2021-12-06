@@ -35,7 +35,7 @@
 
 - Trong kiến trúc LVM, một số layer có thể được phân biệt. Trong layer thấp nhất, thiết bị lưu trữ được sử dụng. 
 
-- Các thiết bị lưu trữ cần được gắn cờ(flag) như physical volumes, nó cho phép chúng có thể sử dụng trong môi trường LVM và làm cho chúng có thể sử dụng được bởi các tiện ích khác đang cố gắng truy cập vào logical volume
+- Các thiết bị lưu trữ cần được gắn cờ (flag) như physical volumes, nó cho phép chúng có thể sử dụng trong môi trường LVM và làm cho chúng có thể sử dụng được bởi các tiện ích khác đang cố gắng truy cập vào logical volume
 
 - Các layer của LVM 
   - Tầng đầu tiên : hard drives là tầng các disk ban đầu khi chưa chia phân vùng
