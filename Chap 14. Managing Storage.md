@@ -126,7 +126,7 @@ bảng phân vùng, nhưng không thể cập nhật bảng phân vùng kernel t
 <a name ='22'></a>
 ## 2.2 Using Extended and Logical Partitions on MBR
 
-- Nếu muốn sử dụng thêm phân vùng ngoài 4 phân vùng chính bằng MBR disk, ta phải tạp thêm phân vùng mở rộng. Có thể tạo các phân vùng logic trong phân vùng mở rộng,
+- Nếu muốn sử dụng thêm phân vùng ngoài 4 phân vùng chính bằng MBR disk, ta phải tạo thêm phân vùng mở rộng. Có thể tạo các phân vùng logic trong phân vùng mở rộng,
 - Tất cả các phân vùng logic đều nằm trong phân vùng mở rộng. Nếu có sự có ảnh hưởng tới phân vùng mở rộng thì tất cả phân vùng logic trong nó sẽ bị ảnh hưởng.
 
 - Tạo một phân vùng logic
@@ -167,7 +167,7 @@ bảng phân vùng, nhưng không thể cập nhật bảng phân vùng kernel t
    ![image](image/Screenshot_120.png) 
   - 3. Nhập `mklabel` để chọn một nhãn dán của phân vùng, ở đây ta chọn gpt
   ![image](image/Screenshot_121.png) 
-  - 4. NHập mkpart để nhập tên phân vùng 
+  - 4. Nhập mkpart để nhập tên phân vùng 
   - 5. Tiếp theo sẽ chọn file system type. Theo mặc định được gợi ý là ext2, nhưng nên sử dụng type mà ta hay sử dụng. Ở đây ta nhấp xfs.
   ![image](image/Screenshot_122.png) 
   - 6. Chỉ định vị trí bắt đầu và vị trí kết thúc
@@ -268,7 +268,7 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
 ## 3.1 Manually Mounting File Systems
 
 - Lệnh `mount` được sử dụng để mount  file hệ thống. Vd mount file hệ thống trên /dev/sda5 vào thư mục /mnt nhập `mount /dev/sda5 /mnt` 
-- Lệnh `unmount` được sử dụng để ngắn kết nối file hệ thống được mount. Vd để bỏ kết nối  file hệ thống trên /dev/sda5 và  thư mục /mnt nhập `unmount /dev/sda5` hoặc `unmount /mnt`
+- Lệnh `umount` được sử dụng để ngắn kết nối file hệ thống được mount. Vd để bỏ kết nối  file hệ thống trên /dev/sda5 và  thư mục /mnt nhập `umount /dev/sda5` hoặc `umount /mnt`
 
 **Using Device Names, UUIDs, or Disk Labels**
 
@@ -278,7 +278,7 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
     ![image](image/Screenshot_131.png) 
 
 - Mount /dev/sda5 có UUID="34ada62e-ec8a-4844-be27-a1952b3bb6c1" vào /mnt nhập `muont UUID="34ada62e-ec8a-4844-be27-a1952b3bb6c1" /mnt`
-- Để ,mount thiết bị bằng lable, sử dụng `mount LABEL=labelname dir`
+- Để mount thiết bị bằng lable, sử dụng `mount LABEL=labelname dir`
 
 <a name ='32'></a>
 ## 3.2 Automating File System Mounts Through /etc/fstab
