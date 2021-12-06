@@ -33,7 +33,7 @@
 <a name = '11'></a>
 ## 1.1 LVM Architecture
 
-- Trong kiến trúc LVM, một số layer có thể đk phân biệt. Trong layer thấp nhất, thiết bị lưu trữ được sử dụng. 
+- Trong kiến trúc LVM, một số layer có thể được phân biệt. Trong layer thấp nhất, thiết bị lưu trữ được sử dụng. 
 
 - Các thiết bị lưu trữ cần được gắn cờ(flag) như physical volumes, nó cho phép chúng có thể sử dụng trong môi trường LVM và làm cho chúng có thể sử dụng được bởi các tiện ích khác đang cố gắng truy cập vào logical volume
 
