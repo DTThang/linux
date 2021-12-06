@@ -222,6 +222,35 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
 
 ![image](image/Screenshot_89.png)
 
+- Lựa chọn Log file được rotate
+  - Chỉ định cụ thể một hay nhiều file log với đường dẫn tuyệt đối của file log đó, phân biệt danh sách các log file cụ thể bằng khoảng trắng.
+- Rotate theo thời gian
+  - Có 4 giá trị cấu hình tương ứng với khoảng thời gian log file sẽ được rotate.
+
+    - Daily: mỗi ngày
+    - Weekly: mỗi đầu tuần
+    - Monthly: mỗi đầu tháng
+    - Yearly: mỗi năm
+- Rotate theo dung lượng file log
+  - Khi file log đạt tới giới hạn dung lượng thì sẽ tiến hành rotate. Đơn vị kích thước có thể sử dụng là K, M, G.
+    - size 100k
+    - size 100M
+    - size 100G
+- Rotate theo số lượng Log file
+  - rotate [number]
+- Tự động nén Log file
+  - Tùy chọn `Compress`: Logrotate sẽ nén tất cả các file log lại sau khi đã được rotate, mặc định bằng gzip.
+  - Nếu muốn sử dụng chương trình nén khác như bzip2, xz hoặc zip thì hãy đặt tên chương trình đó thành biến sau giá trị cấu hình ví dụ: `Compresscmd xz`
+  - Tham số `Delaycompress` sẽ hữu dụng trong trường hợp không muốn file log cũ phải nén ngay sau khi vừa được rotate. Thay vào đó, công việc nén sẽ được delay trễ hơn bằng việc sẽ nén file log cũ đó vào lần chạy rotate kế tiếp. 
+  - Tùy chọn `nocompress` không sử dụng tính năng nén đối với file log cũ
+- Phân quyền cho Log file
+  - Tham số create sẽ quy định việc file log mới tạo ra. có thể phân quyền cho file log mới được tạo ra tại đây. 
+  - Ví dụ: `create 660 appuser www-data`. File log mới sẽ có owner là appuser và thuộc group www-data. Quyền hạn 660 cho phép cả owner và user trong cùng 1 nhóm được phép viết, sửa nội dung lên file. Điều này cho phép các ứng dụng PHP viết vào log file.
+  - Tham số `Dateext` sẽ giúp cài đặt hậu tố của tên log file là thời gian theo cấu trúc yyyymmdd
+  
+
+
+
 <a name = '4'></a>
 # 4. Working with journald
 
@@ -272,3 +301,5 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
 https://www.youtube.com/watch?v=ikfTEpT9b5M
 
 https://cloudzone.vn/su-dung-journalctl-de-doc-va-phan-tich-systemd-logs/
+
+https://hocvps.com/logrotate/
