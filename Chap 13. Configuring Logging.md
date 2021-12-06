@@ -144,8 +144,8 @@ Log File | Explanation
 
 - Bảng mức độ cảnh cáo
 
-Value | Severity | keyword
----|---|---
+Value | Severity | keyword| Description 
+---|---|---|--- 
 0| emergency| `emerg` thông báo tình trạng khẩn cấp
 1| alerts| `alert` hệ thống cần can thiệp ngay
 2| critical| `crit` thình trạng nguy kịch
@@ -154,6 +154,18 @@ Value | Severity | keyword
 5| notice|`notice` chú ý đối với hệ thống
 6| info | `info` thông tin của hệ thống
 7| debug| `debug` quá trình kiểm tra hệ thống
+
+Priority| Description
+---|---
+debug |Debug messages  cung cấp nhiều thông tin về hoạt động dịch vụ
+info |Thông tin  messages về hoạt động service thông thường 
+notice| Thông tin  messages về items, nó có thể trở thành một số vấn đề sau này
+warning / warn| Một vài cảnh cáo dưới mức tối ưu, nhưng không có lỗi nào xảy ra
+err /error| Xảy ra lỗi không xác định 
+crit| Xảy ra lỗi nghiêm trọng 
+alert| Sử dụng khi khả năng sẵn có của dịch vụ bị ngưng
+emerg/panic |Message được tạo ra khi tính sẵ có của dịch vụ vị ngưng.
+
 
 - File thiết bị có thể được sử dụng như /dev/console. Nếu file device được sử dụng thì message sẽ được viết trong thời gian thực vào console
 
@@ -175,16 +187,6 @@ uucp| Messages tạo ra bởi legacy UUCP system.
 local0-7| Messages tạo ra bởi  services, được cấu hình bởi bất kì loal 0-7 facilities.
 
 
-Priority| Description
----|---
-debug |Debug messages  cung cấp nhiều thông tin về hoạt động dịch vụ
-info |Thông tin  messages về hoạt động service thông thường 
-notice| Thông tin  messages về items, nó có thể trở thành một số vấn đề sau này
-warning / warn| Một vài cảnh cáo dưới mức tối ưu, nhưng không có lỗi nào xảy ra
-err /error| Xảy ra lỗi không xác định 
-crit| Xảy ra lỗi nghiêm trọng 
-alert| Sử dụng khi khả năng sẵn có của dịch vụ bị ngưng
-emerg/panic |Message được tạo ra khi tính sẵ có của dịch vụ vị ngưng.
 
 
 - Khi một mức độ ưu tiên cụ thể được sử dụng, tất cả các message có mức độ ưu tiên đó và cao hơn sẽ được ghi lại theo các thông số kỹ thuật được sử dụng trong rule cụ thể đó
