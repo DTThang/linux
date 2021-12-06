@@ -60,8 +60,8 @@ Vd File unit  vsftpd.service
   ![image](image/Screenshot_63.png)
 
   - [Unit] mô tả unit và xác định phụ thuộc.   `Before` chỉ ra unit nên được bắt đầu trước khi unit được xác định, `After` chỉ ra unit nên được bắt đầu sau khi unit được xác đinh.
-  - [service] mô tả cách bắt đầu và dự  dịch vụ và trạng  thái yêu cầu cài đặt, `type` dùng để chỉ định cách bắt đầu quá trình (forking, oneshot)
-  - [install] chỉ ra target mà unit được bắt đầu  
+  - [Service] mô tả cách bắt đầu và dự  dịch vụ và trạng  thái yêu cầu cài đặt, `type` dùng để chỉ định cách bắt đầu quá trình (forking, oneshot)
+  - [Install] chỉ ra target mà unit được bắt đầu  
 
 <a name = '13'></a>
 ## 1.3 Understanding Systemd Socket Units
