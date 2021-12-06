@@ -89,8 +89,9 @@ Ví dụ | Mô tả
 # 2. Configuring at to Schedule Future Tasks
 
 - Dịch vụ ATD cung cấp dịch vụ thực thi một lần, ATD cung cấp mặc định cho RHEL 8 
+- Một số chương trình có thể phải chạy tự động theo định kỳ hoặc thực thi một hoặc nhiều lệnh tại một thời điểm nhất định trong tương lai. Hệ thống Linux  bao gồm các cơ sở để sắp xếp các công việc để chạy vào bất kỳ ngày hoặc thời gian nào mong muốn. Hoặc cũng có thể thiết lập hệ thống để thực hiện một nhiệm vụ định kỳ hoặc chỉ một lần. 
 - Sử dụng lệnh `at` để để chạy ATD service, theo sau `at` là thời gian cụ thể hoặc cũng có thể là  mốc thời gian  như teatime và noon. 
-- Sau khi sử dụng `at`, chạy shell và nhập các lệnh sẽ được thự thi tại thời điểm cụ thể đã được thiết lập. Ctrl để thoát khỏi shell khi đã nhập xong 
+- Sau khi sử dụng `at`, chạy shell và nhập các lệnh sẽ được thự thi tại thời điểm cụ thể đã được thiết lập. Ctrl-D  để thoát khỏi shell khi đã nhập xong 
 - Lênh `atq` để sắp xếp các job sau khi lên lịch
 - Lệnh `atrm` để loại bỏ công việc hiện tại
 - Ngoài ra lệnh `batch` có chức năng tương tự như `at` nhưng phức tạp hơn
