@@ -29,7 +29,7 @@
   - Lệnh `systemctl -t help`để xem các units có sẵn 
   ![image](image/Screenshot_62.png)
 
-Unit | file exténion | description
+Unit | file extension | description
 ---|---|---
 Service unit | .service | dịch vụ của hệ thống
 Target unit | .target | một nhóm của systemd unit

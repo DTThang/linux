@@ -222,7 +222,7 @@ lvremove|loại bỏ logical volume
 
 <a name ='41'></a>
 ## 4.1 Understanding Stratis Architecture
-- Lớp thấp nhất trong kiến trúc Stratis là pool. từ góc độ chức năng, Stratis pool có thể so sáng với LVM volume group 
+- Lớp thấp nhất trong kiến trúc Stratis là pool. Từ góc độ chức năng, Stratis pool có thể so sánh với LVM volume group 
 - Pool đại diện cho tất cả các bộ nhớ có sẵn và bao gồm một hay nhiều thiết bị lưu trữ cái mà trog môi trường Stratis được gọi là *blockdev*
 - Các block device có thể không dự phòng trong cấp độ phần cứng cơ bản. Stratis tạo một thư mục /dev/stratis/poolname cho mỗi pool.
 - Từ Stratis pool , file hệ thống XFS được tạo ra.Stratis chỉ làm việc với XFS và  file hệ thống XFS mà nó sử dụng được tích hợp với Stratics volume.
@@ -244,7 +244,7 @@ lvremove|loại bỏ logical volume
 <a name ='43'></a>    
 ## 4.3 Managing Stratis
 - Sau khi tạo file hệ thống Stratis, đã có thể thi kahnfh một vài tác vụ quản lý khác nhau.
-- Tự động mửo rộng pool dùng `stratis pool add-data`.
+- Tự động mở rộng pool dùng `stratis pool add-data`.
 - Sử dụng công cụ Stratis-specific để giám sát Stratis, Các công cụ truyền thống của linux không thể xử lý các thin-provisioned volumes.
 
 Command | Description
