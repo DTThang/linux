@@ -226,8 +226,8 @@ VFAT|Một hệ thống tệp cung cấp khả năng tương thích với Window
 <a name ='27'></a>
 ## 2.7 Adding Swap Partitions
 - Swap trên Linux là một cách thuận tiện để cải thiện việc sử dụng bộ nhớ kernel Linux
-- Nếu ram vật lý bị thiếu, các trang bộ nhớ không sử dụng gần đây có thể được di chuyển để chuyển đổi, nó sẽ cung cấp nhiều ram hơn cho chương trìn cần truy cập vào trang bộ nhớ.
-- Nếu swap bắt đầu được sử dụng nhiều, ta có thể gặp rắc rối và sử dụng swap cần được giám sát chặt chẽ
+- Nếu ram vật lý bị thiếu, các trang bộ nhớ không sử dụng gần đây có thể được di chuyển để chuyển đổi, nó sẽ cung cấp nhiều ram hơn cho chương trình cần truy cập vào trang bộ nhớ.
+- Nếu swap bắt đầu được sử dụng nhiều, ta có thể gặp rắc rối và sử dụng swap cần được giám sát chặt chẽ.
 - Tạo một phân  vùng được định dạng để swap 
 
   - 1.  Nhập `fdisk  /dev/sda` để vào tiện ích fdisk
