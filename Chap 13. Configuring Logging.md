@@ -198,7 +198,7 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
   - Tạo file lưu trữ log message /var/log/messages-notice
   - Chỉnh sửa file  /etc/rsyslog.d/notice.conf với nội dung **.notice /var/log/messages-notice*
   - Nhập `systemctl restart rsyslog` để khởi chạy lại rsyslog  service
-  - Dùng `lênh tail -n /var/log/messages-notice` để quan sát  
+  - Dùng `lênh tail -f /var/log/messages-notice` để quan sát  
   - `logger -p user.notice "Notice Message Test"` để ghi message vào /var/log/messages-notice
 ![image](image/Screenshot_98.png)
 
