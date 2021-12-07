@@ -263,7 +263,7 @@ Lap: Tạo file cấu hình rsyslog server để ghi message-notice
 
 - Systemd-journald service lưu trữ log message trong journal, mọt file nhị phân được lưu trữ tạm thời trong /run/log/journal. Sử dụng lệnh `journalctl` để kiểm tra file 
 
-<a name ='4'></a>
+<a name ='41'></a>
 ## 4.1 Using journalctl to Find Events
 - Nhập lệnh`journalctl` mặc định hiển thị  các sự kiện xảy ra từ khi hệ thống khởi động lần cuối, chúng sẽ in ra phàn đầu của journal.Nhập `G` để xem các sự kiện cuối được ghi lại.
 - Nhập `journalctl -f` để xem các dòng cuối của message và chúng được tự động được thêm vào khi có các sự kiện mới  
