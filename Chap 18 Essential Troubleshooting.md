@@ -128,7 +128,7 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
 
 
 <a name ='41'></a>
-##4.2 Resetting the Root Password
+## 4.2 Resetting the Root Password
 - 1. Mở boot system nhập e khi vào menu boot
   ![image](image/chap18/Screenshot_11.png)
 
