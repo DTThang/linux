@@ -17,7 +17,7 @@
 - [5. Configuring VDO](#5)
   - [5.1 Understanding VDO](#51)
   - [5.2 Setting Up VDO](#52)
-
+- [Tham khảo](#tm)
   --- 
 
 <a name ='1'></a>
@@ -335,8 +335,8 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
 
 
 
-
-Tham khảo 
+<a name ='tm'></a>
+# Tham khảo 
 
 https://blog.cloud365.vn/linux%20tutorial/tong-quan-lvm/
 
