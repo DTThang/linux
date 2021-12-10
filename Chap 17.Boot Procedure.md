@@ -58,7 +58,7 @@
 - Chỉ target có option isolate cho phép mới có thể cô lập. 
 
 - Nhập `systemctl --type=target` để xem target hiện tại được hoạt động, `systemctl --type=target --all` để xem tất cả target tồn tại trong máy.
-  ![image](image/chap17/Screenshot_1.png)
+  ![image](image/Chap17/Screenshot_1.png)
 
 - Một vài target có vai trò quan trọng bởi chúng có thể khỏi động (cô lập)  để xác định trạng thái của server khởi động. Đây là những target được thiết lập nhưu target mặc định.  Các target này cũng tương ứng với các runlevel được sử dụng trong các phiên bản trước của RHEL: 
 
@@ -75,7 +75,7 @@
 - Trong nội dung của target có dòng AllowIsolate=yes, điều này có nghĩa có thể thay đổi trạng thái hiện tại của máy tính cho target bằng cách sử dụng lệnh `systemctl isolate`.
 - Ví dụ cô lập một targate 
   - Đến thư mục /usr/lib/systemd/system và nhập `grep Isolate *.target` để xem danh sach các target cho phép cô lập
-   ![image](image/chap17/Screenshot_2.png)
+   ![image](image/Chap17/Screenshot_2.png)
   - Nhập `systemctl isolate rescue.target`. Nó sẽ chuyển máy tính thành rescue.target. 
   - Nhập `systemctl isolate reboot.target` để restart máy tính  
 
@@ -98,7 +98,7 @@
 
 - Trong một số trường hợp có thể thay đổi cấu hình của GRUB 2 
   - Để áp dụng thay đổi cho GRUB 2, điểm bắt đầu là file /etc/default/grub, có các option để gọi GRUB  làm cái gì và làm như thế nào  
- ![image](image/chap17/Screenshot_3.png)
+ ![image](image/Chap17/Screenshot_3.png)
   - Tronng file phần quan trọng nhất là GRUB_CMDLINE_LINUX, nó chứa các đối số khởi động cho kernel trên server
   - Ngoài ra còn có các file cấu hình trong /etc/grub.d. Trong file này sẽ tìm thấy shell code phức tạp cho GRUB biết những gì cần tải và cách tải nó. 
 - Thông thường sẽ không phải chỉnh sửa các file cấu hình này. GRUB 2 tự động chọn kernel mới tự động và thêm chúng đến boot menu tự động
