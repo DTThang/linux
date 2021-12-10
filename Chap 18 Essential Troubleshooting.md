@@ -10,7 +10,6 @@
 - [4. Fixing Common Issues](#4)
   - [4.1 Recovering from File System Issues](#41) 
   - [4.2 Resetting the Root Password](#42)  
-- [5. Recovering Access to a Virtual Machine](#4)
 - [Tham khảo](#tm)
 ---
 
@@ -142,7 +141,7 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
   ![image](image/chap18/Screenshot_13.png)
 
 - 6. Nhập `load_policy -i` để load SElinux policy
-  ![image](image/chap18/Screenshot_14.png)
+  ![image](./image/chap18/Screenshot_14.png)
 
 - 7. Nhập `chcon -t shadow_t /etc/shadow` để đặt ngữ cảnh chính xác đến /etc/shadow
   ![image](image/chap18/Screenshot_13.png)
@@ -150,7 +149,7 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
 - 8. Reboot hệ thống
 
 <a name ='5'></a>
-# 5. Recovering Access to a Virtual Machine
+
 
 
 
