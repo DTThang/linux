@@ -21,7 +21,7 @@
 <a name ='11'></a>
 ## 1.1 Understanding the Use of Kernel Threads and Drivers
 - Tác vụ của hệ điều hành được thi hành bởi các kernel được thực hiện bởi các kernel threads khác nhau.
-  ![image](image/chap16/Screenshot_1.png)
+  ![image](image/Chap16/Screenshot_1.png)
 
 - Khởi tạo phần cứng là tác vụ quan trọng của linux kernel.
   - Drivers được linux kernel sử dụng để chắc chắn phần cứng được sử dụng. 
@@ -41,7 +41,7 @@
   - Tiện ích `uname`
 - Tiện ích `dmesg` xem xét thông tin chi tiết  về hoạt động của kernel. Nó hiển thị nội dung của kernel ring buffer (vòng đệm), vùng của bộ nhớ  nơi Linux kernel  giữ log message của nó. 
   - Một phương pháp thay thế để truy cập đến cùng một thông tin  trong kernel ring buffer là lệnh  `journalctl --dmesg`, tương đương với `journalctl -k`
-  ![image](image/chap16/Screenshot_2.png)
+  ![image](image/Chap16/Screenshot_2.png)
 - File hệ thống /proc là nguồn thông tin có giá trị. Nội dung trong file chứa thông tin trạng thái về những thứ xảy ra trong máy chủ.
 - Tiện ích `uname` cho các thông tin khác nhau về hệ điều hành
   - `uname -a` hiện thị tất cả các tham số liên quan.
@@ -63,7 +63,7 @@
   - 4. Sau khi xử lý file rule do systemd-udevd cung cấp, `systemd-udevd` đến thư mục /etc/udev/rules.d để đọc các quy tắc tùy chỉnh nếu có. 
   - 5. Các module kernel được yêu cầu tải tự động và trạng thái về kernel modules và phần cứng liên quan được ghi đến file hệ thống sysfs nằm trong  thư mục /sys. Linux kernel sử dụng các file hệ thống giả này để theo dõi các các cài đặt liên quan đến phần cứng.
 - Process systemd-udevd là một process chạy liên tục. Để giám sát  nó sử dụng lệnh `udevadm monitor`. 
-  ![image](image/chap16/Screenshot_3.png)
+  ![image](image/Chap16/Screenshot_3.png)
 
 
 <a name ='22'></a>
@@ -79,18 +79,18 @@ modprobe -r |  Unloads kernel modules, xem xét đến kernel module phụ thu�
 
 
   - `lsmod`
-![image](image/chap16/Screenshot_4.png)
+![image](image/Chap16/Screenshot_4.png)
   - `modinfo`
-![image](image/chap16/Screenshot_5.png)
+![image](image/Chap16/Screenshot_5.png)
   - `modprobe`
-![image](image/chap16/Screenshot_6.png)
+![image](image/Chap16/Screenshot_6.png)
 
 
 
 <a name ='23'></a>
 ## 2.3 Checking Driver Availability for Hardware Devices
 - Lệnh `lspci` hiển thị danh sách PCI. Sử dụng option -k để hiển thị danh sách kernel module được phát hiện và sử dụng cho PCI device 
-![image](image/chap16/Screenshot_7.png)
+![image](image/Chap16/Screenshot_7.png)
 
 - Nếu PCI device được tìm thấy không có module kernel nào có thể load, có thể sử dụng module kernel nguồn đóng, nhưng điều đó có thể gây nguy hiểm cho sự ổn định của kernel. 
 
