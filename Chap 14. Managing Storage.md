@@ -121,7 +121,7 @@ Device  name | Description
  - Thông báo này chỉ ra rằng phân vùng đã được thêm thành công vào
 bảng phân vùng, nhưng không thể cập nhật bảng phân vùng kernel trong bộ nhớ.
  - Có thể so sánh 2 đầu ra của  `fdisk -l /dev/sda` và  `cat /proc/partitions`, cái mà hiển thị bảng phân vùng kernel.
-12. Nhập `partprobe /dev/sda` để  viết thay đổi đến bảng phân vùng kernel
+12. Nhập `partprobe /dev/sda` để viết thay đổi đến bảng phân vùng kernel
 
 <a name ='22'></a>
 ## 2.2 Using Extended and Logical Partitions on MBR
