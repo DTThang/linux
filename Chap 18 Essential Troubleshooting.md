@@ -49,7 +49,7 @@
 <a name ='21'></a>
 ## 2.1 Accesing the boot prompt
 - Trong menu khi khởi động do GRUB cung cấp nhập e để để mở chế độ có thể chỉnh sửa lệnh hoặc c để vào GRUB command prompt đầy đủ. để truyền các option boot đến kernel đang khởi động nhâp e. Việc chỉnh sửa ở đây chỉ có tác dụng một lần  
-  ![image](image/chap18/Screenshot_1.png)
+  ![image](image/Chap18/Screenshot_1.png)
 
 
 
@@ -62,8 +62,8 @@
   - **systemd.unit=rescue.target** điều này bát đầu thêm một số systemd unit  để mang lại một chế độ hoạt động hoàn chỉnh. Điều này yêu cầu pass root. Dùng `systemctl list-units` để xem số lượng file unit được load 
 
 Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vmlinuz và bắt đầu hệ thống. 
-  ![image](image/chap18/Screenshot_2.png)
-  ![image](image/chap18/Screenshot_4.png)
+  ![image](image/Chap18/Screenshot_2.png)
+  ![image](image/Chap18/Screenshot_4.png)
 
 
 
@@ -73,7 +73,7 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
 <a name ='31'></a>
 ## 3.1 Restoring System Access Using a Rescue Disk
 
-  ![image](image/chap18/Screenshot_5.png)
+  ![image](image/Chap18/Screenshot_5.png)
 
 - **Install Red Hat Enterprise Linux 8 in Basic Graphics Mode** Đặt lại máy. Không sử dụng nếu muốn khắc phục sự cố một tình huống bình thường không hoạt động  và cần một chế độ đồ họa cơ bản.
 -  **Rescue a Red Hat Enterprise Linux System** Nó linh hoạt nhất trong hệ thống cứu hộ.
@@ -83,14 +83,14 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
 - Khi bắt đầu cứu hộ một hệ thống, cầ bật quyền truy cập đầy đủ vào ổ đĩa trên đĩa cài đặt. Thông thường đĩa cứu hộ cài đặt và gắn nó vào thư mục /mnt/sysimage. DÙng `chroot /mnt/sysimage` để lấy nội dung thư mục này làm môi trường làm việc thực tế. Nếu không sử dụng chroot một số tiện ích sẽ không hoạt động.
 
   - Khởi động máy và chọn Troubleshooting
-  ![image](image/chap18/Screenshot_6.png)    
+  ![image](image/Chap18/Screenshot_6.png)    
 
   - Chọn Rescue a Red Hat Enterprise Linux System
-  ![image](image/chap18/Screenshot_8.png)    
+  ![image](image/Chap18/Screenshot_8.png)    
 
   - Hệ thống cứu hộ hiện đã nhắc bạn rằng nó sẽ cố gắng tìm một linux được cài đặt hệ thống và gắn trên /mnt/sysimage nhập 1 để tiếp tục
   - Nếu cài đặt Red Hat hợp lệ đã được tìm thấy, bạn sẽ được nhắc rằng hệ thống của bạn có được gắn dưới /mnt/sysimage. Tại thời điểm này, bạn có thể nhấn Enter hai lần để truy cập vỏ cứu hộ
-  ![image](image/chap18/Screenshot_9.png)
+  ![image](image/Chap18/Screenshot_9.png)
   - Nhập chroot /mnt/sysimage. Tại thời điểm này ta có quyền truy cập vào hệ thống tệp tin gốc và có thẻ truy cập tất cả các công cụ để sửa chữa quyền truy cập vào hệ thống. 
   - Nhập exit và reboot để khởi động lại máy ở chế độ bình thường  
 
@@ -99,7 +99,7 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
 
 - Các bước cài lại GRUB2 
   - Cài đặt môi trường làm việc chroot /mnt/sysimage 
-  ![image](image/chap18/Screenshot_10.png)
+  ![image](image/Chap18/Screenshot_10.png)
 
   - Dùng lệnh `grub2-install [name device]`, với KVM  `grub2-install /dev/vda`, với `VMware grub2-install /dev/sda`
 
@@ -129,23 +129,23 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
 <a name ='41'></a>
 ## 4.2 Resetting the Root Password
 - 1. Mở boot system nhập e khi vào menu boot
-  ![image](image/chap18/Screenshot_11.png)
+  ![image](image/Chap18/Screenshot_11.png)
 
 - 2. Nhập rd.break  như một đối số khởi động vào dòng tải kernel. Crtl-X để khởi động option này. Điều này sẽ đưa đến cuối của giai đoạn khởi động, nơi initramfs được load, ngay trước khi mount mộtt file root hệ thống trên thư mục /
-  ![image](image/chap18/Screenshot_12.png)
+  ![image](image/Chap18/Screenshot_12.png)
 
 - 3. Nhập `mount -o remount,rw /sysroot` để đọc/ghi  truy cập đến đến system image
 
 - 4. Tại thời điểm này, nhập `chroot /sysroot` để tạo nội dung của thư mục /sysimage  thư mục root mới 
 - 5. Nhập passwd để thiết lập lại pass cho root
-  ![image](image/chap18/Screenshot_13.png)
+  ![image](image/Chap18/Screenshot_13.png)
 
 - 6. Nhập `load_policy -i` để load SElinux policy
 
-  ![image](/image/chap18/Screenshot_14.png)
+  ![image](/image/Chap18/Screenshot_14.png)
 
 - 7. Nhập `chcon -t shadow_t /etc/shadow` để đặt ngữ cảnh chính xác đến /etc/shadow
-  ![image](image/chap18/Screenshot_13.png)
+  ![image](image/Chap18/Screenshot_13.png)
 
 - 8. Reboot hệ thống
 
