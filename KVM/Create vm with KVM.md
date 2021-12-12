@@ -112,16 +112,27 @@ Trong đó:
 # Cài VM qua giao diện KVM
 
 - Mở giao diện KVM bằng cách nhập virt-manager 
+
   ![image](image/Screenshot_1.png)
+
 - Chọn New Virtual Machine để tạo một vm với
+
   ![image](image/Screenshot_2.png)
+
 - Cài đặt qua một file iso
+
   ![image](image/Screenshot_3.png)
+
 - Thiết lập ram và cpus
+
   ![image](image/Screenshot_4.png)
+
 - Thiết lập bộ nhớ
+
   ![image](image/Screenshot_6.png)
+
 - Chọn Finish để cài đặt 
+
   ![image](image/Screenshot_7.png)
 
 
