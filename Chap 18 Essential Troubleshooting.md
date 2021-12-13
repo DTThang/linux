@@ -141,7 +141,6 @@ Ví dụ: nhập `systemd.unit=rescue.target` vào cuối dòng linux$(root)/vml
   ![image](image/Chap18/Screenshot_13.png)
 
 - 6. Nhập `load_policy -i` để load SElinux policy
-
   ![image](/image/Chap18/Screenshot_14.png)
 
 - 7. Nhập `chcon -t shadow_t /etc/shadow` để đặt ngữ cảnh chính xác đến /etc/shadow

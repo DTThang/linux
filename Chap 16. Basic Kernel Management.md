@@ -97,7 +97,7 @@ modprobe -r |  Unloads kernel modules, xem xét đến kernel module phụ thu�
 <a name ='24'></a>
 ## 2.4 Managing Kernel Module Parameters
 - Có 2 cách để  quản lý các tham số kernel module 
-  - Thêm thủ công qua dòng lệnh 
+  - Thêm thủ công qua dòng lệnh
     - Ví dụ `modprobe cdrom debug=1`  
   - Thêm qua file bằng cách tạo file trong thư mục /etc/modprobe.d
     - Ví dụ tạo file /etc/modprobe.d/cdrom.conf và thêm thông tin `options cdrom debug=1` vào file để cho phép tham số tự động được thêm khi cdrom kernel modle được load
