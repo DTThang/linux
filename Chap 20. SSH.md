@@ -13,7 +13,7 @@
 - Terminal là môi trường được ở trên console  và cung cấp quyền truy cập vào một text shell, môi trường thực hiện nhập lệnh.
 - Login local console
   - Khi mở một server không sử dụng đồ họa, màn hình sẽ xuất hiện một console dựa trên văn bản 
-  ![image](image\chap20/Screenshot_2.png)
+  ![image](image/chap20/Screenshot_2.png)
   - Muốn dùng nhiều console trên một service, sử dụng virtual terminal cho phép mở 6 cửa sổ terminal bằng cách nhập Alt F1-F6 một console muốn. Các virtual console này có file divice đặt tại thư mục /dev và có tên là /dev/tty1-tty6
 
 
@@ -27,7 +27,7 @@
 - Sử dụng password
   - Dịch vụ sshd chạy và sử dụng port 22 (mặc định tron RHEL 8) 
   - Cần thông tin về user và inet hoặc domain của máy chủ cần ssh tới 
-  ![image](image\chap20/Screenshot_3.png)
+  ![image](image/chap20/Screenshot_3.png)
 
   - Các option với ssh 
 
@@ -41,10 +41,10 @@
 - Sử dụng key
   - Sử dụng cặp khóa public/private 
     - Public Key khóa chung: là một file text - nó lại lưu ở phía Server SSH, nó dùng để Client gửi Private Key (file lưu ở Client) lên để xác thực thì kiểm tra phù hợp giữa Private Key và Public Key này. Nếu phù hợp thì cho kết nối.
-  ![image](image\chap20/Screenshot_4.png)
+  ![image](image/chap20/Screenshot_4.png)
 
     - Private Key khóa riêng: là một file text bên trong nó chứa mã riêng để xác thực (xác thực là kiểm tra sự phù hợp của Private Key và Public Key). Client kết nối với Server phải chỉ ra file này khi kết nối SSH thay vì nhập mật khẩu.
-  ![image](image\chap20/Screenshot_5.png)
+  ![image](image/chap20/Screenshot_5.png)
     
 
   - Tạo key sử dụng lệnh `ssh-keygen [option]`
@@ -53,15 +53,15 @@
     -f| là key name và nơi sẽ lưu trữ key. Mặc định tại thư mục ~/.ssd
     -t| là thuật toán mã hóa để sinh khóa.(rsa, dsa, ecdsa, ed25519)
     -b| kích thước khóa
-    
-    ![image](image\chap20/Screenshot_6.png)
+
+    ![image](image/chap20/Screenshot_6.png)
 
 
   - Gán public key cho service `ssh-copy-id -i ~/.ssh/your-key.pub username@host` public key sẽ được lưu tại ~/.ssh/authorized_keys để xác thực khi có private key gửi đến. 
-  ![image](image\chap20/Screenshot_7.png)
+  ![image](image/chap20/Screenshot_7.png)
 
   - Lúc này có thể sử dụng private key để ssh đến máy chủ.
-  ![image](image\chap20/Screenshot_8.png)
+  ![image](image/chap20/Screenshot_8.png)
 
 <a name ='22'></a>   
 ## 2.2 Securely Transferring Files Between Systems
@@ -75,7 +75,7 @@
   - SFTP (SSH File Transfer Protocol) là một giao thức truyền file an toàn được sử dụng để truy cập, quản lý và truyền file thông qua SSH được mã hóa
   - Khi làm việc với SFTP, bạn sẽ mở một phiên  FTP client vào remote server,trong đó yêu cầu duy nhất trên remote server là nó phải chạy sshd process
   - Kết nối sftp:  `sftp user@remotehost` 
-  ![image](image\chap20/Screenshot_9.png)
+  ![image](image/chap20/Screenshot_9.png)
 
 
     Lệnh| 	Thông tin
