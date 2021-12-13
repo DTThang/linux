@@ -3,7 +3,7 @@
 - [2. Hardening the SSH Server](#2)
   - [2.1 Access server from remote through ssh](#21)
   - [2.2 Securely Transferring Files Between Systems](#22)
-- [3. Hardening the SSH Server](#1)
+- [3. Hardening the SSH Server](#3)
 
 ---
 
@@ -144,7 +144,7 @@
 - Nếu port không có thiết lập security label, sử dụng -a để thêm label cho port. Nếu security label được thiết lập, dùng -m để sửa đổi security label. 
 - Ví dụ lệnh  `semanage port -a -t ssh_port_t -p tcp 2022` để port label 2022 cho truy cập bởi sshd
 
-<a name ='33'></a>
+<a name ='34'></a>
 ## 3.4 Limiting User Access
 
 - Trong file /etc/ssh/sshd_config, tham số AllowUsers sử dụng để chỉ định người dùng được truy cập qua ssh. 
