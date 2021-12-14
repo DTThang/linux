@@ -71,11 +71,13 @@
     - [user_src@]src_host:]src_file là file, thư mục nguồn, ví dụ abcuser@192.168.1.55:/home/file1.txt là file /home/file1.txt tại máy abcuser@192.168.1.55, như dấu :, nếu là tại máy local thì không cần chỉ ra user, host tức bỏ đoạn abcuser@192.168.1.55:
     - [user@]desk_host:]des_file đường dẫn file, thư mục đích muốn copy - ý nghĩa tương tự như trên
     - [OPTIONS] các thiết lập cho thêm vào nếu muốn, như cho thêm tham số -r để đệ quy copy cả thư mục, các file, thư mục con theo đường dẫn.
+  ![image](image/chap20/Screenshot_10.png)
+
 - Using sftp to Securely Transfer Files
   - SFTP (SSH File Transfer Protocol) là một giao thức truyền file an toàn được sử dụng để truy cập, quản lý và truyền file thông qua SSH được mã hóa
   - Khi làm việc với SFTP, bạn sẽ mở một phiên  FTP client vào remote server,trong đó yêu cầu duy nhất trên remote server là nó phải chạy sshd process
   - Kết nối sftp:  `sftp user@remotehost` 
-  ![image](image/chap20/Screenshot_9.png)
+  ![image](image/chap20/Screenshot_11.png)
 
 
     Lệnh| 	Thông tin
@@ -96,18 +98,22 @@
     put -r mycode|Lệnh trên upload thư mục mycode, thư mục con trong mycode của máy Local lên thư mục hiện tại của Server
     exit|	Thoát
 
+
+  ![image](image/chap20/Screenshot_12.png)
+  
+
 - Using rsync to Synchronize Files
   - Rsync (remote sync) là công cụ đồng bộ file, thư mục của Linux. Nó sử dụng thuật toán khi copy dữ liệu sao cho dữ liệu phải copy là nhỏ nhất (chỉ copy những gì thay đổi giữa nguồn và gốc), khi đồng bộ nó giữ nguyên mọi thuộc tính của file, thư mục (từ chủ sở hữu, quyền truy cập file ...).
 
   Option | Use
   ---|---
-  -r |Synchronizes the entire directory tree
-  -l| Also synchronizes symbolic links
-  -p| Preserves symbolic links
-  -n| Performs only a dry run, not actually synchronizing anything
-  -a| Uses archive mode, thus ensuring that entire subdirectory trees and all file properties will be synchronized
-  -A |Uses archive mode, and in addition synchronizes ACLs
-  -X| Synchronizes SELinux context as well
+  -r |Đồng bộ hóa toàn bộ cây thư mục
+  -l| Đồng thời đồng bộ hóa các liên kết tượng trưng
+  -p| Bảo tồn các liên kết tượng trưng
+  -n| Chỉ thực hiện chạy phơi, không thực sự đồng bộ hóa bất kỳ thứ gì
+  -a| Sử dụng chế độ lưu trữ, do đó đảm bảo rằng toàn bộ cây thư mục con và tất cả các thuộc tính tệp sẽ được đồng bộ hóa
+  -A |Sử dụng chế độ lưu trữ và ngoài ra còn đồng bộ hóa ACL
+  -X| Đồng bộ hóa ngữ cảnh SELinux
 
   - Rsync - Đồng bộ giữa 2 máy Linux
 
@@ -120,41 +126,170 @@
   - Vô hiệu hóa mật khẩu root
   - Cấu hình port nondefault cho ssh lắng nghe
   - Chỉ định người đùng được phép ssh 
+- Các tham số trong file /etc/ssh/sshd_config giúp chúng ta làm những điều này  
+```
+#       $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
 
-<a name ='31'></a>
-## 3.1 Limiting Root Access
-- Sửa đổi tham số PermitRootLogin trong file /etc/ssh/sshd_config để vô hiệu hóa đăng nhập root
-- Sau khi thiết lập restart lại service
-  
-<a name ='32'></a>
-## 3.2 Configuring Alternative Ports
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
 
-- Có tất cả 65535 port có khả năng lắng nghe. Kẻ tấng công có thể quét tất cả các công hoặc tập trung vào các port đã biết, và ssh port 22 luôn nằm trong các cổng này
-- Có thể thay đổi port 22 bằng một port khác để để lắng nghe ssh. Có thể chọn một port ngẫu nhiên hoặc port 443
-- Port 443 theo mặc định được gán cho web server sử dụng TLS (Transport Layer Security) để cung cấp mã hóa.  
-- Nếu người dùng muốn truy cập vào máy chủ SSH thường đứng sau một proxy chỉ cho phép truy cập đến các cổng 80 và 443, thì việc định cấu hình SSH để lắng nghe trên cổng 443 có thể có ý nghĩa.
-- Một port chỉ có thể lắng nghe một service tại một thời điểm 
-  ![image](image/chap20/Screenshot_1.png)
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
 
-<a name ='33'></a>
-## 3.3 Modifying SELinux to Allow for Port Changes
-- Sau khi thay đổi port SSH, cần cấu hình SElinux đẻ cho phép các thay đổi. Network port được dán nhán với SELinux security labels để ngăn chặn các dịch vụ  từ các port nơi mà nó không nên đi 
-- Để cho phép một dịch vụ kết nối tới một nonedefault port, cần sử dụng `semanage port` để thay đổi nhãn trên port đích. Nên dụng `semanage port -l` để kiểm tra port đã có label. 
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
 
-- Nếu port không có thiết lập security label, sử dụng -a để thêm label cho port. Nếu security label được thiết lập, dùng -m để sửa đổi security label. 
-- Ví dụ lệnh  `semanage port -a -t ssh_port_t -p tcp 2022` để port label 2022 cho truy cập bởi sshd
+# If you want to change the port on a SELinux system, you have to tell
+# SELinux about this change.
+# semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
+#
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
 
-<a name ='34'></a>
-## 3.4 Limiting User Access
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
 
-- Trong file /etc/ssh/sshd_config, tham số AllowUsers sử dụng để chỉ định người dùng được truy cập qua ssh. 
--  AllowUsers không được sử dụng mặc định ở trong /etc/ssh/sshd_config
-- Tùy chọn AllowUsers là một lựa chọn tốt hơn PermitRootLogin vì nó hạn chế hơn việc chỉ từ chối root để đăng nhập.
-- Nếu AllowUsers không chỉ định root, vẫn có thể trở thành root bằng cách sử dụng su - sau khi tạo kết nối với tư cách người dùng bình thường.
+# Ciphers and keying
+#RekeyLimit default none
 
+# This system is following system-wide crypto policy. The changes to
+# crypto properties (Ciphers, MACs, ...) will not have any effect here.
+# They will be overridden by command-line options passed to the server
+# on command line.
+# Please, check manual pages for update-crypto-policies(8) and sshd_config(5).
 
+# Logging
+#SyslogFacility AUTH
+SyslogFacility AUTHPRIV
+#LogLevel INFO
 
+# Authentication:
 
+#LoginGraceTime 2m
+PermitRootLogin yes
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+#PubkeyAuthentication yes
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile      .ssh/authorized_keys
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+#PermitEmptyPasswords no
+PasswordAuthentication yes
+
+# Change to no to disable s/key passwords
+#ChallengeResponseAuthentication yes
+ChallengeResponseAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+#KerberosUseKuserok yes
+
+# GSSAPI options
+GSSAPIAuthentication yes
+GSSAPICleanupCredentials no
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+#GSSAPIEnablek5users no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+# WARNING: 'UsePAM no' is not supported in Fedora and may cause several
+# problems.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+
+# It is recommended to use pam_motd in /etc/pam.d/sshd instead of PrintMotd,
+# as it is more configurable and versatile than the built-in version.
+PrintMotd no
+
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS
+
+# override default of no subsystems
+Subsystem       sftp    /usr/libexec/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#       X11Forwarding no
+#       AllowTcpForwarding no
+#       PermitTTY no
+#       ForceCommand cvs server
+```
+
+Option | Use
+---|---
+Port| Xác định port TCP listening 
+PermitRootLogin| Cho phép hoặc không cho phép đăng nhập root
+MaxAuthTries| Số lượng số lần xác thực tối đa. Khi đạt một nửa số này sẽ được ghi đến syslog
+MaxSessions| Số lượng session tối đa có thể mở qua một địa chỉ IP
+AllowUsers| Chỉ định danh sách người dùng được kết nối đến server
+PasswordAuthentication| chỉ định cho phép xác thực bằng mật khẩu hay không. Mặc định on
+GSSAPIAuthentication| Xác thực thông qua GSSAPI cần được cho phép, được sử dụng cho  Kerberos-based authentication 
+TCPKeepAlive|  Chỉ định có hay không làm sạch kết nối TCP không hoạt động
+ClientAliveInterval|Chỉ định khoảng thời gian (giây) các gói được gửi đến client  để tìm ra client còn sống
+ClientAliveCountMax| Chỉ định số lượng gói client còn sống cần được gửi 
+UseDNS| Nếu bật sử dụng DNS name để tra cứu khớp với địa chỉ ip đến tên
+ServerAliveInterval| Chỉ định khoảng thời gian (giây), một client gửi một gói đến một server để giữ kết nối còn sống
+ServerAliveCountMax| Chỉ định số lượng gói tối đa môt client gửid đến một server để giữ kết nối sống
 
 
 https://xuanthulab.net/tao-ssh-key-va-xac-thuc-ket-noi-ssh-bang-public-private-key.html
