@@ -4,11 +4,11 @@
   - [2.1 Access server from remote through ssh](#21)
   - [2.2 Securely Transferring Files Between Systems](#22)
 - [3. Hardening the SSH Server](#3)
-
+- [Tham khảo](tm) 
 ---
 
 <a name ='1'></a>
-# 1 Local Consoles 
+# 1. Local Consoles 
 - Một Linux console terminal là một trong những console hệ thống cung cấp trong  Linux kernel.The Linux console như là phương tiện cho các hoạt động đầu vào và đầu ra cho một hệ thống Linux.
 - Terminal là môi trường được ở trên console  và cung cấp quyền truy cập vào một text shell, môi trường thực hiện nhập lệnh.
 - Login local console
@@ -291,6 +291,8 @@ UseDNS| Nếu bật sử dụng DNS name để tra cứu khớp với địa ch�
 ServerAliveInterval| Chỉ định khoảng thời gian (giây), một client gửi một gói đến một server để giữ kết nối còn sống
 ServerAliveCountMax| Chỉ định số lượng gói tối đa môt client gửid đến một server để giữ kết nối sống
 
+<a name ='tm'></a>
+# Tham khảo 
 
 https://xuanthulab.net/tao-ssh-key-va-xac-thuc-ket-noi-ssh-bang-public-private-key.html
 
