@@ -187,7 +187,45 @@
   - [6] Yêu cầu được chuyển tiếp đến nội dung file trong tại liệu root cụ thể 
 
 - Tạo một virtual host
-  - 
+  - Vhost được đặt tại /var/www/html, tạo một thư mục tại /var/www để chứa vhost riêng `mkdir -p /var/www/thangdt.example.com/html`
+  - Tạo file index.html chứa nội dung web server 
+  - Tạo file cấu hình cho web server tại /etc/httpd/conf.d/ 
+  ```
+  [root@localhost ~]# touch /etc/httpd/conf.d/thangdt.example.com.conf
+   [root@localhost ~]# vi /etc/httpd/conf.d/thangdt.example.com.conf
+  [root@localhost ~]# cat /etc/httpd/conf.d/thangdt.example.com.conf
+   <VirtualHost *:80>
+     ServerAdmin root@thangdt.example.com
+     DocumentRoot /var/www/example.com/public_html
+     ServerName www.thangdt.example.com
+     ServerAlias thangdt.example.com
+     ErrorLog /var/www/thangdt.example.com/log/error.log
+     CustomLog /var/www/thangdt.example.com/log/requests.log common
+   </VirtualHost>
+   ```
+  - Tạo file chứa log 
+  ```
+  [root@localhost ~]# mkdir /var/www/thangdt.example.com/log/
+  [root@localhost ~]# touch /var/www/thangdt.example.com/log/error.log
+  [root@localhost ~]# touch /var/www/thangdt.example.com/log/requests.log
+  ```
+    ![image](image/chap21/Screenshot_3.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <a name ='tm'></a>
