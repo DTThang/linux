@@ -185,6 +185,9 @@
   - [6] Yêu cầu được chuyển tiếp đến nội dung file trong tại liệu root cụ thể 
 
 - Tạo một virtual host
+  - Đặt tên miền 
+    ![image](image/chap21/Screenshot_4.png)
+
   - Vhost được đặt tại /var/www/html, tạo một thư mục tại /var/www để chứa vhost riêng `mkdir -p /var/www/thangdt.example.com/html`
   - Tạo file index.html chứa nội dung web server 
   - Tạo file cấu hình cho web server tại /etc/httpd/conf.d/ 
