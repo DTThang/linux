@@ -7,7 +7,7 @@
 <a name ='1'></a>
 # 1. Understanding Shell Scripting Core Elements
 - Shell Scripti là một danh sách các lệnh được thực thi liên tục với một đối số logic trong đó cho phép  code được thực thi theo điều kiện cụ thể duy nhất. 
-- Một file shell script có đuôi .sh và được bắt đầu bằng #!/bin/bash để lhoa báo cho chương trình tương tác shell của hệ thống
+- Một file shell script  được bắt đầu bằng #!/bin/bash để thông  báo cho chương trình tương tác shell của hệ thống
 - Muốn thực hiện một shell script cần cấp quyền cho nó, dùng `chmod +x[755] filename` 
 - Sử dụng `./filename`  hoặc `bash filename`để thực thi shell script 
 
@@ -39,7 +39,8 @@ $BASH_VERSION | vesion của trình shellscript hiện tại
 $BASH | Thư mục cài đặt bash
 $HOME | Thư mục home
 $PATH | Danh sách các đường dẫn môi trường (vd: sau khi cài ruby thì môi trường sẽ được thêm vào đường dẫn rvm tới thư mục cài ruby, vậy là có thể chạy các câu lệnh shell ruby --version, rvm list, ruby -h ... của phần mềm ruby. Tương tự với git, curl, python3, mysql, elastichsearch ... hay bất cứ phần mềm nào)
-
+- Sử dụng lệnh `printenv` để xem các biến có sẵn  
+- Ví dụ sử dụng biến  
 ![image](image/chap19/Screenshot_2.png)
 
 <a name ='22'></a>
@@ -49,6 +50,7 @@ $PATH | Danh sách các đường dẫn môi trường (vd: sau khi cài ruby th
   - 2 cách xác định biến linh hoạt 
     - Dùng `read`  trong script để hỏi người dùng chạy script cho đầu vào. 
     - Dùng lệnh thay thế để sử dụng kết quả của một lệnh sau đó gán vào một biến. Có 2 cách gán lệnh là dùng dấu backtick  hoặc dùng dấu dollar
+![image](image/chap19/Screenshot_5.png)
 
 
 <a name ='3'></a>
@@ -100,7 +102,28 @@ echo "I do not know what \$1 is"
 fi
 exit 0      
 ```
-
+- Ví dụ 
+```
+#!/bin/bash
+# Testing nested ifs - use elif & else
+#
+testuser=NoSuchUser
+#
+if grep $testuser /etc/passwd
+then
+echo “The user $testuser exists on this system.”
+#
+elif ls -d /home/$testuser
+then
+echo “The user $testuser does not exist on this system.”
+echo “However, $testuser has a directory.”
+#
+else
+echo “The user $testuser does not exist on this system.”
+echo “And, $testuser does not have a directory.”
+fi
+```
+![image](image/chap19/Screenshot_6.png)
 
 <a name ='32'></a>
 ## 3.2 Using || and &&
@@ -111,30 +134,169 @@ exit 0
   - `[ -z $1 ] && echo no argument provided` : Một kiểm tra được thực hiện với $1 liệu có trống hay không, nếu kiểm tra đúng sẽ thực thi lệnh thứ 2
   - `ping -c 1 10.0.0.20 2>/dev/null || echo node is not available`: Lệnh ping kiểm tra tính có sẵn của một host. Lệnh echo sẽ được thực hiện nếu lệnh ping không thành công.
 
+- Ví dụ 
+```
+#!/bin/bash
+# testing compound comparisons
+#
+if [ -d $HOME ] && [ -w $HOME/testing ]
+then
+echo “The file exists and you can write to it”
+else
+echo “I cannot write to the file”
+fi
+```
+![image](image/chap19/Screenshot_7.png)
+
 <a name ='33'></a>
 ## 3.3 for
 - for cung cấp một giải pháp để xử lý các phạm vi dữ liệu 
 
-- Cú pháp 
+- Dạng đơn giản của for  
 ```
 #!/bin/bash
-for i in 1 2 3 4 5
+for var in list
 do
-  echo "Looping ... number $i"
+commands
 done
 ```
+- Ví dụ Đọc giá trị thành một list
+```
+#!/bin/bash
+# basic for command
+for test in Alabama Alaska Arizona Arkansas California Colorado
+do
+echo The next state is $test
+done
+```
+![image](image/chap19/Screenshot_8.png)
+
+
 
 - Ví dụ 
-
-`for i in {133..135}; do ping -c 1 192.168.247.$i; 192.168.247.$ix is up; done`
+```
+for i in {133..135}
+do ping -c 1 192.168.247.$i
+192.168.247.$ix is up
+done
+ ```
 ![image](image/chap19/Screenshot_3.png)
 
 <a name ='34'></a>
 ## 3.4 Understanding while and until
 
-- while hữu ích nếu muốn theo dõi một thứ gì đó giống như sự có sẵn của một tiến trình. Phần đi theo while là until, nó giữ cho quá trình lặp mửo cho đến khi một điều kiện cụ thể là đúng  
+- Lệnh while hữu ích nếu muốn theo dõi một thứ gì đó giống như sự có sẵn của một tiến trình
+- Dạng đơn giản của while
+```
+while test command
+do
+other commands
+done
+```
+- Ví dụ: 
+```
+#!/bin/bash
+# while command test
+var1=10
+while [ $var1 -gt 0 ]
+do
+echo $var1
+var1=$[ $var1 - 1 ]
+done
+```
 
-- Ví dụ: Giám sát process với while  
+![image](image/chap19/Screenshot_10.png)
+
+- Ví dụ dùng nhiều lệnh test 
+```
+#!/bin/bash
+# testing a multicommand while loop
+var1=10
+while echo $var1
+[ $var1 -ge 0 ]
+do
+echo “This is inside the loop”
+var1=$[ $var1 - 1 ]
+done
+```
+![image](image/chap19/Screenshot_11.png)
+
+
+
+
+- Lệnh until giữ cho quá trình lặp mửo cho đến khi một điều kiện cụ thể là đúng  
+- Dạng cơ bản của lệnh 
+```
+until test commands
+do
+other commands
+done
+```
+- Ví dụ  
+```
+#!/bin/bash
+# using the until command
+var1=100
+until [ $var1 -eq 0 ]
+do
+echo $var1
+var1=$[ $var1 - 25 ]
+done
+```
+![image](image/chap19/Screenshot_12.png)
+
+
+- Ví dụ  
+```
+#!/bin/bash
+# using the until command
+var1=100
+until echo $var1
+[ $var1 -eq 0 ]
+do
+echo Inside the loop: $var1
+var1=$[ $var1 - 25 ]
+done
+```
+![image](image/chap19/Screenshot_13.png)
+
+
+
+<a name ='34'></a>
+## 3.5 Understanding case
+- Lệnh case kiểm tra nhiều lệnh của một biến trong một định đạng danh sách
+```
+case variable in
+pattern1 | pattern2) commands1;;
+pattern3) commands2;;
+*) default commands;;
+esac
+```
+- Ví dụ  
+```
+#!/bin/bash# using the case command
+#
+case $USER in
+root | barbara)
+echo “Welcome, $USER”
+echo “Please enjoy your visit”;;
+testing)
+echo “Special testing account”;;
+jessica)
+echo “Do not forget to log off when you’re done”;;
+*)
+echo “Sorry, you are not allowed here”;;
+esac
+```
+![image](image/chap19/Screenshot_14.png)
+
+
+
+<a name ='34'></a>
+## 3.6 Bash Shell Script Debugging
+
+- Lệnh `bash -x` để xem các lệnh bên trong shell script đang thực hiện  
+![image](image/chap19/Screenshot_4.png)
 
 
 
@@ -142,3 +304,17 @@ done
 
 
 
+
+
+
+
+
+
+
+
+
+# Tham khảo 
+
+https://viblo.asia/p/tim-hieu-shell-script-p2-63vKjDoNl2R
+
+Linux Command Line and Shell Scripting Bible by Richard Blum, Christine Bresnahan (z-lib.org)

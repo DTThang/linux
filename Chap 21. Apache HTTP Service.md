@@ -185,38 +185,54 @@
   - [6] Yêu cầu được chuyển tiếp đến nội dung file trong tại liệu root cụ thể 
 
 - Tạo một virtual host
-  - Đặt tên miền 
-    ![image](image/chap21/Screenshot_4.png)
-
-  - Vhost được đặt tại /var/www/html, tạo một thư mục tại /var/www để chứa vhost riêng `mkdir -p /var/www/thangdt.example.com/html`
-  - Tạo file index.html chứa nội dung web server 
-  - Tạo file cấu hình cho web server tại /etc/httpd/conf.d/ 
+  - Tạo thư mục root cho domain example.com 
+    `mkdir -p /var/www/example.com/public_html`
+  - Tạo file index.html chứa nội dung domain example
+  `touch /var/www/example.com/public_html/index.html`
+  - Sửa nội dung file index.html 
   ```
-  [root@localhost ~]# touch /etc/httpd/conf.d/thangdt.example.com.conf
-   [root@localhost ~]# vi /etc/httpd/conf.d/thangdt.example.com.conf
-  [root@localhost ~]# cat /etc/httpd/conf.d/thangdt.example.com.conf
-   <VirtualHost *:80>
-     ServerAdmin root@thangdt.example.com
-     DocumentRoot /var/www/example.com/public_html
-     ServerName www.thangdt.example.com
-     ServerAlias thangdt.example.com
-     ErrorLog /var/www/thangdt.example.com/log/error.log
-     CustomLog /var/www/thangdt.example.com/log/requests.log common
-   </VirtualHost>
-   ```
-  - Tạo file chứa log 
+  <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to example.com</title>
+  </head>
+  <body>
+    <h1>Success! example.com home page!</h1>
+  </body>
+  </html>
   ```
-  [root@localhost ~]# mkdir /var/www/thangdt.example.com/log/
-  [root@localhost ~]# touch /var/www/thangdt.example.com/log/error.log
-  [root@localhost ~]# touch /var/www/thangdt.example.com/log/requests.log
+  - Cấp quyền cho thư mục `chown -R apache: /var/www/example.com`
+  - Tạo file cấu hình  /etc/httpd/conf.d/example.com.conf với nội dung 
   ```
-    ![image](image/chap21/Screenshot_3.png)
+  <VirtualHost *:80>
+    ServerName example.com
+    ServerAlias www.example.com
+    ServerAdmin webmaster@example.com
+    DocumentRoot /var/www/example.com/public_html
 
+    <Directory /var/www/example.com/public_html>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+    </Directory>
 
-
-
-
-
+    ErrorLog /var/log/httpd/example.com-error.log
+    CustomLog /var/log/httpd/example.com-access.log combined
+  </VirtualHost>
+  ```
+    - ServerName: Name of the domain for which the virtual host configuration will be used. This is your domain name.
+    - ServerAlias: All other domains for which the virtual host configuration will be used as well, such as the www subdomain.
+    - DocumentRoot: The directory from which Apache serves the domain files.
+    - Options: This directive controls the per-directory server features.
+    - -Indexes: Prevents directory listings.
+    - FollowSymLinks: This option tells the webserver to follow the symbolic links.
+    - AllowOverride: Specifies which directives declared in the .htaccess file can override the configuration directives.
+    - ErrorLog, CustomLog: The location od the log files.
+  - Kiểm tra cấu hình file syntax
+  - Restart httpd 
+  - Thêm nội dung `ip domain` vào file /etc/hosts để sử dụng domain 
+  - Kết quả 
+    ![image](image/chap21/Screenshot_5.png)
 
 
 
@@ -234,9 +250,9 @@
 
 https://blog.hostvn.net/chia-se/huong-dan-cai-dat-apache-tren-centos-8.html
 
+https://hocvps.com/add-website-tren-vps-apache-centos/
 
+https://www.tecmint.com/install-apache-with-virtual-host-on-centos-8/
 
-
-
-
+https://linuxize.com/post/how-to-set-up-apache-virtual-hosts-on-centos-8/
 
