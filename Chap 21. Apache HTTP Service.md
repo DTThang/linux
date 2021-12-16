@@ -121,8 +121,6 @@
     [root@localhost ~]# vi  /var/www/html/index.html
     [root@localhost ~]#  systemctl enable --now httpd
     Created symlink /etc/systemd/system/multi-user.target.wants/httpd.service → /usr/lib/systemd/system/httpd.service.
-    [root@localhost ~]# Use systemctl status httpd
-    -bash: Use: command not found
     [root@localhost ~]# systemctl status httpd
     ● httpd.service - The Apache HTTP Server
        Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
