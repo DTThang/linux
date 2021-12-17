@@ -165,6 +165,6 @@ zoneminder_run_sudo --> off
 - Lệnh `grep AVC  /var/log/audit/audit.log` để xem log
     ![image](image/chap22/Screenshot_14.png)
 
-
+- Lệnh sealert 
 
 https://www.tutorialspoint.com/unix_commands/restorecon.htm
