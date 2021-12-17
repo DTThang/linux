@@ -112,7 +112,7 @@ Labels| định nghĩa để xác định  source domain cho phép đến truy c
 <a name ='3'></a>
 # 3. Restoring Default File Contexts
 
-- Lệnh `restorecon` dử dụng để áp dụng thiết lập context từ policy đến file system 
+- Lệnh `restorecon` sử dụng để áp dụng thiết lập context từ policy đến file system 
 - Cấu trúc 
   - restorecon [-o outfilename ] [-R] [-n] [-v] [-e directory ] pathname
   - restorecon -f infilename [-o outfilename ] [-e directory ] [-R] [-n] [-v] [-F]
