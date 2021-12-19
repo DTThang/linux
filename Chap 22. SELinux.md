@@ -132,7 +132,7 @@ option | Desription
 <a name ='4'></a>
 # 4. Boolean Settings to Modify SELinux Settings
 -  SELinux Booleans được cung cấp để thay đổi hành vi của rule
-- Lệnh  `getsebool -a` hiển thị danh sácgh booleans  trên hệ thống 
+- Lệnh  `getsebool -a` hiển thị danh sách booleans  trên hệ thống 
 ```
 [root@localhost ~]#  getsebool -a
 abrt_anon_write --> off
@@ -153,9 +153,11 @@ zoneminder_anon_write --> off
 zoneminder_run_sudo --> off
 ```
 - Lệnh `setsebool` thay đổi boolean trong thời gian chạy 
-- Option -P để thay đổi boolean trong thời gian chạy và đặt mặc định cho boolean 
     ![image](image/chap22/Screenshot_12.png)
 
+- Option -P để thay đổi boolean trong thời gian chạy và đặt mặc định cho boolean 
+- Option -N policy trên disk sẽ không được tải vào kernel
+- Option -V verbose error messages sẽ được in từ semanage libraries.
 
 
 
