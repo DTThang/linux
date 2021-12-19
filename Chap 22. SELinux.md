@@ -155,7 +155,7 @@ zoneminder_run_sudo --> off
 - Lệnh `setsebool` thay đổi boolean trong thời gian chạy 
 - Option -P để thay đổi boolean trong thời gian chạy và đặt mặc định cho boolean 
     ![image](image/chap22/Screenshot_12.png)
-    ![image](image/chap22/Screenshot_14.png)
+
 
 
 
@@ -165,6 +165,29 @@ zoneminder_run_sudo --> off
 - Lệnh `grep AVC  /var/log/audit/audit.log` để xem log
     ![image](image/chap22/Screenshot_14.png)
 
-- Lệnh sealert 
+- sealert 
+  - sealert là thành phần giao diện người dùng (GUI hoặc dòng lệnh) đối với hệ thống khắc phục sự cố.
+  - sealert chạy như một quy trình của người dùng với các đặc quyền được liên kết với người dùng.
+  - Lệnh `sealert`  
+
+  Option | Use
+  ---|---
+  -b --browser | Khởi chạy trình duyệt
+  -f --fix | Thực thi lệnh sửa lỗi cho avc với uuid và plugin đã cho, yêu cầu tùy chọn --plugin.
+  -h -- help | Hiển thị message 
+  -s -- service  | Bắt đầu dịch vụ serlert, thường được sử dụng bởi dbus.
+  -S --noservice | Bắt đầu sealert mà không cần dịch vụ dbus như một ứng dụng độc lập
+  -l -- lookupid id | Tra cứu cảnh báo theo id, nếu id là ký tự đại diện * thì trả về tất cả cảnh báo
+  -a -- analyze file | Quét log file, phân tích file AVC
+  -u -- user | đăng nhập với tư cách người dùng
+  -p -- password | thiết lập mật khẩu người dùng 
+  -P --plugin |Đặt tên plugin được liên kết với tùy chọn --fix
+
+    ![image](image/chap22/Screenshot_16.png)
+
+# Tham khảo
+
 
 https://www.tutorialspoint.com/unix_commands/restorecon.htm
+
+https://linux.die.net/man/8/sealert

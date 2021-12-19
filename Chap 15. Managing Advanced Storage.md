@@ -345,3 +345,7 @@ https://vinasupport.com/lvm-la-gi-tao-vao-quan-ly-logical-volume-manager/
 https://bachkhoa-aptech.edu.vn/gioi-thieu-ve-logical-volume-manager/279.html 
 
 https://blogd.net/linux/tao-va-quan-ly-lvm-trong-linux/
+
+https://www.tecmint.com/create-a-vdo-volume-on-a-storage-device-on-rhel-8/
+
+https://stratis-storage.github.io/howto/
