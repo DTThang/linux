@@ -43,7 +43,7 @@ Labels| định nghĩa để xác định  source domain cho phép đến truy c
     ![image](image/chap22/Screenshot_3.png)
 
 
-<a name ='1'></a>
+<a name ='2'></a>
 # 2. Context Settings and the Policy
 - Context là nhãn dán được áp dụng cho các đối tượng 
   - File và thư mục  
@@ -89,7 +89,7 @@ Labels| định nghĩa để xác định  source domain cho phép đến truy c
 - Lệnh chcon `chcon -t context_type dir`
     ![image](image/chap22/Screenshot_13.png)
 
-<a name ='22'></a>
+<a name ='23'></a>
 ## 2.3 Finding the Context Type 
 
 - 3 cách để tìm thông tin context 
