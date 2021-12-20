@@ -42,7 +42,7 @@ work | Được sử dụng trong khu vực làm việc. Hầu hết các máy t
 <a name = '12'></a>
 ## 1.2 Firewalld services
 
-- Firewall service chi định chính xác cái gì nên chấp nhận như lưu lượng đến và lưu lượng đi trong filewall.
+- Firewall service chỉ định chính xác cái gì nên chấp nhận như lưu lượng đến và lưu lượng đi trong firewall.
 - Firewall service bao gồm các port được mở cũng như hỗ trợ các kernel module 
 - Trong firewalld một số dịch vụ mặc định được xác định, cho phép quản trị viên cho phép hoăc từ chối truy cập vào các cộng cụ thể trên máy chủ 
 
@@ -75,7 +75,7 @@ firewall-cmd Options | Explanation
 --add-source=<ipaddress/netmask> [--zone=<ZONE>] | Thêm địa chỉ IP cụ thể 
 --remove-source=<ipaddress/netmask> [--zone=<ZONE>] | Removes an IP address from the configuration
 --permanent | Ghi cấu hình đến disk và không  runtime
---reload|  Reloads cấu hình trêm disk 
+--reload|  Reloads cấu hình trên disk 
 
 
 - `firewall-cmd --get-default-zone` hiện thị zone mặc định hiện tại
