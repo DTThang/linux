@@ -4,7 +4,7 @@
   - [1.2 Firewalld services](#12)
 - [2. Working with Firewalld](#2)
 - [3. Creating a new FirewallD Service](#3)
-- [tham khảo](#tm)
+- [Tham khảo](#tm)
 
 
 
