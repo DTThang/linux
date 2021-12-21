@@ -1,6 +1,13 @@
 # Mục lục  
 - [1. Giới thiệu về iptables](#1)
+- [2. Các khái niệm ](#2)
+- [3. Table trong iptable](#3)
+- [4. Cài đặt và khởi động iptable](#4)
+- [4.1. Chuẩn b](#41)
+- [4.2 Các tham số lệnh iptables](#42)
+- [4.3 Một số lệnh cơ bản ](#43)
 
+- [Tham khảo  ](#tm)
 
 
 
@@ -86,7 +93,7 @@
   - MASQUERADE
 
     - MASQUERADE target được sử dụng gần tương tự như SNAT target, nhưng không yêu cầu tùy chọn --to-source
-    - MASQUERADE được sử dụng với dynamic IP, bạn không thể biết được địa chỉ IP thực sự tại tất cả các thời điểm.Nếu bạn có kết nối static IP, bạn nên sử dụng SNAT target
+    - MASQUERADE được sử dụng với dynamic IP, bạn không thể biết được địa chỉ IP thực sự tại tất cả các thời điểm.Nếu có kết nối static IP,nên sử dụng SNAT target
     - MASQUERADE target chỉ sử dụng trong chain PREROUTING trong table NAT
 
 ## **NAT**
@@ -174,7 +181,7 @@ systemctl status iptables
 ![image](image/chap23/Screenshot_11.png)
 
 <a name='42'></a>
-## 42. Các tham số lệnh iptables
+## 4.2 Các tham số lệnh iptables
 
 - Một số option thường dùng 
   - Các tùy chọn để chỉ định thông số
@@ -288,7 +295,7 @@ iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để 
   - destination: Chỉ ra một địa chỉ IP, subnet là đích đến của traffic hoặc có thể bất cứ đâu (anywhere).
   - Mỗi một dòng sau `target prot opt source destination` được xem là một rule trong 1 `chain`, và `Chain INPUT (policy ACCEPT)` biểu thị chain có tên là `INPUT` và `policy` của `chain` là `ACCEPT` và `1 references` biểu thị số lượng chain có liên quan đến `chain` này. Điều này đúng cho thông tin của các chain.
 - Một số lệnh thường dùng  
-  - iptables -F: Xóa tất cả rule 
+  - iptables -F: xóa tất cả rule 
   - iptables -X: xóa các chain do người dùng khai báo  
   - Kích hoạt chế độ chuyển gói tin ở mức kernel (loading module). Tính năng này cần được kích hoạt để iptables có thể chuyển gói tin sang máy khác: 
     ```
@@ -342,7 +349,7 @@ iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để 
         iptables -D INPUT -j DROP #xóa tất cả rule có hành động DROP
   - Lưu lại cấu hình và khởi động lại iptables
 
-        iptables-save
+        service iptables save
         systemctl restart iptables
   
 <a name ='tm'></a>  
