@@ -67,9 +67,28 @@
 
   - RETURN: Dừng thực thi xử áp dụng rules tiếp theo trong chain hiện tại đối với gói tin. Việc kiểm soát sẽ được trả về đối với chain đang gọi.
 
-  - REJECT: Thực hiện loại bỏ gói tin và gửi lại gói tin phản hồi thông báo lỗi. Ví dụ: 1 bản tin “connection reset” đối với gói TCP hoặc bản tin “destination host unreachable” đối với gói UDP và ICMP.
+  - REJECT: 
+    - Thực hiện loại bỏ gói tin và gửi lại gói tin phản hồi thông báo lỗi. 
+    - Ví dụ: 1 bản tin “connection reset” đối với gói TCP hoặc bản tin “destination host unreachable” đối với gói UDP và ICMP.
 
   - LOG: Chấp nhận gói tin và có ghi lại log.
+
+  - DNAT 
+    - DNAT target là được sử dụng để Destination Network Address Translation, điều đó có nghĩa là nó được sử dụng để viết lại địa chỉ IP đích của packet. 
+    
+    - Nếu packet là phù hợp, target này của rule sẽ thay đổi địa chỉ IP đích và sau đó định tuyến đến đúng thiết bị, host hoặc mạng.
+
+  - SNAT
+          
+    - SNAT target được sử dụng để Source Network Address Translation, điều này có nghĩa là target sẽ viêt lại Source IP address trong IP header của packet.  
+
+    - SNAT target chỉ có hiệu lực với table nat, trong chain POSTROUTING.
+  - MASQUERADE
+
+    - MASQUERADE target được sử dụng gần tương tự như SNAT target, nhưng không yêu cầu tùy chọn --to-source
+    - MASQUERADE được sử dụng với dynamic IP, bạn không thể biết được địa chỉ IP thực sự tại tất cả các thời điểm.Nếu bạn có kết nối static IP, bạn nên sử dụng SNAT target
+    - MASQUERADE target chỉ sử dụng trong chain PREROUTING trong table NAT
+
 ## **NAT**
 - NAT trong netfilter là việc thực hiện thay đổi địa chỉ đích và port theo một cách mong muốn.
 ## **mangle**
@@ -86,7 +105,7 @@
 
   - POSTROUTING chain – Thay đổi gói tin sau khi định tuyến, điều này có nghĩa là dịch gói tin khi gói tin ra khỏi hệ thống. Điều này thực hiện thay đổi địa chỉ IP nguồn của gói tin thành một địa chỉ nào đó phù hợp với việc định tuyến trên máy chủ đích - SNAT.
 
-  - OUTPUT chain – thực hiện NAT cho các gói tin được thực hiện cục bộ trên firewall.
+  - OUTPUT chain – Thực hiện NAT cho các gói tin được thực hiện cục bộ trên firewall.
 ## **FILTER Table**
 - Đây là table được sử dụng mặc định bởi iptables khi bạn tạo các chain mà không khai báo cho chain` đó thuộc vào table nào. Table hoạt động với việc quy định việc quyết định có cho phép gói tin được chuyển đến địa chỉ đích hay không. Bao gồm 3 thành phần:
 
@@ -299,6 +318,10 @@ iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để 
     - -o ens34: Khai báo interface mà gói tin đi ra 
     - -s 10.10.10.0/24: Khai báo dải mạng của nguồn gói tin gửi đến 
     - -j ACCEPT: Khai báo hành động xử lý gói tin. Ở đây là ACCEPT gói tin
+  - Cho phép truy cập qua cổng 22 của ssh và áp dụng giao thức TCP
+
+       iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
   - Cho phép thiết lập các kết nối đi vào hệ thống:
 
         iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
@@ -328,5 +351,7 @@ iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để 
 https://www.linuxgurus.in/installing-iptables-centos-rhel/
 
 https://github.com/hocchudong/thuctap012017/tree/master/TVBO/docs/Firewalls/iptables/docs
+
+https://github.com/hocchudong/thuctap012017/blob/master/XuanSon/Security/Iptables/docs/Kien-truc-iptables.md#1
 
 https://bizflycloud.vn/tin-tuc/tim-hieu-ve-iptables-phan-1-660.htm
