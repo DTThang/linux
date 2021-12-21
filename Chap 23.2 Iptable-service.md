@@ -130,6 +130,9 @@
 
 <a name ='4'></a>  
 # 4. Cài đặt và khởi động iptable
+
+<a name='41'></a>
+## 4.1 Chuẩn bị 
 - Để sử dụng iptable, cần tắt firewalld-service 
  ```
 systemctl stop firewalld
@@ -151,8 +154,61 @@ systemctl status iptables
 ```
 ![image](image/chap23/Screenshot_11.png)
 
-- Các tham số lệnh iptables
- 
+<a name='42'></a>
+## 42. Các tham số lệnh iptables
+
+- Một số option thường dùng 
+  - Các tùy chọn để chỉ định thông số
+    -  Chỉ định tên table: -t ,
+
+       ví dụ -t filter, -t nat, .. nếu không chỉ định table, giá trị mặc định là filter table
+
+    -  Chỉ đinh loại giao thức: -p ,
+
+        ví dụ -p tcp, -p udp hoặc -p ! udp để chỉ định các giao thức không phải là udp
+
+    -  Chỉ định card mạng vào: -i ,
+
+        ví dụ: -i eth0, -i lo
+
+    -  Chỉ định card mạng ra: -o ,
+
+        ví dụ: -o eth0, -o pp0
+    - Chỉ định địa chỉ IP nguồn: -s <địa_chỉ_ip_nguồn>,
+
+      ví dụ: -s 192.168.0.0/24 (mạng 192.168.0 với 24 bít mạng), -s 192.168.0.1-192.168.0.3 (các IP 192.168.0.1, 192.168.0.2, 192.168.0.3)
+    - Chỉ định địa chỉ IP đích: -d <địa_chỉ_ip_đích>, tương tự như -s
+
+    -  Chỉ định cổng nguồn: --sport 
+
+       ví dụ: –sport 21 (cổng 21), --sport 22:88 (các cổng 22 .. 88), --sport 0 (các cổng <=80), –sport 22: (các cổng >=22)
+    -  Chỉ định cổng đích: --dport , tương tự như --sport
+  - Các tùy chọn để thao tác với chain
+
+    - Tạo chain mới: iptables -N 
+
+    - Xóa hết các rule đã tạo trong chain: iptables -X
+
+    - Đặt chính sách cho các chain `built-in` (INPUT, OUTPUT & FORWARD): iptables -P , ví dụ: iptables -P INPUT ACCEPT để chấp nhận các packet vào chain INPUT
+
+    - Liệt kê các rule có trong chain: iptables -L
+
+    - Xóa các rule có trong chain (flush chain): iptables -F
+
+    - Reset bộ đếm packet về 0: iptables -Z
+
+  - Các tùy chọn để thao tác với rule
+
+    - Thêm rule: -A (append)
+
+    - Xóa rule: -D (delete)
+
+    - Thay thế rule: -R (replace)
+
+    - Chèn thêm rule: -I (insert)
+
+- Option chi tiết của table
+
  Tùy chọn đầy đủ |	Tùy chọn viết tắt|	Giá trị theo sau tùy chọn	| Ý nghĩa sử dụng tùy chọn
  ---|---|---|---
 --append|	-A|	chain_name rule_spec|	Thêm một hoặc nhiều rules tới chain đã khai báo có tên là chain_name
@@ -196,8 +252,8 @@ Tùy chọn đầy đủ	 | Tùy chọn viết tắt |	Giá trị theo sau tùy 
 
 
 
-
-
+<a name ='43'></a>
+## 4.3 Một số lệnh cơ bản 
 - Kiểm tra rule hiện tại 
 ```
 iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để xem table khác ) 
@@ -251,25 +307,26 @@ iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để 
   - Chấp nhận các kết nối loopback:
         
         iptables -A INPUT -s 127.0.0.1 -d 127.0.0.1 -j ACCEPT
+       ![image](image/chap23/Screenshot_13.png)
 
-  - Chấp nhận kết nối SSH cho việc remote xuất phát từ mạng LAN:
-
-        iptables -A INPUT -p tcp -m state -state NEW -m tcp -s 192.168.247.0/24 -d 192.168.247.134 --dport 22 -j ACCEPT
-  - Cho phép các kết nối ping với giới hạn 5 lần 1 phút đối với các kết nối từ mạng cục bộ:
-
-         iptables -A INPUT -p icmp --icmp-type echo-request -s 192.168.19.0/24 -d 192.168.19.72 -m limit --limim --limit-burst 5 -j ACCEPT  
   - Thực hiện NAT địa chỉ IP
 
         iptables -t nat -A POSTROUTING -o ens160 -s 192.168.247.134/24 -j MASQUERADE
-    ![image](image/chap23/Screenshot_12.png)
+    ![image](image/chap23/Screenshot_12.png) 
+  - Xóa quy tắc 
+        
+        iptables -D INPUT 4 #xóa rule dòng 4 của INPUT chain
+        iptables -D INPUT -j DROP #xóa tất cả rule có hành động DROP
   - Lưu lại cấu hình và khởi động lại iptables
 
         iptables-save
         systemctl restart iptables
-
+  
 <a name ='tm'></a>  
 # Tham khảo  
 
 https://www.linuxgurus.in/installing-iptables-centos-rhel/
 
 https://github.com/hocchudong/thuctap012017/tree/master/TVBO/docs/Firewalls/iptables/docs
+
+https://bizflycloud.vn/tin-tuc/tim-hieu-ve-iptables-phan-1-660.htm
