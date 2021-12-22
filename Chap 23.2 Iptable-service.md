@@ -3,7 +3,7 @@
 - [2. Các khái niệm ](#2)
 - [3. Table trong iptable](#3)
 - [4. Cài đặt và khởi động iptable](#4)
-- [4.1. Chuẩn b](#41)
+- [4.1. Chuẩn bị](#41)
 - [4.2 Các tham số lệnh iptables](#42)
 - [4.3 Một số lệnh cơ bản ](#43)
 
