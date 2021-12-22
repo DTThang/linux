@@ -207,7 +207,7 @@
   - File cấu hình của samba nằm ở /etc/samba/smb.conf, ta cần chỉ sửa file cấu hình để share file.
   - Nên copy file để backup 
 
-        mv /etc/samba/smb.conf /etc/samba/smb.conf.bkup
+        cp /etc/samba/smb.conf /etc/samba/smb.conf.bkup
 
 - Chỉnh sửa file cấu hình  /etc/samba/smb.conf
 
@@ -280,7 +280,7 @@ browsable = yes
 
 - Kết quả 
   ![image](image/chap24/Screenshot_11.png)
-  
+
 https://www.tecmint.com/install-nfs-server-on-centos-8/
 
 https://github.com/hocchudong/ghichep-nfs/blob/master/NDChien_Baocao_NFS.md#1
