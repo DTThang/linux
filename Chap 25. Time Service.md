@@ -87,7 +87,7 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
 - Cấu hình time service clients
 
   - chrony service được cấu hình để có thời gian thích hợp từ internet.
-  - Mặc định file cấu hình chrony.conf chứa dòng *pool 2.centos.pool.ntp.org iburst*. Nếu thay dòng này bằng  *server 192.168.247.139 iburst* thì thời gian của server1 được sử dụng thay thay vì server pool.ntp.org
+  - Mặc định file cấu hình chrony.conf chứa dòng *pool 2.centos.pool.ntp.org iburst*. Nếu thay dòng này bằng  *server 192.168.247.134 iburst* thì thời gian của server 192.168.247.134 được sử dụng thay thay vì server pool.ntp.org
 
 - Lap cấu hình môt NTP time client 
   - 2 server được sử dụng trong bài lap 
