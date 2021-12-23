@@ -1,5 +1,6 @@
 # Mục lục 
 - [1. Local Time](#1)
+- [2. Network Time Protocol](#1)
 
 
 
