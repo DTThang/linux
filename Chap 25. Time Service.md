@@ -89,27 +89,36 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
   - Mặc định file cấu hình chrony.conf chứa dòng *pool 2.centos.pool.ntp.org iburst*. Nếu thay dòng này bằng  *server 192.168.247.139 iburst* thì thời gian của server1 được sử dụng thay thay vì server pool.ntp.org
 
 - Lap cấu hình môt NTP time client 
+  - 2 server được sử dụng trong bài lap 
+
+  Server | HDH | ip | name 
+  --- | --- | --- | ---
+  NTP server| Centos 8 | 192.168.247.134 | nfssv1.exmple.com 
+  NTP client | Centos 8 | 192.168.247.136 |nfssv2.exmple.com 
+
   - Cài đặt chrony và khởi động 
     
         yum install -y chrony
         systemctl enable --now chronyd
         systemctl status chronyd
-        
+  - Cấu hình firewall 
+
+        firewall-cmd --add-service ntp --permanent
+        firewall-cmd --reload       
+
   - Trên server1, thêm dòng *allow 192.168.0.0/24* cho phép truy cập từ tất cả client sử dụng ip bắt đầu bằng 192.168. 
   - Thêm dòng *stratum 10* để chắc local time server được sử dụng cho client. Lưu file cấu hình 
   - Khởi động lại chrony 
 
         systemctl restart chronyd
-  - Cấu hình firewall 
-
-        firewall-cmd --add-service ntp --permanent
-        firewall-cmd --reload 
+  
   - Trên server2, mở file /etc/chrony.conf và disable dòng *pool 2.rhel.pool.ntp.org*
-  - Thêm dòng nfssv1.example.com hoặc địa chỉ ip của server1 192.168.247.139 vào file cấu hình.
+  - Thêm dòng *server nfssv1.example.com* hoặc địa chỉ ip của server1 192.168.247.134 vào file cấu hình.
   - Khởi động lại chrony  
     
         systemctl restart chronyd
-  - Nhập `chronyc sources` 
+  - Nhập `chronyc sources` để kiểm tra kết nối đồng bộ
+  ![image](image/chap25/Screenshot_4.png)
 
 
 
