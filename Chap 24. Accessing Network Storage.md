@@ -281,6 +281,10 @@ browsable = yes
 - Kết quả 
   ![image](image/chap24/Screenshot_11.png)
 
+
+
+<a name ='tm'></a>
+# Tham khảo
 https://www.tecmint.com/install-nfs-server-on-centos-8/
 
 https://github.com/hocchudong/ghichep-nfs/blob/master/NDChien_Baocao_NFS.md#1
