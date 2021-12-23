@@ -107,13 +107,13 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
         firewall-cmd --add-service ntp --permanent
         firewall-cmd --reload       
 
-  - Trên server1, thêm dòng *allow 192.168.0.0/24* cho phép truy cập từ tất cả client sử dụng ip bắt đầu bằng 192.168. 
+  - Trên NTP server, thêm dòng *allow 192.168.0.0/24* cho phép truy cập từ tất cả client sử dụng ip bắt đầu bằng 192.168. 
   - Thêm dòng *stratum 10* để chắc local time server được sử dụng cho client. Lưu file cấu hình 
   - Khởi động lại chrony 
 
         systemctl restart chronyd
   
-  - Trên server2, mở file /etc/chrony.conf và disable dòng *pool 2.rhel.pool.ntp.org*
+  - Trên NTP client, mở file /etc/chrony.conf và disable dòng *pool 2.rhel.pool.ntp.org*
   - Thêm dòng *server nfssv1.example.com* hoặc địa chỉ ip của server1 192.168.247.134 vào file cấu hình.
   - Khởi động lại chrony  
     
