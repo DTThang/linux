@@ -70,7 +70,7 @@ set-local-rtc [0|1] | khiểm soát RTC trong local time
 set-ntp [0|1] | kiểm soát ntp kích hoạt 
 
 - Quản lý thiết lập time zone 
-  - 3 cấch tiếp cận để thiết lập zone time local  
+  - 3 cách tiếp cận để thiết lập zone time local  
     - Thư mục  /usr/share/zoneinfo 
 
         Dùng lệnh `ln -sf  /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime ` để thiết lập time local 
@@ -86,11 +86,16 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
 - Cấu hình time service clients
 
   - chrony service được cấu hình để có thời gian thích hợp từ internet.
-  - Mặc định file cấu hình chrony.conf chứa dòng *pool 2.centos.pool.ntp.org iburst*. Nếu thay dòng này bằng  *server1.example.com* thì thời gian của server1 được sử dụng thay thay vì server pool.ntp.org
+  - Mặc định file cấu hình chrony.conf chứa dòng *pool 2.centos.pool.ntp.org iburst*. Nếu thay dòng này bằng  *server 192.168.247.139 iburst* thì thời gian của server1 được sử dụng thay thay vì server pool.ntp.org
 
 - Lap cấu hình môt NTP time client 
-  - Trên server1, mở file /etc/chrony.conf và disable dòng *pool 2.rhel.pool.ntp.org* 
-  - Thêm dòng *allow 192.168.0.0/16* cho phép truy cập từ tất cả client sử dụng ip bắt đầu bằng 192.168. 
+  - Cài đặt chrony và khởi động 
+    
+        yum install -y chrony
+        systemctl enable --now chronyd
+        systemctl status chronyd
+        
+  - Trên server1, thêm dòng *allow 192.168.0.0/24* cho phép truy cập từ tất cả client sử dụng ip bắt đầu bằng 192.168. 
   - Thêm dòng *stratum 10* để chắc local time server được sử dụng cho client. Lưu file cấu hình 
   - Khởi động lại chrony 
 
@@ -98,10 +103,10 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
   - Cấu hình firewall 
 
         firewall-cmd --add-service ntp --permanent
-        firewall-cmd reload 
+        firewall-cmd --reload 
   - Trên server2, mở file /etc/chrony.conf và disable dòng *pool 2.rhel.pool.ntp.org*
-  - Thêm dòng nfssv1.example.com hoặc địa chỉ ip của server1 192.168.247.134 vào file cấu hình.
-  - khởi động lại chrony  
+  - Thêm dòng nfssv1.example.com hoặc địa chỉ ip của server1 192.168.247.139 vào file cấu hình.
+  - Khởi động lại chrony  
     
         systemctl restart chronyd
   - Nhập `chronyc sources` 
