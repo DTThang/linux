@@ -11,8 +11,8 @@
 ---
 <a name ='1'></a>
 # 1. Linux Firewal
-- Sử dụng firewall để giiới hạn lưu lượng  truy cập đến máy chủ hoặc đi ra khỏi máy chủ .
-- Fire được triển khai trong linux kernel thông qua netfilter subsystem.
+- Sử dụng firewall để giới hạn lưu lượng  truy cập đến máy chủ hoặc đi ra khỏi máy chủ .
+- Firewall được triển khai trong linux kernel thông qua netfilter subsystem.
 - Netfilter cho phép kernel module kiểm tra mọi thứ đầu vào đầu ra  hoặc chuyển tiếp packet và hoạt động trên một gói  
 - Trước kia tiện ích `iptables` được sử dụng, hiện tại không còn cung cấp trên RHEL 8
 - `nftables` là giải pháp thay thế `iptables` cung cấp giao diện nâng cao để viết rule trực tiếp đến  nftables
