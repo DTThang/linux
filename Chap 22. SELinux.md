@@ -95,7 +95,7 @@ Labels| định nghĩa để xác định  source domain cho phép đến truy c
 - 3 cách để tìm thông tin context 
   - Xem ở môi trường mặc định 
   - Đọc file cấu hình
-  - Dùng man -k _selinux.  Đây là phương pháp mạnh mẽ nất 
+  - Dùng man -k _selinux.  Đây là phương pháp mạnh mẽ nhất 
 - Cài đặt  SELinux-Specific Man Pages
   - `man -k _selinux` chỉ nhìn thấy 1-2 man page  
     ![image](image/chap22/Screenshot_9.png)
@@ -153,6 +153,7 @@ zoneminder_anon_write --> off
 zoneminder_run_sudo --> off
 ```
 - Lệnh `setsebool` thay đổi boolean trong thời gian chạy 
+
     ![image](image/chap22/Screenshot_12.png)
 
 - Option -P để thay đổi boolean trong thời gian chạy và đặt mặc định cho boolean 
