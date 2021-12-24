@@ -76,11 +76,10 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
 
         Dùng lệnh `ln -sf  /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime ` để thiết lập time local 
   ![image](image/chap25/Screenshot_2.png)
-  - Dùng `tzselect` 
- 
-  ![image](image/chap25/Screenshot_3.png)
 
-  - Dùng `timedatectl`
+    - Dùng `tzselect` 
+  ![image](image/chap25/Screenshot_3.png)
+    - Dùng `timedatectl`
   
         timedatectl list-timezones # lấy thông tin time zone 
         timedatectl set-timezone Europe/Amsterdam # thiết lập time zone  
