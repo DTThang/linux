@@ -115,7 +115,7 @@
       ```    
   - [3] Tạo nội dung Web Server
     - Apache web server sẽ mác định chọn một file với tên index.html và sẽ trình bày nội dung nói tới client sử dụng một trình duyệt để truy cập vào web server
-    - Tạo file /var/www/html/index.html. Apachi sẽ mặc định chọn file này để trình bày nội dung tới client khi sử dụng một trình duyệt để truy cập vào web server
+    - Tạo file /var/www/html/index.html. Apache sẽ mặc định chọn file này để trình bày nội dung tới client khi sử dụng một trình duyệt để truy cập vào web server
     ```
     [root@localhost ~]# touch /var/www/html/index.html
     [root@localhost ~]# vi  /var/www/html/index.html
