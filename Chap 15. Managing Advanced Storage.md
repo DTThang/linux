@@ -283,8 +283,10 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
   - 15. Nhập `mount /dev/stratis/mypool/stratis1-snap /mnt` và xác định file với tên bắt đầu bằng a vẫn có trong thư mục /mnt 
   - 16. Reboot hệ thống. Xác nhập Stratis volume vẫn được mount tự động.
 
-<a name ='1'></a>
+<a name ='5'></a>
 # 5. Configuring VDO
+
+<a name ='51'></a>
 ## 5.1 Understanding VDO
 
 - Virtual Data Optimizer (VDO) là một giải pháp lưu trữ nâng cao được cung cấp trong RHEL 8. VDO được phát triển để giảm không gian ổ đĩa sử dụng trên block device bằng các áp dụng chứ năng chống sao chép.
@@ -297,7 +299,7 @@ stratis filesystem | cho phép giám sát file hệ thống riêng biệt
 - VDO đặc biệt hữu ích trong môi trường cụ thể. Cụ thể là các nền tảng máy chủ (host platform) cho container và máy ảo, nơi công cụ chống trùng lặp đảm bảo việc sử dụng lưu trữ đĩa hiệu quả hơn.
 - Một môi trường khác VDO làm việc hiệu quả là  cloud block storage. Ví dụ VDO được sử dụng làm lớp lưu trữ bên dưới để lưu trữ Ceph, kích thước logic có thể sử dụng tối đa ba lần kích thước vật lý.
 
-<a name = '52'></a>
+<a name ='52'></a>
 ## 5.2 Setting Up VDO
 
 - Để cấu hình VDO
