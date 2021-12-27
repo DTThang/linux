@@ -80,11 +80,10 @@ set-ntp [0|1] | kiểm soát ntp kích hoạt
     - Dùng `tzselect` 
   ![image](image/chap25/Screenshot_3.png)
     - Dùng `timedatectl`
-  
+        ```
          timedatectl list-timezones # lấy thông tin time zone 
-
          timedatectl set-timezone Europe/Amsterdam # thiết lập time zone  
-
+        ```
 - Cấu hình time service clients
 
   - chrony service được cấu hình để có thời gian thích hợp từ internet.
