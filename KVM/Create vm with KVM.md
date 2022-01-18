@@ -12,7 +12,8 @@
 - Đối với bản Minimal để dùng được công cụ đồ họa virt-manager người dùng phải cài đặt gói x-window bằng câu lệnh
   - `dnf install  xorg-x11-xauth xorg-x11-fonts-* xorg-x11-utils -y`
 - Start dịch vụ libvirt và cho dịch vụ chạy cùng hệ thống
-  - `systemctl start libvirtd systemctl enable libvirtd`
+  - `systemctl start libvirtd`
+  - `systemctl enable libvirtd`
 - Reboot lại hệ thống
 
 - Thao tác với KVM qua comand
