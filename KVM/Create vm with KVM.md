@@ -79,17 +79,7 @@
 # Cài VM bằng virt-install
 - Nhập lệhh để cài Virtual Machine qua KVM
 ```sh
-virt-install \ 
---name centos8.5 \ 
---ram 1000 \
---disk path=/var/kvm/images/centos8.5.img,size=10 \
---vcpus 2 --os-type linux\
---os-variant rhl8.0\
---network bridge=virbr0\
---graphics none \
---console pty,target_type=serial \
---location '/root/CentOS-8.5.2111-x86_64-dvd1.iso' \
---extra-args 'console=ttyS0,115200n8 serial'
+virt-install --name centos8.5 --ram 1000 --disk path=/var/kvm/images/centos8.5.img,size=10 --vcpus 2 --os-type linux --os-variant rhl8.0 --network bridge=virbr0 --graphics none  --console pty,target_type=serial  --location '/root/CentOS-8.5.2111-x86_64-dvd1.iso' --extra-args 'console=ttyS0,115200n8 serial'
 ```
 Trong đó:
 ```sh
