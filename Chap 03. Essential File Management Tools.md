@@ -148,9 +148,9 @@ Vd: viz, java
 
 <a name = '2'></a>
 # 2. Mount
-- mount, unmount
+- mount, umount
   - Lệnh mount dùng để đính kèm tệp hệ thống được tìm thấy trên một số thiết bị vào ây tệp lớn
-  - Lệnh unmount dùng để tách nó ra một lần nữa
+  - Lệnh umount dùng để tách nó ra một lần nữa
 - Lệnh df -Th được đăng ký để hiển thị không gian nhớ khả dụng trong thiết bị được mount, nó bao gồm tất cả các mount hệ thống
 ![image](https://user-images.githubusercontent.com/92305335/139286330-786fbf67-723b-45e1-bb29-91b5c745ae05.png)
   - Tùy chọn  -h để tóm tắt kết quả đầu ra để ta có thể đọc
