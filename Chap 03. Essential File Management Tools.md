@@ -30,47 +30,41 @@
   - Thư mục gốc, chưa tất cả file và thư mục hệ thống
 
   - Chỉ người dùng root mới có quyền ghi cho thư mục này
-
-![image](https://user-images.githubusercontent.com/92305335/139211836-ee481bad-c4ec-4e2f-a0de-0f68949fe1bf.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139211836-ee481bad-c4ec-4e2f-a0de-0f68949fe1bf.png)
 
 
 - /boot 
 
   - Chứa linux kernel, file image hỗ trợ load hệ thống
- 
- ![image](https://user-images.githubusercontent.com/92305335/139211889-cb55beb4-6cfe-4788-abbb-95da20f2bf99.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139211889-cb55beb4-6cfe-4788-abbb-95da20f2bf99.png)
 
 
 - /bin
 
-  - Chứa các tin nhị phân hỗ trợ việc boot và thi hành lệnh  
-  
+  - Chứa các tin nhị phân hỗ trợ việc boot và thi hành lệnh   
   ![image](https://user-images.githubusercontent.com/92305335/139216333-83068987-2500-4b0b-acd0-ad73a366aa5c.png)
  
-- /dev 
-
+- /dev
   - Chứa các tập tin thiết bị phần cứng, bao gồm các thiết bị đầu cuối, thiết bị được gắn vào hệ thống. Vd: cdrom, cpu, core… 
- 
- ![image](https://user-images.githubusercontent.com/92305335/139216392-aaab20b9-1c8e-4f2b-a087-f7fbbb24cb5d.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216392-aaab20b9-1c8e-4f2b-a087-f7fbbb24cb5d.png)
 
 - /etc 
 
   - Chứa các file cấu hình yêu cầu bởi tất cả các chương trình
 
   - /etc kiểu soát cách hệ điều hành và hệ thống hoạt động
- 
-![image](https://user-images.githubusercontent.com/92305335/139216442-b4498362-9dce-4f4f-b8f5-654727ae8270.png)
+   ![image](https://user-images.githubusercontent.com/92305335/139216442-b4498362-9dce-4f4f-b8f5-654727ae8270.png)
 
 - /home 
   - Thư mục chính của người dùng, mỗi người dùng sẽ được tạo thư mục riêng và sử dụng
- ![image](https://user-images.githubusercontent.com/92305335/139216487-a2fa73e2-35da-4a3c-a957-cd3f55bdc84c.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216487-a2fa73e2-35da-4a3c-a957-cd3f55bdc84c.png)
 
 - /lib, /lib64 
 
   - Thứa các file thư viện chia sẻ cho các tệp tin nhị phân nằm dưới /bin và /sbin
 
   - Chứa thư viện dùng chung để khởi động hệ thống và chạy các lệnh trong hệ thống tệp gốc
-![image](https://user-images.githubusercontent.com/92305335/139216512-a3168e36-1038-411d-899b-82bb89d4b1db.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216512-a3168e36-1038-411d-899b-82bb89d4b1db.png)
 
  
 - /media
@@ -96,7 +90,7 @@ Vd: viz, java
   - Các tiến trình đang chạy sẽ được lưu thông tin tại đây. 
 
   - Đây là các tập tin hệ thống ảo với nội đung tài nguyên hệ thống
- ![image](https://user-images.githubusercontent.com/92305335/139216570-b073d928-fba8-4b96-a01c-6707bc7af998.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216570-b073d928-fba8-4b96-a01c-6707bc7af998.png)
 
 - /root
 
@@ -109,7 +103,7 @@ Vd: viz, java
   - Chứa dữ liệu của tiến trình chạy từ khi bắt đầu đến khi kết thúc
 
   - /run bao gồm tệp id và tệp khóa và một số thứ khác  
-![image](https://user-images.githubusercontent.com/92305335/139216600-dd0d8068-cd0e-4bf4-b8fc-8246206a83c7.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216600-dd0d8068-cd0e-4bf4-b8fc-8246206a83c7.png)
 
 - /sbin
 
@@ -126,16 +120,17 @@ Vd: viz, java
 - /sys
 
   - Chứa các file giao diện phần cứng khác nhau và các tiến trình liên quan được quản lý bởi linux kernel và các tiến trình liên quan.
- ![image](https://user-images.githubusercontent.com/92305335/139216644-b678f678-c7d0-4f9f-81f3-94933ddc1970.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216644-b678f678-c7d0-4f9f-81f3-94933ddc1970.png)
 
 - /usr
 
-  - Chứa đựng các thư mục con có tệp chương trình , thư viện cho các file chương trình và tài liệu về chúng ![image](https://user-images.githubusercontent.com/92305335/139216681-429ed21a-7dad-4389-9e4e-8364f7b5e561.png)
+  - Chứa đựng các thư mục con có tệp chương trình , thư viện cho các file chương trình và tài liệu về chúng 
+  ![image](https://user-images.githubusercontent.com/92305335/139216681-429ed21a-7dad-4389-9e4e-8364f7b5e561.png)
  
 - /var
 
   - Chứa các file có thể thay đổi kích thước như log file, mail boxet, và spool files
- ![image](https://user-images.githubusercontent.com/92305335/139216701-330ee21d-019e-457a-baaa-8919ad13be90.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139216701-330ee21d-019e-457a-baaa-8919ad13be90.png)
 
 - /tmp
 
@@ -153,6 +148,7 @@ Vd: viz, java
   - Lệnh umount dùng để tách nó ra một lần nữa
 - Lệnh df -Th được đăng ký để hiển thị không gian nhớ khả dụng trong thiết bị được mount, nó bao gồm tất cả các mount hệ thống
 ![image](https://user-images.githubusercontent.com/92305335/139286330-786fbf67-723b-45e1-bb29-91b5c745ae05.png)
+
   - Tùy chọn  -h để tóm tắt kết quả đầu ra để ta có thể đọc
   - Tùy chọn -T hiển thị loại tệp hệ thống 
     - *Filesystem*: tên file  của thiết bị được tương tác với thiết bị đĩa  
@@ -163,7 +159,7 @@ Vd: viz, java
     - *Mounted on*: thư mục lưu trữ hiện tại 
 - findmnt
   - Lệnh findmnt hiển thị các mount và các quan hệ tồn tại giữa các mount khác nhau
-![image](https://user-images.githubusercontent.com/92305335/139288365-d8b05865-f2f8-4256-857f-eab67195d6d3.png)
+  ![image](https://user-images.githubusercontent.com/92305335/139288365-d8b05865-f2f8-4256-857f-eab67195d6d3.png)
 
 <a name = '3'></a>
 # 3. Quản lý tệp
