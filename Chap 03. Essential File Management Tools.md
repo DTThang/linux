@@ -36,7 +36,7 @@
 
 - /boot 
 
-  - Chứa linux kernel, file ảnh hỗ trợ load hệ thống
+  - Chứa linux kernel, file image hỗ trợ load hệ thống
  
  ![image](https://user-images.githubusercontent.com/92305335/139211889-cb55beb4-6cfe-4788-abbb-95da20f2bf99.png)
 
