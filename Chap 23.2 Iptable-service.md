@@ -342,7 +342,8 @@ iptables -nvL (Mặc định xem Filering table, thêm option -t name-tab để 
   - Thực hiện NAT địa chỉ IP
 
         iptables -t nat -A POSTROUTING -o ens160 -s 192.168.247.134/24 -j MASQUERADE
-    ![image](image/chap23/Screenshot_12.png) 
+    ![image](image/chap23/Screenshot_12.png)
+
   - Xóa quy tắc 
         
         iptables -D INPUT 4 #xóa rule dòng 4 của INPUT chain
