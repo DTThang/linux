@@ -208,6 +208,8 @@ lvremove|loại bỏ logical volume
   - `lvresize -r -l +75%FREE /dev/vgdata/lvvlo1` thêm 75% của tất cả không gian đĩa trống đến logical volume.
   - `lvresize -r -l 75%FREE /dev/vgdata/lvvlo1` thay đổi kích thước logical volume  để tổng kích thước bằng 75% dung lượng ổ đĩa trống. 
 
+- Sử dụng lệnh `xfs_growfs /dev/vgdata/lvvlo1` để thư mục cần extent nhận dung lượng mới
+
 
 <a name ='1'></a>
 # 4. Configuring Stratis
